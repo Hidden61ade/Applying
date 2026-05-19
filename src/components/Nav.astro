@@ -1,0 +1,38 @@
+---
+const path = Astro.url.pathname;
+const items = [
+  { href: "/", label: "Index" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/intern", label: "Intern" },
+  { href: "/legacy", label: "Legacy" },
+];
+---
+
+<header class="sticky top-0 z-40 backdrop-blur-md bg-[color:var(--color-bg)]/70 border-b border-[color:var(--color-rule)]">
+  <div class="container-wide flex items-center justify-between py-4">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="font-[var(--font-display)] text-xl tracking-tight">
+        Baohua <span class="text-[color:var(--color-accent)]">·</span> Fang
+      </span>
+    </a>
+    <nav class="flex items-center gap-1 text-sm">
+      {items.map((it) => {
+        const active = it.href === "/" ? path === "/" : path.startsWith(it.href);
+        return (
+          <a
+            href={it.href}
+            class:list={[
+              "px-3 py-1.5 rounded-full transition-colors",
+              active
+                ? "text-[color:var(--color-bg)] bg-[color:var(--color-ink)]"
+                : "text-[color:var(--color-ink-dim)] hover:text-[color:var(--color-ink)]",
+            ]}
+          >
+            {it.label}
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+</header>

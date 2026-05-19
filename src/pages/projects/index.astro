@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import ProjectGrid, { type ProjectMeta } from "../../components/ProjectGrid";
+
+const all = (await getCollection("projects")).filter((p) => !p.data.hidden);
+const sorted = all.sort((a, b) => a.data.order - b.data.order);
+
+const meta: ProjectMeta[] = sorted.map((p) => ({
+  slug: p.id,
+  title: p.data.title,
+  year: p.data.year,
+  role: p.data.role,
+  summary: p.data.summary,
+  hook: p.data.hook,
+  depth: p.data.depth,
+  tags: p.data.tags,
+  award: p.data.award,
+  cover: p.data.cover,
+  links: p.data.links,
+}));
+---
+
+<BaseLayout title="Projects — Baohua Fang">
+  <section class="container-wide pt-20 pb-24">
+    <p class="eyebrow mb-6">Projects</p>
+    <h1 class="display-lg mb-6 max-w-3xl">
+      Eight ways of asking the same question: <span class="text-[color:var(--color-accent)]">what can a game be?</span>
+    </h1>
+    <p class="text-[color:var(--color-ink-dim)] max-w-2xl mb-12">
+      Filter by the role I held on each project. Cards marked <em>Case study</em>
+      open a detail page; cards marked <em>Quick view</em> open inline.
+    </p>
+
+    <ProjectGrid client:load projects={meta} />
+  </section>
+</BaseLayout>

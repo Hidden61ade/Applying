@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).filter(
+    (p) => !p.data.hidden && p.data.depth === "deep",
+  );
+  return projects.map((p) => ({ params: { slug: p.id }, props: { entry: p } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayout title={`${d.title} — Baohua Fang`} description={d.summary}>
+  <article class="container-wide pt-20 pb-24 max-w-3xl">
+    <a href="/projects" class="eyebrow hover:text-[color:var(--color-ink)]">
+      ← All projects
+    </a>
+
+    <header class="mt-8 mb-12">
+      <p class="eyebrow mb-4">{d.year} · {d.role}</p>
+      <h1 class="display-lg mb-6">{d.title}</h1>
+      {d.hook && (
+        <p class="text-xl italic text-[color:var(--color-ink-dim)]">
+          “{d.hook}”
+        </p>
+      )}
+      {d.award && (
+        <p class="text-[color:var(--color-accent-2)] mt-4">{d.award}</p>
+      )}
+      <div class="flex flex-wrap gap-2 mt-6">
+        {d.tags.map((t: string) => <span class="chip">{t}</span>)}
+      </div>
+      {d.links.length > 0 && (
+        <div class="flex gap-4 mt-6">
+          {d.links.map((l: { label: string; href: string }) => (
+            <a
+              href={l.href}
+              target="_blank"
+              rel="noreferrer"
+              class="underline underline-offset-4 hover:text-[color:var(--color-accent)]"
+            >
+              {l.label} ↗
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose-content text-lg leading-relaxed text-[color:var(--color-ink-dim)] space-y-5 [&_h2]:text-[color:var(--color-ink)] [&_h2]:text-2xl [&_h2]:mt-12 [&_h2]:mb-3 [&_h2]:font-[var(--font-display)] [&_strong]:text-[color:var(--color-ink)] [&_a]:underline">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const internships = [
+  {
+    company: "Sony — Advanced Technology Center Shanghai Lab",
+    role: "Creative Technologist (incoming)",
+    period: "Jun – Oct 2026",
+    location: "Shanghai",
+    bullets: [
+      "Four-person creative-technology lab covering the full pipeline of teamLab-style interactive exhibitions and large-scale public installations (e.g. the FGO motion-interaction exhibit at BW).",
+      "End-to-end involvement in conceptualization, prototyping, and on-site deployment of interactive entertainment systems.",
+      "Working closely under a Japanese-led lab on cross-cultural, hardware-coupled interactive art.",
+    ],
+    tags: ["Creative Technology", "Interactive Installation", "TouchDesigner"],
+  },
+  {
+    company: "Tencent — Tiki Studio",
+    role: "Game Design Intern",
+    period: "2025",
+    location: "Shenzhen",
+    bullets: [
+      "Independently developed and deployed a Python-based, AI-driven image-generation workflow to optimize internal art production for the Teamfight Tactics design and art teams.",
+      "Used the toolchain to rapidly produce high-quality visual concept prototypes, drastically reducing iteration cost and bridging communication gaps between disciplines.",
+      "Participated in the end-to-end design and engine implementation of top-tier (T0) commercial assets, ensuring design intent aligned with technical feasibility.",
+    ],
+    tags: ["Game Design", "AI Workflows", "Python", "Unity"],
+  },
+];
+---
+
+<BaseLayout title="Internships — Baohua Fang">
+  <section class="container-wide pt-20 pb-24 max-w-4xl">
+    <p class="eyebrow mb-6">Internships</p>
+    <h1 class="display-lg mb-12">Where the work meets the world.</h1>
+
+    <div class="space-y-16">
+      {internships.map((it) => (
+        <article class="rule pt-10">
+          <div class="flex flex-wrap items-baseline justify-between gap-4 mb-6">
+            <div>
+              <h2 class="text-3xl font-[var(--font-display)]">{it.company}</h2>
+              <p class="text-[color:var(--color-ink-dim)] mt-1">{it.role}</p>
+            </div>
+            <p class="text-sm text-[color:var(--color-ink-dim)]">
+              {it.period} · {it.location}
+            </p>
+          </div>
+          <ul class="space-y-3 text-[color:var(--color-ink-dim)] leading-relaxed list-disc list-outside ml-5">
+            {it.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+          <div class="flex flex-wrap gap-2 mt-6">
+            {it.tags.map((t) => <span class="chip">{t}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
