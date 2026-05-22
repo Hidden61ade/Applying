@@ -26,6 +26,30 @@
 14. [Aalto University — MA Game Design and Development（艺术方向）](#14-aalto-university--ma-game-design-and-development艺术方向)
 15. [Aalto University — MS Game Design and Development（技术方向）](#15-aalto-university--ms-game-design-and-development技术方向)
 
+**美国 CS / HCI 项目**
+16. [CMU — Master of Human-Computer Interaction (MHCI)](#16-cmu--master-of-human-computer-interaction-mhci)
+17. [UW — Master of Human-Computer Interaction + Design (MHCI+D)](#17-uw--master-of-human-computer-interaction--design-mhcid)
+18. [Georgia Tech — MS Human-Computer Interaction (MS HCI)](#18-georgia-tech--ms-human-computer-interaction-ms-hci)
+19. [Indiana University — MS in Human-Computer Interaction/Design (HCI/d)](#19-indiana-university--ms-in-human-computer-interactiondesign-hcid)
+20. [USC Viterbi — MS Computer Science（Game Development Track）](#20-usc-viterbi--ms-computer-sciencegame-development-track)
+21. [Northeastern University — MS Human-Computer Interaction](#21-northeastern-university--ms-human-computer-interaction)
+22. [RPI — MS Games and Simulation Arts and Sciences (GSAS)](#22-rpi--ms-games-and-simulation-arts-and-sciences-gsas)
+25. [Duke University — MEng in Game Development, Design & Innovation (GDDI)](#25-duke-university--meng-in-game-development-design--innovation-gddi)
+
+**香港 / 新加坡项目**
+23. [香港城市大学 — MFA in Creative Media（MFACM）](#23-香港城市大学--mfa-in-creative-mediamfacm)
+24. [南洋理工大学 — ADM 研究生项目（新加坡）](#24-南洋理工大学--adm-研究生项目新加坡)
+
+**美国 CS / 图形学项目（补充）**
+26. [UPenn CIS — MSE in Computer Graphics & Game Technology (CGGT)](#26-upenn-cis--mse-in-computer-graphics--game-technology-cggt)
+27. [西北大学 — MS in Computer Science（McCormick）](#27-西北大学--ms-in-computer-sciencemccormick)
+28. [哥伦比亚大学 — MS in Computer Science（Vision & Graphics 方向）](#28-哥伦比亚大学--ms-in-computer-sciencevision--graphics-方向)
+29. [哥伦比亚大学 — MS in Computer Engineering（CE，硬件方向）](#29-哥伦比亚大学--ms-in-computer-engineeringce硬件方向)
+30. [康奈尔大学 — Cornell Tech（纽约校区）研究生项目](#30-康奈尔大学--cornell-tech纽约校区研究生项目)
+31. [UCI — MS in Informatics（信息学院，HCI 与游戏研究方向）](#31-uci--ms-in-informatics信息学院hci-与游戏研究方向)
+32. [威斯康星大学麦迪逊 — MS in Computer Science](#32-威斯康星大学麦迪逊--ms-in-computer-science)
+33. [杜克大学 — MS/MEng in Electrical & Computer Engineering（ECE，独立于 GDDI）](#33-杜克大学--msmeng-in-electrical--computer-engineeringece独立于-gddi)
+
 ---
 
 ## 美国项目
@@ -801,47 +825,64 @@ RPI 游戏项目规模较小，重设计研究与实验创作，适合希望以�
 
 ---
 
-### 25. Duke University — MFA in Experimental & Documentary Arts（MFA|EDA）
+### 25. Duke University — MEng in Game Development, Design & Innovation (GDDI)
 
 | 项目信息 | |
 |---|---|
-| **院校** | Duke University, Dept. of Art, Art History & Visual Studies / Center for Documentary Studies / Duke Cinematic Arts |
-| **学位** | Master of Fine Arts in Experimental & Documentary Arts (MFA\|EDA) |
-| **时长** | 2 年（全日制），15 门课程（9 门核心 + 6 门选修） |
-| **官方网站** | https://mfaeda.duke.edu/ |
-| **联系方式** | mfaeda@duke.edu \| (919) 660-3695 |
+| **院校** | Duke University, Pratt School of Engineering |
+| **学位** | Master of Engineering (MEng) in Game Development, Design & Innovation |
+| **时长** | 2 年（4 学期，30 学分） |
+| **学制** | 全日制，仅秋季入学（Campus Program） |
+| **项目亮点** | Studio 式开发环境 + 2 年 Capstone 游戏项目 + 强制行业实习 |
+| **官方网站** | https://masters.pratt.duke.edu/gddi/ |
+| **联系方式** | pratt_masters@duke.edu \| (919) 660-5386 |
 
-> ⚠️ **注意：** 这不是专设的游戏设计项目。Duke 虽设有 Game Design Initiative（gamedesign.duke.edu），但该项目为本科 / 跨学科层面；研究生层面最接近游戏/互动媒体方向的学位是本 MFA|EDA。项目明确欢迎**计算媒体、新媒体、互动装置**等实验性创作背景申请人，游戏作品可纳入申请作品集。
+#### 申请资格
+
+| 要求 | 说明 |
+|---|---|
+| **本科背景** | 多种专业均可接受，但**须有编程课程基础** |
+| **编程基础** | 须在以下一个或多个领域有学习记录：编程/脚本语言、游戏引擎、游戏设计基础、UI/UX、美术/动画、数学、音效设计、叙事设计 |
+| **优先背景** | 编程、OOP、数据结构与算法、计算机图形学、线性代数、微积分 |
+| **工作经验** | 不要求（有经验更好） |
+| **最低 GPA** | 无明确最低要求 |
 
 #### 申请材料
 
 | 材料 | 说明 |
 |---|---|
-| **本科学位** | 须持有学士学位（或等同美国学士的学历） |
-| **成绩单** | 所有大学后教育机构的扫描版电子成绩单 |
-| **推荐信** | 3 封 |
-| **个人陈述** | Statement of Purpose：个人创作历程、与纪录/实验视觉艺术的关系、在项目中希望达成的目标（鼓励列举过往作品与未来计划） |
-| **作品集** | ✅ 通过 SlideRoom 在线提交（见下方格式要求） |
-| **TOEFL / IELTS** | 国际申请人必须提供（查 Duke Graduate School 官网确认最低分） |
-| **GRE** | ❌ 不要求 |
+| **成绩单** | 本科非官方扫描件（录取后再提交官方版）；须附成绩换算说明 |
+| **简历** | 最多 1–2 页，突出经历、活动与领导力 |
+| **短答题** | GDDI 专属题目（题目见申请系统，按项目选择后显示） |
+| **推荐信** | **3 封**（校园项目：至少 2 封学术推荐；2026 届毕业生须如此；工业推荐为加分项） |
+| **视频自述** | ⭐ **必须录制**，题目当场给出，30 秒思考 + 最多 3 分钟录制（类似面试形式；题目每年更新，可重录一次但题目会变） |
+| **课程与技能评估** | 申请系统中在线填写已学课程与技能 |
+| **GRE** | ❌ 可选（2026 年申请人） |
+| **申请费** | $75（可申请豁免，见官网） |
 
-#### 作品集要求（SlideRoom）
+#### 语言要求
 
-| 类型 | 限制 |
+| 考试 | 说明 |
 |---|---|
-| 2D / 3D / 装置 | 最多 25 张图片 |
-| 影像 / 声音 / 计算媒体 | 总时长最多 10 分钟（可包含多个项目） |
-| 说明文字 | 每件作品需附简短描述，标注：标题、年份、媒介、尺寸、格式、创作角色 |
-| 附加链接 | 可附上补充作品链接（可选） |
+| **Duolingo** | ⭐ Duke Pratt **首选**方式；无明确最低分，但录取后入学前须提交正式 DET 成绩用于分班测试 |
+| **TOEFL** | 可接受（学校代码 5156，无需部门代码） |
+| **IELTS** | 可接受（报送至 "Duke University Pratt School of Engineering"） |
+| **豁免** | 无英语豁免资格（中国大陆不在豁免国家名单内）；须提交语言成绩 |
+| **最低分** | 无官方最低分要求 |
 
-#### 时间节点与费用
+#### 时间节点（Fall 2027 入学参考，以官网为准）
 
-| 项目 | 内容 |
+| 轮次 | 截止日期（参考 Fall 2026 轮次） |
 |---|---|
-| **申请开放（参考）** | 2025 年 10 月 29 日 |
-| **申请截止（参考）** | 2026 年 1 月 29 日（Fall 2026 入学） |
-| **学费** | $54,024 / 年 + 各项杂费约 $4,200 + 医疗保险约 $3,565 |
-| **奖学金** | 4 项 Roderick Scholarship 可申请（详询 Graduate School） |
+| **第 1 轮** | 约 11 月初 |
+| **第 2 轮** | 约 1 月 20 日 |
+| **第 3 轮** | 约 3 月 18 日 |
+
+#### ⚠️ 申请建议
+- Arno 的背景（计算机工程 + C#/C++/Python + Tencent 游戏设计实习 + Game Jam 经历）与 GDDI 非常匹配
+- 视频自述是重要环节（30秒思考，3分钟录制，类似临场面试），需提前练习即兴表达
+- 短答题内容为 GDDI 专属，应紧扣游戏开发/设计目标
+- 学费详情（该项目）：查 https://masters.pratt.duke.edu/admissions/tuition-financial-aid/
 
 ---
 
@@ -916,6 +957,320 @@ NTU ADM 官网使用 JavaScript 动态加载，申请要求无法直接获取。
 
 ---
 
+## 美国 CS / 图形学项目（补充）
+
+---
+
+### 26. UPenn CIS — MSE in Computer Graphics & Game Technology (CGGT)
+
+| 项目信息 | |
+|---|---|
+| **院校** | University of Pennsylvania, School of Engineering & Applied Science (SEAS) |
+| **学位** | Master of Science in Engineering (MSE) |
+| **时长** | 3–4 学期（CE/CS 背景通常 3 学期约 1.5 年） |
+| **官方网站** | https://www.cis.upenn.edu/mse-in-cggt/ |
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **在线申请** | SEAS 申请系统 |
+| **简历（Resume）** | 个人经历、项目/游戏作品经历 |
+| **个人陈述（Personal Statement）** | 申请动机、研究兴趣、职业目标 |
+| **推荐信（Letters of Recommendation）** | 通常 3 封（查 SEAS 申请页确认） |
+| **成绩单（Transcripts）** | 官方成绩单 |
+| **语言成绩** | 国际学生需提供 TOEFL / IELTS（具体分数查 SEAS 国际申请页） |
+| **GRE** | Optional（官方声明可选） |
+| **申请费** | SEAS 标准申请费 |
+
+> ⚠️ **无强制 Portfolio 要求**，但游戏/图形学作品强烈建议通过简历或个人陈述中的链接展示。
+
+#### 核心课程（10 门，含 1 门项目课）
+
+| 类别 | 课程 |
+|---|---|
+| **必修（4 门）** | DSGN 5005 3D Computer Modeling、CIS 5600 Interactive Computer Graphics、CIS 5620 Computer Animation、CIS 6600 Advanced Topics in Computer Graphics |
+| **图形学选修** | CIS 5650 GPU Programming & Rendering Pipeline、CIS 5610 Adv. CG、CIS 5660 Procedural Graphics、CIS 5120 HCI 等 |
+| **数学 / 物理类** | CIS 5630 Physically-based Animation、CIS 5670 Scientific Computing、CIS 5810 Computer Vision 等 |
+| **AI / ML 选修** | CIS 5190 Applied ML、CIS 5200 ML、CIS 5450 Big Data Analytics 等 |
+| **技术 / 自由选修** | 任意 5000+ 级 SEAS 课程 / 任意 5000+ 级 Penn 课程 |
+| **Project（必选一）** | CIS 5680 Game Design Practicum 或 CIS 5970 Master's Thesis |
+
+#### 时间节点
+
+| 类别 | 日期 |
+|---|---|
+| **Early Decision 截止** | 11 月 1 日（CIS / Data Science / Robotics / MCIT 优先决策） |
+| **Regular Decision 截止** | 2 月 1 日 |
+
+#### 申请要求概览
+
+| 项目 | 说明 |
+|---|---|
+| **先修要求** | CS 或工程学士学位；非 CS 背景需先完成 MCIT 项目（双学位，共约 2 年） |
+| **GRE** | Optional |
+| **Portfolio** | 无强制要求（建议附上作品集链接） |
+| **语言** | 国际学生需提供，具体分数查 SEAS 官网 |
+
+#### ⚠️ 申请建议
+- Arno 的 CE 工程本科背景 + C#/Python/C++/Unity 技能组合完全符合先修要求，竞争力强
+- Early Decision（11 月 1 日）优先录取 CIS 系列项目，**建议走 Early Decision**
+- 毕业生就职：Pixar、DreamWorks、Disney、EA、Microsoft、Sony、Activision 等顶级公司
+- **综合评分：⭐⭐⭐⭐⭐ 强烈推荐申请，与 Arno 背景高度契合**
+
+---
+
+### 27. 西北大学 — MS in Computer Science（McCormick）
+
+| 项目信息 | |
+|---|---|
+| **院校** | Northwestern University, McCormick School of Engineering |
+| **学位** | Master of Science in Computer Science（MS CS） |
+| **时长** | 3–4 学季（quarters），通常 9–12 个月 |
+| **学分** | 12 学分（credit units） |
+| **官方网站** | https://www.mccormick.northwestern.edu/computer-science/academics/graduate/masters/ |
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **在线申请** | TGS（The Graduate School）申请系统 |
+| **简历** | 英文简历 |
+| **学术陈述（Academic Statement）** | 研究兴趣及职业目标 |
+| **推荐信** | 最少 2 封，建议 3 封 |
+| **成绩单** | 官方成绩单 |
+| **语言成绩** | TOEFL iBT ≥90 / IELTS ≥7.0 / MET ≥54 |
+| **GRE** | ❌ **不需要，也不纳入评估**（官方明确声明） |
+
+#### 时间节点
+
+| 轮次 | 申请截止 | 录取通知 |
+|---|---|---|
+| 第 1 轮 | 11 月 30 日 | 1 月 10 日 |
+| 第 2 轮 | 12 月 31 日 | 2 月 10 日 |
+| 第 3 轮 | 2 月 28 日 | 4 月 30 日 |
+| 滚动录取 | 6 月 30 日起 | 滚动 |
+
+#### 研究方向（可选）
+
+- HCI & Information Visualization ⭐（与 Arno 相关）
+- Vision and Graphics ⭐（与 Arno 相关）
+- Artificial Intelligence / Machine Learning
+- Systems
+- Robotics
+- Theory
+
+#### 申请要求概览
+
+| 项目 | 说明 |
+|---|---|
+| **入学学期** | 仅秋季（Fall only） |
+| **论文 / 项目** | 可选 Thesis 或 Application Project（非强制） |
+| **先修背景** | CS、ECE、CE 或相关工程专业；跨专业也可申请（建议修过 CS 辅修） |
+| **联系方式** | cs-ms-admissions@northwestern.edu |
+
+#### ⚠️ 申请建议
+- GRE 免考；Arno 的 TOEFL 110 远高于 90 门槛，语言方面无顾虑
+- 芝加哥大都市区位置，科技就业市场活跃
+- HCI & Information Visualization 和 Vision & Graphics 两大方向与 Arno 目标高度匹配
+- **建议第 1 轮（11 月 30 日）申请**，争取早期录取通知
+
+---
+
+### 28. 哥伦比亚大学 — MS in Computer Science（Vision & Graphics 方向）
+
+| 项目信息 | |
+|---|---|
+| **院校** | Columbia University in the City of New York, Fu Foundation School of Engineering and Applied Science (SEAS) |
+| **学位** | Master of Science in Computer Science（MS CS） |
+| **时长** | 30 学分（通常 3 学期，1–2 年） |
+| **入学学期** | 秋季（Fall）或春季（Spring） |
+| **官方网站** | https://www.cs.columbia.edu/education/ms/ |
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **在线申请** | apply.engineering.columbia.edu |
+| **简历** | 英文简历 |
+| **个人陈述（Statement of Purpose）** | 研究兴趣、职业目标 |
+| **推荐信** | 通常 3 封（查官网确认） |
+| **成绩单** | 官方成绩单 |
+| **语言成绩** | 国际学生需提供 TOEFL / IELTS（具体分数查 SEAS 官网） |
+| **GRE** | 查官网（大多数 SEAS 项目已改为 Optional） |
+
+#### 时间节点
+
+| 学期 | 截止日期 |
+|---|---|
+| **秋季（Fall）优先** | 1 月 15 日 |
+| **秋季（Fall）最终** | 2 月 15 日 |
+| **春季（Spring）** | 10 月 15 日 |
+
+#### 方向（Tracks / Pathways）与 Arno 相关性
+
+| 方向 | 相关性 |
+|---|---|
+| **Vision and Graphics** ⭐ | 最相关：计算机视觉、图形学、渲染 |
+| Machine Learning | 相关：强化 AI/ML 能力 |
+| Natural Language Processing | 一般相关 |
+| Software Systems | 工程基础扎实 |
+| Computer Security | — |
+| Foundations of CS | — |
+| Computational Biology | — |
+
+#### ⚠️ 申请建议
+- 哥大 CS MS 是纽约地区就业最佳的顶级 CS 硕士项目之一，**理工强校 + 顶级地理位置**
+- Vision & Graphics 方向与 UPenn CGGT (#26) 互补；建议两者同步申请
+- 申请咨询：ms-admissions@cs.columbia.edu
+
+---
+
+### 29. 哥伦比亚大学 — MS in Computer Engineering（CE，硬件方向）
+
+| 项目信息 | |
+|---|---|
+| **院校** | Columbia University, Department of Electrical Engineering |
+| **学位** | MS in Computer Engineering（MS CE）或 MS in Electrical Engineering |
+| **官方网站** | https://compeng.columbia.edu/ |
+
+#### ⚠️ 注意
+
+哥大 CE（计算机工程）方向主要聚焦于：
+- 计算机体系结构（Computer Architecture）
+- 并行 / 分布式系统（Parallel & Distributed Systems）
+- 嵌入式系统（Embedded Systems）
+- 数字 / VLSI 设计
+
+**对 Arno 的适用性：较低。** 游戏/图形方向申请人更推荐 CS MS（#28）；CE 方向更适合立志做硬件架构或芯片设计的申请人。如确有兴趣，请直接查询官网：https://compeng.columbia.edu/
+
+---
+
+### 30. 康奈尔大学 — Cornell Tech（纽约校区）研究生项目
+
+| 项目信息 | |
+|---|---|
+| **院校** | Cornell University, Cornell Tech Campus（纽约罗斯福岛） |
+| **学位** | MEng in CS / MS Connective Media / MS Design Technology 等 |
+| **官方网站** | https://tech.cornell.edu/programs/ |
+
+Cornell Tech 提供多个与 Arno 方向潜在相关的项目：
+
+| 项目 | 时长 | 方向定位 |
+|---|---|---|
+| **MEng in Computer Science** | 1 年 | 技术 + 创业；可选 ML、安全、HCI 等方向 |
+| **MS Connective Media（Jacobs Technion-Cornell 双学位）** | 2 年 | 技术 + 人类心理 / 认知 + 创业；HCI 强相关 |
+| **MS in Design Technology（与 AAP 联合）** | 2 年 | 设计 + 技术 + 研究；建筑 / 设计 × 计算机交叉 |
+
+#### 时间节点（参考）
+
+| 轮次 | 截止日期 |
+|---|---|
+| **Priority Round** | 1 月 5 日 |
+| **Round 2** | 2 月 2 日 |
+| **Rolling Admission** | 4 月 1 日起 |
+
+#### ⚠️ 申请建议
+- **MEng CS** 适合想快速进入纽约科技行业的申请人（1 年制，工程专业背景适合）
+- **Connective Media MS** 是 HCI / 科技 + 创业交叉的独特双学位，适合兴趣在人机交互 + 商业化的申请人
+- 具体申请要求（GRE、语言、LoR 数量）请以各子项目官网为准：https://tech.cornell.edu/programs/masters/
+- 申请入口：https://tech.cornell.edu/admissions/
+
+---
+
+### 31. UCI — MS in Informatics（信息学院，HCI 与游戏研究方向）
+
+| 项目信息 | |
+|---|---|
+| **院校** | University of California, Irvine, Donald Bren School of Information & Computer Sciences |
+| **学位** | Master of Science in Informatics |
+| **时长** | 约 4 个 quarter（可选 thesis 路径或笔试路径） |
+| **官方网站** | https://informatics.ics.uci.edu/grad/ms-informatics/ |
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **在线申请** | apply.grad.uci.edu |
+| **个人陈述** | 研究方向与动机 |
+| **简历** | — |
+| **推荐信** | 2–3 封（查官网确认） |
+| **GRE** | 纳入评估因素（建议提供） |
+| **成绩单** | 官方成绩单，最低 GPA 3.0/4.0 |
+| **语言成绩** | UCI Graduate Division 标准（查官网） |
+
+#### 研究覆盖领域
+
+- 人机交互（HCI）/ 用户体验研究
+- 游戏化学习 / Games for Learning & Social Change
+- Social Computing / 社会计算
+- CSCW（Computer-Supported Cooperative Work）
+
+#### ⚠️ 重要提示
+
+- MS Informatics 为**研究导向**项目，多数学生需完成论文；适合计划读博或从事学术研究的申请人
+- UCI 另有 **MHCID（Master of Human-Computer Interaction & Design）** 专业 UX 项目，但：
+  - ⚠️ **MHCID 为低驻校（Low-Residency）项目，不支持 F-1 学生签证（I-20）**
+  - **国际学生若需 OPT/STEM OPT 工作授权请勿申请 MHCID！**
+
+---
+
+### 32. 威斯康星大学麦迪逊 — MS in Computer Science
+
+| 项目信息 | |
+|---|---|
+| **院校** | University of Wisconsin-Madison, Department of Computer Sciences |
+| **学位** | Master of Science in Computer Science |
+| **官方网站** | https://www.cs.wisc.edu/graduate/ms-program/ |
+
+#### ⚠️ 注意
+
+UW-Madison CS 官网在本次研究中受 Cloudflare 保护无法自动抓取，以下为一般参考信息，**请直接访问官网获取最新要求：**
+
+- 官网：https://www.cs.wisc.edu/graduate/ms-program/
+- 联系招生办：cs-gradstudies@cs.wisc.edu
+- 一般申请材料：个人陈述、3 封推荐信、官方成绩单、语言成绩、GRE（可选）
+- UW-Madison CS 排名约全美前 10–15，研究实力雄厚
+- 研究方向涵盖 AI/ML、Graphics（有图形学研究组）、Systems、Theory 等
+- 项目较竞争性，以研究为导向，适合有较强研究背景者
+
+---
+
+### 33. 杜克大学 — MS/MEng in Electrical & Computer Engineering（ECE，独立于 GDDI）
+
+| 项目信息 | |
+|---|---|
+| **院校** | Duke University, Pratt School of Engineering, ECE Department |
+| **学位** | MS in ECE 或 MEng in ECE |
+| **时长** | 30 学分（通常 1.5–2 年） |
+| **官方网站** | https://ece.duke.edu/academics/masters/ |
+
+> ⚠️ **注意**：本条目为杜克 ECE 系的常规工程硕士，与 **#25 GDDI（游戏设计与创新）完全不同**。
+
+#### 方向（Tracks）
+
+| 方向 | 与 Arno 相关性 |
+|---|---|
+| Software Engineering | 中等相关（通用 SWE） |
+| Machine Learning & AI | 相关（AI for Games） |
+| Computer Hardware Engineering | 较低相关 |
+| Quantum Software & Hardware | 低相关 |
+| Semiconductor Technology | 低相关 |
+
+#### 学位类型
+
+| 学位 | 特点 |
+|---|---|
+| **MS in ECE** | 含研究 / 论文选项；学术性更强 |
+| **MEng in ECE** | 业界导向；包含管理 / 商业课程；可做行业实习 |
+
+#### ⚠️ 申请建议
+- Duke ECE **非游戏 / 媒体方向**；若 Arno 首要目标是游戏开发 / 图形学，优先选 UPenn CGGT (#26)、Northwestern MSCS (#27) 或 Columbia CS MS (#28)
+- 若目标是游戏公司的底层引擎 / 系统工程，Machine Learning & AI 或 Software Engineering track 有一定相关性
+- 联系：ecemastersteam@duke.edu
+
+---
+
 ## 快速对比表
 
 | # | 项目 | 学位 | 时长 | GRE | 推荐信 | Portfolio | 截止日期（参考） |
@@ -944,7 +1299,15 @@ NTU ADM 官网使用 JavaScript 动态加载，申请要求无法直接获取。
 | **22** | **RPI MS GSAS** | **MS** | **2年** | **查官网** | **3封** | **✅（建议）** | **查官网** |
 | **23** | **CityU MFACM** | **MFA** | **2年** | **❌** | **❌** | **✅（Games/Main必须）** | **滚动（截至4月30日）** |
 | **24** | **NTU ADM（新加坡）** | **MFA/MA** | **查官网** | **查官网** | **2–3封** | **✅（建议）** | **查官网** |
-| **25** | **Duke MFA\|EDA** | **MFA** | **2年** | **❌** | **3封** | **✅（SlideRoom）** | **1月29日** |
+| **25** | **Duke MEng GDDI** | **MEng** | **2年** | **❌** | **3封（≥2学术）** | **❌（短答题+视频）** | **约1月20日（第2轮）** |
+| **26** | **UPenn CGGT** | **MSE** | **3–4学期** | **可选** | **3封** | **无强制（建议附链接）** | **11月1日（Early）/ 2月1日** |
+| **27** | **西北大学 MSCS** | **MS** | **3–4季度** | **❌不要求** | **2–3封** | **❌** | **11月30日（第1轮）** |
+| **28** | **哥大 CS MS** | **MS** | **30学分（约3学期）** | **查官网** | **3封** | **❌** | **1月15日（优先）/ 2月15日** |
+| **29** | **哥大 CE MS** | **MS** | **查官网** | **查官网** | **查官网** | **❌** | **查官网** |
+| **30** | **Cornell Tech** | **MEng/MS** | **1–2年** | **查官网** | **查官网** | **查官网** | **1月5日（优先）** |
+| **31** | **UCI MS Informatics** | **MS** | **约4个quarter** | **建议提供** | **2–3封** | **❌** | **查官网** |
+| **32** | **UW-Madison CS MS** | **MS** | **查官网** | **查官网** | **3封** | **❌** | **查官网** |
+| **33** | **杜克大学 ECE MS/MEng** | **MS/MEng** | **30学分** | **查官网** | **查官网** | **❌** | **查官网** |
 
 ---
 
@@ -972,8 +1335,16 @@ NTU ADM 官网使用 JavaScript 动态加载，申请要求无法直接获取。
 | **RPI MS GSAS** | **≥88** | **≥6.5** | **查官网确认** |
 | **CityU MFACM** | **查 CityU PG 官页** | **查 CityU PG 官页** | **查 cityu.edu.hk/pg** |
 | **NTU ADM** | **≥90** | **≥6.0** | **查 ntu.edu.sg/adm** |
-| **Duke MFA\|EDA** | **查 Duke Graduate School 官网** | **查 Duke Graduate School 官网** | **GRE 不要求** |
+| **Duke MEng GDDI** | **无最低要求** | **无最低要求** | **Duolingo 首选；GRE 可选** |
+| **UPenn CGGT** | **查 SEAS 国际申请页** | **查 SEAS 国际申请页** | **国际学生需提供语言成绩** |
+| **西北大学 MSCS** | **≥90** | **≥7.0** | **MET ≥54；GRE 不需要** |
+| **哥大 CS MS** | **查 SEAS 官网** | **查 SEAS 官网** | **国际学生需提供** |
+| **哥大 CE MS** | **查官网** | **查官网** | **查 compeng.columbia.edu** |
+| **Cornell Tech** | **查各子项目官网** | **查各子项目官网** | **查 tech.cornell.edu** |
+| **UCI MS Informatics** | **查 UCI Graduate Division** | **查 UCI Graduate Division** | **查 grad.uci.edu/admissions** |
+| **UW-Madison CS MS** | **查官网** | **查官网** | **查 cs.wisc.edu/graduate** |
+| **杜克大学 ECE MS/MEng** | **查官网** | **查官网** | **查 ece.duke.edu/academics/masters** |
 
 ---
 
-*最后更新：2025 年 5 月。所有信息均来源于各院校官网，建议申请前再次核实最新要求。新增项目（#16–#24）中标注「查官网」的条目，因院校官网使用 JavaScript 动态加载，部分细节未能直接抓取，请以官网为准。*
+*最后更新：2025 年 5 月。所有信息均来源于各院校官网，建议申请前再次核实最新要求。新增项目（#16–#24）中标注「查官网」的条目，因院校官网使用 JavaScript 动态加载，部分细节未能直接抓取，请以官网为准。补充项目（#26–#33）涵盖 UPenn CGGT、西北大学 MSCS、哥大 CS MS、哥大 CE MS、Cornell Tech、UCI MS Informatics、UW-Madison CS MS、杜克 ECE MS/MEng；⚠️ UCI MHCID 因低驻校不支持 F-1 签证，国际学生请注意。*
