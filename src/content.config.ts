@@ -13,6 +13,7 @@ const projects = defineCollection({
     depth: z.enum(["deep", "light"]).default("light"),
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
+    coverPosition: z.string().default("center"),
     video: z.string().optional(),
     award: z.string().optional(),
     links: z

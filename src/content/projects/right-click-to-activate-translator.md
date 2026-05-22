@@ -5,6 +5,8 @@ role: "Content & System Designer"
 summary: "A narrative language-puzzle game. Designed a systemic narrative architecture that translates natural-language logic into gameplay mechanics across Memory, Backpack, and Map systems."
 hook: "What if a constructed language was the interface to memory itself?"
 depth: "deep"
+cover: "/covers/rightclicktranslatorcover.png"
+coverPosition: "left"
 tags: ["Designer", "Writer", "Narrative", "Puzzle", "Unity"]
 award: "Best Puzzle Game — CUSGA 2024"
 order: 10

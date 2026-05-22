@@ -5,6 +5,7 @@ role: "Core Programmer / Interaction Prototyper"
 summary: "A motion-controlled interaction prototype built on the Leap Motion 2 gesture sensor — a study in how unfamiliar input devices reshape what 'playing' means."
 hook: "Your hands forget they are hands and remember they are wings."
 depth: "deep"
+cover: "/covers/GugugagaCover.jpg"
 tags: ["Programmer", "Interaction", "Experimental", "HCI", "Unity"]
 order: 40
 links:

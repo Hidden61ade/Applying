@@ -4,66 +4,174 @@ import { getCollection } from "astro:content";
 
 const projects = (await getCollection("projects"))
   .filter((p) => !p.data.hidden)
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 4);
+  .sort((a, b) => a.data.order - b.data.order);
+
+const coverProjects = projects.filter((p) => p.data.cover);
+
+const tints = [
+  "#1a1714",
+  "#1c1a16",
+  "#1a1815",
+  "#1e1b17",
+  "#1b1916",
+  "#1d1b17",
+  "#1c1a15",
+];
 ---
 
 <BaseLayout>
-  <!-- Hero -->
-  <section class="container-wide pt-24 pb-32">
-    <p class="eyebrow mb-6">Baohua (Arno) Fang · CUHK-Shenzhen</p>
-    <h1 class="display-xl max-w-[14ch]">
-      Expanding the <em class="text-[color:var(--color-accent)] not-italic">boundaries</em> of interactive storytelling.
-    </h1>
-    <p class="mt-10 max-w-2xl text-lg text-[color:var(--color-ink-dim)] leading-relaxed">
-      I started as a writer. I now design systems that let players co-author the stories I once tried to tell alone.
-      Game design, narrative architecture, and human-computer interaction — in that exact order of motive.
-    </p>
-    <div class="flex gap-4 mt-10">
-      <a
-        href="/projects"
-        class="px-5 py-3 rounded-full bg-[color:var(--color-ink)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] transition-colors"
-      >
-        See the work →
-      </a>
-      <a
-        href="/about"
-        class="px-5 py-3 rounded-full border border-[color:var(--color-rule)] hover:border-[color:var(--color-ink-dim)] transition-colors"
-      >
-        About me
-      </a>
+  <!-- ① Hero: full viewport -->
+  <section class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- Left: text -->
+    <div class="relative z-10 px-6 md:px-12 lg:px-16 w-full md:w-[52%] py-24">
+      <p class="eyebrow mb-10">Baohua (Arno) Fang · CUHK-Shenzhen</p>
+      <h1 class="display-xl leading-[0.92]">
+        To broaden<br />
+        the boundaries<br />
+        of what a<br />
+        <em class="text-[color:var(--color-accent)]">"story"</em><br />
+        can be.
+      </h1>
+    </div>
+
+    <!-- Right: crossfade cover slideshow -->
+    <div class="absolute right-0 top-0 h-full w-[55%] hidden md:block" aria-hidden="true">
+      {coverProjects.map((p, i) => (
+        <div class:list={["hero-cover absolute inset-0", { active: i === 0 }]}>
+          <img
+            src={p.data.cover}
+            alt=""
+            class="w-full h-full object-cover opacity-75"
+            style={`object-position: ${p.data.coverPosition ?? "center"}`}
+          />
+        </div>
+      ))}
+      <!-- Fade left edge into bg -->
+      <div
+        class="absolute inset-y-0 left-0 w-[28%] pointer-events-none z-10"
+        style="background: linear-gradient(to right, #0d0d0f 0%, transparent 100%)"
+      ></div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-6 md:left-12 lg:left-16 flex items-center gap-3 text-[color:var(--color-ink-dim)]">
+      <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+      <span class="scroll-arrow block w-px h-8 bg-[color:var(--color-rule)] relative overflow-hidden">
+        <span class="scroll-tick absolute top-0 left-0 w-full h-2 bg-[color:var(--color-ink-dim)]"></span>
+      </span>
     </div>
   </section>
 
-  <!-- Featured projects -->
-  <section class="container-wide pb-24">
-    <div class="flex items-end justify-between mb-10">
-      <h2 class="display-lg">Selected Work</h2>
-      <a
-        href="/projects"
-        class="text-[color:var(--color-ink-dim)] hover:text-[color:var(--color-ink)]"
-      >
-        All projects →
-      </a>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {projects.map((p) => (
-        <a
-          href={p.data.depth === "deep" ? `/projects/${p.id}` : "/projects"}
-          class="group block p-8 rounded-2xl border border-[color:var(--color-rule)] hover:border-[color:var(--color-ink-dim)] transition-colors bg-[color:var(--color-bg-2)]"
-        >
-          <p class="eyebrow">{p.data.year} · {p.data.role}</p>
-          <h3 class="text-3xl font-[var(--font-display)] mt-3 group-hover:text-[color:var(--color-accent)] transition-colors">
-            {p.data.title}
-          </h3>
-          {p.data.hook && (
-            <p class="mt-4 italic leading-snug">“{p.data.hook}”</p>
-          )}
-          {p.data.award && (
-            <p class="text-xs text-[color:var(--color-accent-2)] mt-4">{p.data.award}</p>
-          )}
-        </a>
-      ))}
+  <!-- Divider -->
+  <div class="rule mx-6 md:mx-12 lg:mx-16"></div>
+
+  <!-- ② Project grid -->
+  <section class="px-6 md:px-12 lg:px-16 pt-14 pb-24">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+      {projects.map((p, i) => {
+        const href = p.data.depth === "deep" ? `/projects/${p.id}` : "/projects";
+        const tint = tints[i % tints.length];
+        return (
+          <a href={href} class="group block card-reveal" style={`transition-delay: ${(i % 3) * 80}ms`}>
+            <div
+              class="aspect-video w-full overflow-hidden"
+              style={`background-color: ${tint}`}
+            >
+              {p.data.cover ? (
+                <img
+                  src={p.data.cover}
+                  alt={p.data.title}
+                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  style={`object-position: ${p.data.coverPosition ?? "center"}`}
+                  transition:name={`cover-${p.id}`}
+                />
+              ) : (
+                <span class="text-[color:var(--color-ink)]/30 text-xs tracking-[0.2em] uppercase flex items-end h-full p-4">
+                  {p.data.year}
+                </span>
+              )}
+            </div>
+            <div class="mt-3">
+              <p class="eyebrow text-[10px] mb-1 transition-colors duration-300 group-hover:text-[color:var(--color-accent-2)]">{p.data.year} · {p.data.role.split(" / ")[0]}</p>
+              <div class="flex items-start gap-0 overflow-hidden">
+                <span
+                  class="flex-shrink-0 w-5 -translate-x-5 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-sm pt-[3px] text-[color:var(--color-accent)]"
+                  aria-hidden="true"
+                >→</span>
+                <h3 class="font-[var(--font-display)] text-lg md:text-xl font-normal leading-snug -translate-x-5 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[color:var(--color-accent)]" transition:name={`title-${p.id}`}>
+                  {p.data.title}
+                </h3>
+              </div>
+              {(p.data.hook || p.data.summary) && (
+                <p class="mt-1.5 text-sm text-[color:var(--color-ink-dim)] leading-relaxed line-clamp-2 transition-colors duration-300 group-hover:text-[color:var(--color-ink)]/70">
+                  {p.data.hook ?? p.data.summary}
+                </p>
+              )}
+            </div>
+          </a>
+        );
+      })}
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  @keyframes slide-down {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+  }
+  .scroll-tick {
+    animation: slide-down 1.6s ease-in-out infinite;
+  }
+
+  .hero-cover {
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .hero-cover.active {
+    opacity: 1;
+  }
+
+  .card-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .card-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script is:inline>
+  function initHero() {
+    var covers = document.querySelectorAll('.hero-cover');
+    if (covers.length <= 1) return;
+    if (window._heroInterval) clearInterval(window._heroInterval);
+    var idx = 0;
+    window._heroInterval = setInterval(function () {
+      covers[idx].classList.remove('active');
+      idx = (idx + 1) % covers.length;
+      covers[idx].classList.add('active');
+    }, 5000);
+  }
+
+  function initScrollReveal() {
+    var cards = document.querySelectorAll('.card-reveal');
+    if (!cards.length) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    cards.forEach(function (c) { io.observe(c); });
+  }
+
+  document.addEventListener('astro:page-load', function () {
+    initHero();
+    initScrollReveal();
+  });
+</script>

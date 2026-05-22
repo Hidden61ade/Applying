@@ -15,14 +15,25 @@ const d = entry.data;
 ---
 
 <BaseLayout title={`${d.title} — Baohua Fang`} description={d.summary}>
-  <article class="container-wide pt-20 pb-24 max-w-3xl">
+  {d.cover && (
+    <div class="w-full overflow-hidden" style="max-height: 52vh;">
+      <img
+        src={d.cover}
+        alt={d.title}
+        class="w-full h-full object-cover"
+        style={`object-position: ${d.coverPosition ?? "center"}; height: 52vh;`}
+        transition:name={`cover-${entry.id}`}
+      />
+    </div>
+  )}
+  <article class="container-wide pt-12 pb-24 max-w-3xl">
     <a href="/projects" class="eyebrow hover:text-[color:var(--color-ink)]">
       ← All projects
     </a>
 
     <header class="mt-8 mb-12">
       <p class="eyebrow mb-4">{d.year} · {d.role}</p>
-      <h1 class="display-lg mb-6">{d.title}</h1>
+      <h1 class="display-lg mb-6" transition:name={`title-${entry.id}`}>{d.title}</h1>
       {d.hook && (
         <p class="text-xl italic text-[color:var(--color-ink-dim)]">
           “{d.hook}”

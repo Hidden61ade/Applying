@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0b0b0d;
-  --color-bg-2: #131316;
-  --color-ink: #f4efe6;
-  --color-ink-dim: #b8b1a4;
+  /* Dark palette */
+  --color-bg: #0d0d0f;
+  --color-bg-2: #171719;
+  --color-ink: #f0ebe3;
+  --color-ink-dim: #7a7470;
   --color-accent: #e07a3c;
   --color-accent-2: #c8a25b;
-  --color-rule: #2a2a2f;
+  --color-rule: #272522;
 
   --font-display: "Fraunces", "Cormorant Garamond", "Source Serif Pro",
     ui-serif, Georgia, "Times New Roman", serif;
@@ -27,6 +28,8 @@
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -44,65 +47,92 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  p {
+    font-variation-settings: "opsz" 14;
   }
 }
 
 @layer components {
   .container-wide {
-    @apply max-w-[1400px] mx-auto px-6 md:px-10;
+    @apply max-w-[1280px] mx-auto px-6 md:px-10;
+  }
+
+  .container-prose {
+    @apply max-w-[68ch] mx-auto px-6 md:px-8;
   }
 
   .rule {
     border-top: 1px solid var(--color-rule);
   }
 
+  /* Tag chip — hairline only, no fill */
   .chip {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs uppercase tracking-wider;
-    border: 1px solid var(--color-rule);
+    @apply inline-flex items-center text-xs uppercase tracking-[0.2em];
+    border: 0;
+    border-bottom: 1px solid var(--color-rule);
     color: var(--color-ink-dim);
     transition: all 200ms ease;
+    background: transparent;
+    padding: 0.25rem 0.75rem 0.25rem 0;
+    margin-right: 0.5rem;
   }
 
   .chip[data-active="true"] {
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-    border-color: var(--color-accent);
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
   }
 
   .chip:hover {
     color: var(--color-ink);
-    border-color: var(--color-ink-dim);
+    border-bottom-color: var(--color-ink);
   }
 
   .display-xl {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 9vw, 8rem);
+    font-size: clamp(3rem, 9vw, 8.5rem);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
+    font-variation-settings: "opsz" 144;
+    font-weight: 400;
   }
 
   .display-lg {
     font-family: var(--font-display);
     font-size: clamp(2rem, 5vw, 4rem);
-    line-height: 1;
+    line-height: 1.05;
     letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+    font-weight: 500;
   }
 
   .eyebrow {
-    @apply uppercase tracking-[0.25em] text-xs;
+    @apply uppercase tracking-[0.28em] text-xs;
     color: var(--color-ink-dim);
+    font-weight: 500;
+  }
+
+  .lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--color-ink-dim);
+    font-variation-settings: "opsz" 36;
   }
 }
 
-/* Subtle film grain overlay – purely decorative */
+/* Subtle noise grain on dark bg */
 .grain::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.8'/></svg>");
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");
 }
