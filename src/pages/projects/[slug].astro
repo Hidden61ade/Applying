@@ -16,12 +16,11 @@ const d = entry.data;
 
 <BaseLayout title={`${d.title} — Baohua Fang`} description={d.summary}>
   {d.cover && (
-    <div class="w-full overflow-hidden" style="max-height: 52vh;">
+    <div class="w-full" style="background-color: var(--color-bg-2);">
       <img
         src={d.cover}
         alt={d.title}
-        class="w-full h-full object-cover"
-        style={`object-position: ${d.coverPosition ?? "center"}; height: 52vh;`}
+        class="w-full h-auto block"
         transition:name={`cover-${entry.id}`}
       />
     </div>

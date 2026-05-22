@@ -17,6 +17,16 @@ const tints = [
   "#1d1b17",
   "#1c1a15",
 ];
+
+const roleMap: Record<string, string[]> = {
+  "right-click-to-activate-translator": ["designer", "scripter"],
+  "the-birthday-party": ["designer", "programmer", "scripter"],
+  "heart-keys": ["designer", "programmer"],
+  "gugugaga-penguin": ["designer", "programmer", "artist"],
+  "devil-cops-androids": ["designer", "programmer", "scripter"],
+  "space-bar-porter": ["designer", "scripter"],
+  "hashmon": ["designer", "programmer", "artist"],
+};
 ---
 
 <BaseLayout>
@@ -67,12 +77,37 @@ const tints = [
 
   <!-- ② Project grid -->
   <section class="px-6 md:px-12 lg:px-16 pt-14 pb-24">
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+    <!-- Role filter tabs -->
+    <div class="role-tabs-bar" role="tablist" aria-label="Filter by role">
+      {([
+        { label: "As Designer", role: "" },
+        { label: "As Programmer", role: "programmer" },
+        { label: "As Scripter", role: "scripter" },
+        { label: "As Artist", role: "artist" },
+      ] as const).map(({ label, role }) => (
+        <button
+          class:list={["role-tab", { active: role === "" }]}
+          data-role={role}
+          role="tab"
+          aria-selected={role === "" ? "true" : "false"}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    <div id="project-grid" class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
       {projects.map((p, i) => {
         const href = p.data.depth === "deep" ? `/projects/${p.id}` : "/projects";
         const tint = tints[i % tints.length];
+        const roles = roleMap[p.id] ?? ["designer"];
         return (
-          <a href={href} class="group block card-reveal" style={`transition-delay: ${(i % 3) * 80}ms`}>
+          <a
+            href={href}
+            class="group block card-reveal project-card"
+            data-roles={roles.join(" ")}
+            style={`transition-delay: ${(i % 3) * 80}ms; view-transition-name: card-${p.id};`}
+          >
             <div
               class="aspect-video w-full overflow-hidden"
               style={`background-color: ${tint}`}
@@ -116,6 +151,42 @@ const tints = [
 </BaseLayout>
 
 <style>
+  /* ── Role filter tabs ── */
+  .role-tabs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--color-rule);
+    margin-bottom: 2.5rem;
+    gap: 0;
+  }
+  .role-tab {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-dim);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: none;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+  .role-tab:hover {
+    color: var(--color-ink);
+  }
+  .role-tab.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  /* ── Filter: hide non-matching cards ── */
+  #project-grid[data-filter="programmer"] .project-card:not([data-roles~="programmer"]),
+  #project-grid[data-filter="scripter"]  .project-card:not([data-roles~="scripter"]),
+  #project-grid[data-filter="artist"]    .project-card:not([data-roles~="artist"]) {
+    display: none;
+  }
+
   @keyframes slide-down {
     0%   { transform: translateY(-100%); }
     100% { transform: translateY(400%); }
@@ -174,4 +245,34 @@ const tints = [
     initHero();
     initScrollReveal();
   });
+</script>
+
+<script>
+  // Astro-processed script: TypeScript, bundled, deduped
+  function initRoleTabs(): void {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.role-tab');
+    const grid = document.getElementById('project-grid');
+    if (!grid || !tabs.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const role = tab.dataset.role ?? '';
+
+        // Update aria + active class
+        tabs.forEach((t) => {
+          t.classList.toggle('active', t === tab);
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+
+        // Animate with View Transitions API if available
+        if ('startViewTransition' in document) {
+          document.startViewTransition(() => { grid.dataset.filter = role; });
+        } else {
+          grid.dataset.filter = role;
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initRoleTabs);
 </script>
