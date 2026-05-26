@@ -27,6 +27,33 @@ const roleMap: Record<string, string[]> = {
   "space-bar-porter": ["designer", "scripter"],
   "hashmon": ["designer", "programmer", "artist"],
 };
+
+type Lineage = "joy" | "mechanic" | "boundary";
+const lineageMap: Record<string, Lineage> = {
+  "heart-keys": "joy",
+  "devil-cops-androids": "joy",
+  "space-bar-porter": "joy",
+  "right-click-to-activate-translator": "mechanic",
+  "the-birthday-party": "mechanic",
+  "hashmon": "boundary",
+  "gugugaga-penguin": "boundary",
+};
+
+const lineages: { id: Lineage; title: string; caption: string }[] = [
+  { id: "joy", title: "The Joy of Play", caption: "01 — where it begins" },
+  { id: "mechanic", title: "Mechanic as Narrative", caption: "02 — where the system speaks" },
+  { id: "boundary", title: "The Boundaries of a Game", caption: "03 — where the form bends" },
+];
+
+const projectsByLineage: Record<Lineage, typeof projects> = {
+  joy: [],
+  mechanic: [],
+  boundary: [],
+};
+for (const p of projects) {
+  const l = lineageMap[p.id];
+  if (l) projectsByLineage[l].push(p);
+}
 ---
 
 <BaseLayout>
@@ -96,54 +123,68 @@ const roleMap: Record<string, string[]> = {
       ))}
     </div>
 
-    <div id="project-grid" class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
-      {projects.map((p, i) => {
-        const href = p.data.depth === "deep" ? `/projects/${p.id}` : "/projects";
-        const tint = tints[i % tints.length];
-        const roles = roleMap[p.id] ?? ["designer"];
+    <div id="lineage-stack">
+      {lineages.map((lin) => {
+        const items = projectsByLineage[lin.id];
+        if (!items.length) return null;
         return (
-          <a
-            href={href}
-            class="group block card-reveal project-card"
-            data-roles={roles.join(" ")}
-            style={`transition-delay: ${(i % 3) * 80}ms; view-transition-name: card-${p.id};`}
-          >
-            <div
-              class="aspect-video w-full overflow-hidden"
-              style={`background-color: ${tint}`}
-            >
-              {p.data.cover ? (
-                <img
-                  src={p.data.cover}
-                  alt={p.data.title}
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                  style={`object-position: ${p.data.coverPosition ?? "center"}`}
-                  transition:name={`cover-${p.id}`}
-                />
-              ) : (
-                <span class="text-[color:var(--color-ink)]/30 text-xs tracking-[0.2em] uppercase flex items-end h-full p-4">
-                  {p.data.year}
-                </span>
-              )}
+          <section class="lineage-section" data-lineage={lin.id}>
+            <header class="lineage-header">
+              <p class="lineage-caption">{lin.caption}</p>
+              <h2 class="lineage-title">{lin.title}</h2>
+            </header>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+              {items.map((p, i) => {
+                const href = p.data.depth === "deep" ? `/projects/${p.id}` : "/projects";
+                const tint = tints[i % tints.length];
+                const roles = roleMap[p.id] ?? ["designer"];
+                return (
+                  <a
+                    href={href}
+                    class="group block card-reveal project-card"
+                    data-roles={roles.join(" ")}
+                    style={`transition-delay: ${(i % 3) * 80}ms; view-transition-name: card-${p.id};`}
+                  >
+                    <div
+                      class="aspect-video w-full overflow-hidden"
+                      style={`background-color: ${tint}`}
+                    >
+                      {p.data.cover ? (
+                        <img
+                          src={p.data.cover}
+                          alt={p.data.title}
+                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                          style={`object-position: ${p.data.coverPosition ?? "center"}`}
+                          transition:name={`cover-${p.id}`}
+                        />
+                      ) : (
+                        <span class="text-[color:var(--color-ink)]/30 text-xs tracking-[0.2em] uppercase flex items-end h-full p-4">
+                          {p.data.year}
+                        </span>
+                      )}
+                    </div>
+                    <div class="mt-3">
+                      <p class="eyebrow text-[10px] mb-1 transition-colors duration-300 group-hover:text-[color:var(--color-accent-2)]">{p.data.year} · {p.data.role.split(" / ")[0]}</p>
+                      <div class="flex items-start gap-0 overflow-hidden">
+                        <span
+                          class="flex-shrink-0 w-5 -translate-x-5 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-sm pt-[3px] text-[color:var(--color-accent)]"
+                          aria-hidden="true"
+                        >→</span>
+                        <h3 class="font-[var(--font-display)] text-lg md:text-xl font-normal leading-snug -translate-x-5 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[color:var(--color-accent)]" transition:name={`title-${p.id}`}>
+                          {p.data.title}
+                        </h3>
+                      </div>
+                      {(p.data.hook || p.data.summary) && (
+                        <p class="mt-1.5 text-sm text-[color:var(--color-ink-dim)] leading-relaxed line-clamp-2 transition-colors duration-300 group-hover:text-[color:var(--color-ink)]/70">
+                          {p.data.hook ?? p.data.summary}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
             </div>
-            <div class="mt-3">
-              <p class="eyebrow text-[10px] mb-1 transition-colors duration-300 group-hover:text-[color:var(--color-accent-2)]">{p.data.year} · {p.data.role.split(" / ")[0]}</p>
-              <div class="flex items-start gap-0 overflow-hidden">
-                <span
-                  class="flex-shrink-0 w-5 -translate-x-5 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-sm pt-[3px] text-[color:var(--color-accent)]"
-                  aria-hidden="true"
-                >→</span>
-                <h3 class="font-[var(--font-display)] text-lg md:text-xl font-normal leading-snug -translate-x-5 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[color:var(--color-accent)]" transition:name={`title-${p.id}`}>
-                  {p.data.title}
-                </h3>
-              </div>
-              {(p.data.hook || p.data.summary) && (
-                <p class="mt-1.5 text-sm text-[color:var(--color-ink-dim)] leading-relaxed line-clamp-2 transition-colors duration-300 group-hover:text-[color:var(--color-ink)]/70">
-                  {p.data.hook ?? p.data.summary}
-                </p>
-              )}
-            </div>
-          </a>
+          </section>
         );
       })}
     </div>
@@ -180,10 +221,46 @@ const roleMap: Record<string, string[]> = {
     border-bottom-color: var(--color-accent);
   }
 
+  /* ── Lineage section headings ── */
+  .lineage-section {
+    margin-bottom: 3.5rem;
+  }
+  .lineage-section:last-child {
+    margin-bottom: 0;
+  }
+  .lineage-header {
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 0.6rem;
+  }
+  .lineage-caption {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ink-dim);
+    white-space: nowrap;
+  }
+  .lineage-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+
   /* ── Filter: hide non-matching cards ── */
-  #project-grid[data-filter="programmer"] .project-card:not([data-roles~="programmer"]),
-  #project-grid[data-filter="scripter"]  .project-card:not([data-roles~="scripter"]),
-  #project-grid[data-filter="artist"]    .project-card:not([data-roles~="artist"]) {
+  #lineage-stack[data-filter="programmer"] .project-card:not([data-roles~="programmer"]),
+  #lineage-stack[data-filter="scripter"]  .project-card:not([data-roles~="scripter"]),
+  #lineage-stack[data-filter="artist"]    .project-card:not([data-roles~="artist"]) {
+    display: none;
+  }
+  /* Collapse a lineage section if it has zero matching cards */
+  #lineage-stack[data-filter="programmer"] .lineage-section:not(:has(.project-card[data-roles~="programmer"])),
+  #lineage-stack[data-filter="scripter"]  .lineage-section:not(:has(.project-card[data-roles~="scripter"])),
+  #lineage-stack[data-filter="artist"]    .lineage-section:not(:has(.project-card[data-roles~="artist"])) {
     display: none;
   }
 
@@ -251,8 +328,8 @@ const roleMap: Record<string, string[]> = {
   // Astro-processed script: TypeScript, bundled, deduped
   function initRoleTabs(): void {
     const tabs = document.querySelectorAll<HTMLButtonElement>('.role-tab');
-    const grid = document.getElementById('project-grid');
-    if (!grid || !tabs.length) return;
+    const stack = document.getElementById('lineage-stack');
+    if (!stack || !tabs.length) return;
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
@@ -266,9 +343,9 @@ const roleMap: Record<string, string[]> = {
 
         // Animate with View Transitions API if available
         if ('startViewTransition' in document) {
-          document.startViewTransition(() => { grid.dataset.filter = role; });
+          document.startViewTransition(() => { stack.dataset.filter = role; });
         } else {
-          grid.dataset.filter = role;
+          stack.dataset.filter = role;
         }
       });
     });
