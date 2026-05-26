@@ -1,0 +1,430 @@
+PAGES: 4
+
+--- PAGE 1 ---
+Cat Cat Revolution: An Interspecies Gaming Experience 
+Frank Noz 
+Carnegie Mellon University 
+University of Madeira 
+frank.noz@gmail.com 
+Jinsoo An 
+contact@jinsooan.com 
+ 
+ 
+ABSTRACT 
+Despite owners’ desires to in clude pets in their everyday 
+activities, pets have yet to be included in the digital gaming 
+experience. The Cat Cat Revolution (CCR) is a digital game 
+of cat and mouse that allows cats to participate in play 
+through a species-appropriate interface. The game applies 
+Human-Computer Interaction (H CI) principles to pets and 
+casts pets as participants in the gaming experience. During 
+the pilot study, pet owners char acterized CCR as a mutually 
+positive experience, describing the game as a “fun” way to 
+play. CCR explores the effects of including pets in the 
+digital gaming experience.  
+Author Keywords 
+Non-human interfaces, interspeci es gaming, digital play  
+ACM Classification Keywords 
+H5.m. Information interfaces a nd presentation (e.g., HCI): 
+Miscellaneous. 
+General Terms 
+Experimentation, Design, Theory. 
+INTRODUCTION 
+In the U.S., felines are the largest group of pet companions 
+with a population of 93.6 million [1]. Americans share their 
+homes and lives with pets. Surveys, measuring attitudes and 
+behavior towards pets, docum ent how pet owners endow 
+pets with human characteristics and needs. Owners consider 
+pets as friends [3], extensions of self [2], and family [3]. 
+Surveys also report the love, company, companionship, and 
+affection enjoyed by owners [1]. Owners’ attitudes and 
+behaviors illustrate the significance of pets and their role in 
+social interaction.  
+ “Whether animals have selves or not, what is more relevant to 
+sociologists—and more verifiable—is that humans often act 
+toward animals as if they have selves, and in ways that overlap 
+with how they act toward humans” [11, p. 380].  
+RELATED WORK 
+Recent work acknowledges our de sire to include pets in 
+everyday activities. In the 1990’s, virtual pets seduced 
+consumers into nurturing their f eelings and needs [14, 19]. 
+The Tamagotchi digitized emotional engagement and 
+illustrated human’s capacity to attribute anthropomorphic 
+characteristics to virtual pets. Other products such as the 
+AIBO digitized the pet experience by introducing robotic 
+pets into the home. Friedman , Kahn, and Hagman analyzed 
+AIBO discussion boards and described how the robotic pets 
+challenged traditional emotional boundaries, extended 
+concepts of self, and replaced interaction with live pets [7].  
+Poultry.Internet also illustrates how pets can be included in 
+HCI discourse [18]. The designers of the application 
+digitized human-pet touch and explored various interaction 
+methods by mediating remote petting. The system provided 
+bi-directional communication using haptic and visual cues. 
+Users touched pets via a tangibl e interface that mirrored the 
+pet’s position and orientation. The interface relayed touch 
+through a specially designed vest, worn by the chicken. The 
+vest simulated human touch and communicated the pet’s 
+movement back to the user, in  turn enabling real-time touch 
+interaction.  
+Despite these examples, digital interaction with pets 
+remains understudied in HCI, so we turned to the fields of 
+robotics and AI to better understand how to include pets in 
+digital interaction. Suchman's theory of situated cognition 
+caused us to rethink the constitutive nature of intelligence 
+Permission to make digital or hard copies of all or part of this work for  
+personal or classroom use is granted without fee provided that copies are  
+not made or distributed for profit or commercial advantage and that copies  
+bear this notice and the full citation on the first page. To copy otherwise,  
+or republish, to post on servers or to redistribute to lists, requires prior  
+specific permission and/or a fee. 
+CHI 2011, May 7–12, 2011, Vancouver, BC, Canada. 
+Copyright 2011 ACM  978-1-4503-0267-8/11/05....$10.00. 
+ 
+Figure 1. User #1 watches his kitten track the mouse. 
+CHI 2011 • Session: Cats, Dogs, Sports, Games & Books
+May 7–12, 2011 • Vancouver, BC, Canada
+2661
+
+--- PAGE 2 ---
+(human and cat) and machine [16]. Her theories highlighted 
+the need to accommodate emergent play interactions and 
+reframed the way we designed for intelligence. In addition, 
+Brooks' "New AI" inspired us to build a relatively simple 
+system, using minimal representations, centered on 
+emergent intelligence [5]. 
+Recent research provided actionable ways to translate 
+lessons from the fields of robotics and AI into CCR’s 
+design. Leahu, Sengers, and Mateas highlighted a number 
+of "New AI" strategies to create ubiquitous systems that 
+"appeared to be intelligent" [12]. They use these strategies 
+to address problems of "AI completeness," suggesting the 
+development of systems that take advantage of highly-
+situated contexts. Influenced by Leahu’s work, Taylor 
+reflected on examples of "New AI" and suggested their 
+potential application within HC I [17]. Taylor proposed HCI 
+broaden its concepts of intelligence to expand the 
+interactional possibilities between humans and machine. 
+Taylor used the intersection of "New AI" and HCI to 
+reposition the role of design in intelligent systems and 
+create systems "where intelligence itself becomes the 
+design focus" [17].
+  
+Sociological Study of Human-Pet Play 
+In the past 20 years, sociologists have begun to study 
+human-pet play interactions. Alger’s work suggests that 
+owners actively assume the ro le of animals, and infer 
+thoughts and feelings from the animal’s perspective [2]. 
+Sanders suggests that projecting human capabilities onto 
+pets makes them legitimate partic ipants in social interaction 
+[15]. In addition, sociologist s offer insights on how owners 
+and pets use nonverbal communication to negotiate social 
+order and interspecies interaction. Researchers suggests that 
+humans and pets rely on their past play experiences, or a 
+shared history of symbolic behavior, to non-verbally 
+communicate [2, 4].  
+Ethnographic studies of human -animal play reflect on the 
+intersubjectivity between particip ants [9, 11]. For example, 
+Goode proposes that pets have an asymmetrical availability 
+to interpret interaction [9]. Findings from Jerolmack’s work 
+suggest that human-pet play does not require shared 
+meanings and/or intentions to coordinate interaction [11]. 
+Other scholars [4, 11] do not view shared language as a 
+prerequisite for intersubjectivity, instead, they view human-
+pet intersubjectivity along a continuum, ranging from 
+shared understanding to a simple shared awareness of an 
+object. The sociological study of  human-pet play offers 
+insights into the social interactions that allow owners and 
+pets to negotiate and co-construct play experiences. 
+DESIGNING FOR INTERSPECIES INTERACTION 
+We conducted interviews with owners, reviewed online cat 
+forums, and pet owner surveys [1 , 3] to inform and inspire 
+CCR’s design. Our findings suggested chase as a common 
+play theme and species appropriate activity. Next, we 
+designed the interface to accommodate audio, visual, and 
+touch interactions from human  and cat participants. For 
+example, we designed a deictic  [12] mouse representation 
+to communicate digital interactions in a species-
+appropriate, understandable, and actionable manner. We 
+designed the mouse to entice cats to chase while catering to 
+the human-centric model of th e mouse as an input device. 
+The interface appropriates a popular chase object, the 
+mouse, and anchors the cat’s interaction to natural chase 
+behaviors, allowing felines to chase and paw during the 
+game.  
+In addition, we designed the interface to support cat's color 
+acuity. Cats are generally colorblind when it comes to red, 
+but have excellent ability to distinguish blue and green. 
+[13]. Early prototypes tested combinations of mouse color, 
+size, brightness, and movement to bolster target 
+discrimination and tracking on the display. The mouse 
+squeaks when hit to provide audio feedback to participants. 
+Audio testing ensured feedback did not frighten or 
+discourage play.  
+System Description 
+Our system is comprised of two components, an iPad and 
+an iPhone. The iPad application mediates cat-computer 
+interaction through a combination of graphics, sound, and 
+touch. The iPad interface uses a digital mouse 
+representation entice cats by changing its orientation, 
+velocity, and direction. The game has single and multi-
+player modes. In single-player mode, cats interact with the 
+iPad by chasing the mouse as  it randomly moves across the 
+display. During multiplayer mode, owners wirelessly 
+connect to the iPad using an iPhone. When connected, the 
+iPhone mirrors the iPad’s interface and allows owners to 
+control the mouse’s orientation, velocity, and direction. 
+CCR uses iPads, iPhones, and game modes to support 
+interspecies play. 
+RESEARCH APPROACH 
+Seven owners (five female and two males) and their cats 
+participated in our pilot study. We recruited participants 
+through our extended social network and none of the 
+participants were involved in  the study or development of 
+CCR. The studies took place in participants’ homes and 
+lasted 60 to 90 minutes. During these sessions, we asked 
+participants to perform four separate gaming tasks after 
+familiarizing themselves with the game. Owners drove the 
+play tasks and answered open-ended questions about their 
+gaming experience and interactions with their pets.  
+We analyzed the data using grounded theory [8], borrowing 
+themes from sociological studi es of human-pet play [11] 
+and surveys [1, 3]. We analyzed the audio, video, and 
+subsequent transcriptions from the owner's responses, 
+discussions, and think-alouds. The analysis used audio and 
+transcripts from the sessions to interpret and encode the 
+owners' interactions. The info rmal pilot study explored both 
+owner and cat interaction during CCR.  
+Evalutating CCR 
+CCR is a game that allows pet owners to interact and 
+potentially strengthen their relationship with their pets by 
+CHI 2011 • Session: Cats, Dogs, Sports, Games & Books
+May 7–12, 2011 • Vancouver, BC, Canada
+2662
+
+--- PAGE 3 ---
+playing a digital game. We feel that the novel experiences 
+and interactions explored during our pilot tests may 
+contribute knowledge to areas such as Human-Robot 
+Interaction (HRI), design, a nd HCI. The following findings 
+explore a number of play interactions to evaluate CCR's 
+effect on human-pet play. 
+FINDINGS 
+General Findings 
+Our participants indicated that play was an important 
+interaction with their cats and characterized CCR as a 
+“fun” and mutually “beneficial” play experience. In 
+addition, pet owners attributed a number of benefits to pet 
+ownership including: mental well-being and therapeutic 
+effects, freedom to be playful, feeling content, and felt 
+play was good for the cat. Owners described a wide range 
+of play interactions and gave detailed examples of 
+“knowing” when their cat(s) wanted to play.  
+The big guy is a tremendous rubber band fetcher. [W]hen we 
+come out in the morning having coffee, he will go and find 
+one and bring it to you, meaning he wants to play. {#7} 
+Participants also described their pet’s dependence and 
+reflected on their asymmetric relationship. For example: 
+It’s just nice to have something else to take care of, like 
+something that needs you to take care of it, and feed it, help 
+him, and play with him. {#1} 
+Despite owners’ acknowledgments of interspecies 
+boundaries, they all included cats as family members. 
+Finally, another consistent theme in the data was that 
+owners embraced digital gaming and the idea of engaging 
+in digital play forms with their cats. 
+Pets as Viable Participants in Digital Gaming 
+Our findings suggest that some owners see pets as viable 
+participants in social interaction. CCR appeared to create 
+new opportunities for owners to socially construct and 
+deconstruct interspecies boundaries with their pet. By 
+endowing pets with human capacities, we suggest that 
+owners may cast their pets as viable participants in the 
+digital gaming experience. Moreover, the inclusion of 
+pets in digital interaction satisfies owner’s desire to 
+include pets in everyday activities and may contribute to 
+their physical health and ment al well-being. For example: 
+My God, she does actually learn how to play it… I have never 
+seen her interact with the cat like this. I have never seen her 
+and this cat this friendly. They love each other now. This is 
+great! {#4} 
+It actually has really has helped [sic] us bond with her. Cause 
+even if she’s not really interested in it, just us trying to get her 
+interested in it is really a bonding experience. {#4} 
+I like teaching her how to use technology, it’s kind of cool. I 
+feel like I am educating her. {#3} 
+I feel like there is more of a reward system there for us than 
+there is for her, because Wow! It looks like she is using the 
+computer. {#4} 
+In the first quote, the owner e xpresses surprise when her cat 
+begins to hit the mouse target during a game of CCR. The 
+owner(s) describe the rewards of  play interactions, which in 
+turn strengthened and reinforced ownership bonds. These 
+examples advance the viability, practical utility, and 
+benefits of including pets in the gaming experience. In 
+digital gaming, it is not important whether the pet has 
+human capabilities; rather, what is important is whether 
+owners act as if their pets have  the capacity to do so [6, 11].  
+Evaluating the Design of CCR 
+CCR's design uses a number of strategies to engage 
+participants in digital play. We used sociological studies of 
+human-pet play to identify and design for existing emergent 
+interactions that naturally o ccur during human-pet play. In 
+addition, "New AI" strategies refocused the design to 
+exploit the worldly contexts of play. The following 
+examples highlight several im portant design considerations 
+and their potential affect on play interactions, situated 
+context, and emergence. 
+We designed CCR around existing human-pet play 
+interactions to support play experiences. CCR 
+accommodates asymmetrical re lationships by coordinating 
+interaction around a simple and species appropriate gaming 
+experience. The analysis indica ted the presence of existing 
+play interactions in all ow ners including: role-play, 
+projection of social identity, and use of symbolic behavior. 
+In the excerpt below, the participants temporarily take-on 
+the cat’s role to describe the cat’s multi-player preferences. 
+This finding illustrates how some owners use role-play and 
+projection of social identity during digital interaction. 
+She likes it better when we control it. Uh huh. {#3} 
+[S]eems like he likes it best when its not like directly under 
+the holes, cause if I put it right here he doesn’t . . . might be 
+the reflection of the light off the top of the box cause he can 
+see it easier. Maybe that makes it look more three-
+dimensional. {#1} 
+CCR's design was inspired by three "New AI" challenges 
+including: placing participants  "in the loop," allowing 
+participants to interpret and interact with the system, and 
+participating in the context of play. For example, the deictic 
+mouse representation communi cates state in actionable 
+ways and elicited specific behavioral interactions from both 
+participants. During each of the play-tasks, owners 
+experimented with single and multi-player modes and 
+reflected on their gaming experience. 
+I like the single player one…. I think its more fun when I am 
+interacting with him and the th ing [CCR] at the same time…. 
+One thing I do like about it though, I can play with him or be 
+away and he can still play with it too. That feather thing 
+[feather-on-a-stick] that I have, I have to manipulate that and 
+if I am not there he is disinterested in it. {#1} 
+Multi-player. She reacts to it better. Rather than it going 
+randomly, sometimes she likes it better if it stays in one place 
+for a while and then moves really fast. There are certain 
+movement patterns that she reacts too. {#3} 
+CHI 2011 • Session: Cats, Dogs, Sports, Games & Books
+May 7–12, 2011 • Vancouver, BC, Canada
+2663
+
+--- PAGE 4 ---
+What is important for me in this experience is seeing her react 
+to it and then engaging her. I was playing along with her. {#2} 
+The first example above demonstrates how the owner used 
+single-player mode to interact with the iPad and the cat at 
+the same time, a scenario we had not considered during the 
+design of CCR. In the second quote, the owner elicits play 
+behaviors by gauging the cat’s interest. Using the iPhone, 
+she experimented with mouse movements until finding a 
+pattern that resulted in chase behaviors. In the third 
+example above, we suggest the minimalist design 
+accommodates unplanned play interactions by relying on 
+the participants’ ability to actively reconstitute play 
+dynamics. 
+They just have to learn to play. You just play with them. Trial 
+and error a lot . . . but, part of it comes from the playing and 
+observing. He just will learn. {#1} 
+It makes you feel connected and it’s like a conversation. They 
+do not use words, so you use play. I think they contribute to 
+our lives, so I think it is important to interact with them at 
+their level. So, playing with them and seeing their natural play 
+behaviors cause their play behaviors are attack and catch 
+things. {#6} 
+In the first quote above, the participant describes the 
+process of learning a new game as a constitutive process of 
+trial and error, requiring both participants to actively 
+interpret behavior to negotiate game play. In the second 
+quote, the participant metaphorically describes play as a 
+conversation. She redresses her pet’s asymmetrical ability 
+to share and interpret meaning by interacting with her pet at 
+its level. She co-constructs play experiences by interpreting 
+natural feline behaviors in the context of play. In addition, 
+the second quote suggests an emotional component to 
+digital pet play, which causes the participant to reflect on 
+the emotional experience of CCR. These cases suggest that 
+participants rely on context and extra-system knowledge to 
+create meaningful play interactions. 
+CONCLUSION 
+Our findings suggest implica tions for future human-pet 
+gaming systems. The exam ples above explore how 
+participants actively negotiate d play interactions, despite 
+their asymmetrical ability to share or coordinate interaction, 
+and reflect the constitutive nature of human-pet play. The 
+game allows participants to co-construct play experiences 
+by exploiting the contextual a nd social dynamics of human-
+pet play. In addition, the game uses deictic representations 
+to communicate state in acti onable ways and encourage 
+specific behavioral interactions from both participants. 
+These design considerations resulted in a novel opportunity 
+to explore new ways to include pets in the digital gaming 
+experience.  
+ACKNOWLEDGEMENTS 
+We are indebted to many friends who read and commented 
+on the paper. We would like to thank the reviewers, Susan 
+Wyche, Jofish Kaye, Daniel Ashbrook, Vas Kostakos, and 
+Ian Oakley for their suggestions and feedback. We would 
+like to thank Gavin Bowman and Daniel Yang for their help 
+with testing and development. Thank-you Centro de 
+Ciência e Tecnologia da Madeira. 
+REFERENCES 
+1. "2009-2010 National Pet Owners Survey." Survey. 
+American Pet Products Association , 2010. 
+2. Alger, J. M. and S. F. Alger. Cat Culture: The Social 
+World of a Cat Shelter.  Temple University Press, 2003. 
+3. AP-Petside.com. "Pets and their owners." Conducted 
+by GfK Roper Public Affairs & Media, 2009. 
+4. Arluke, A. and C. Sanders. Regarding Animals. 
+Philadelphia: Temple University Press, 1996. 
+5. Brooks, R. A. Intelligence without representation. 
+Artificial Intelligence.  42, (1991b). 
+6. Cerulo, K. A. "Nonhumans in  Social Interaction." 
+Annu. Rev. Sociol. 35 (2009), 531-552. 
+7. Friedman, B., Kahn, P.H., and Hagman, J. "Hardware 
+Companions? – What Online AIBO Discussion Forums 
+Reveal about the Human-Robotic Relationship." In 
+Proc. CHI '03, ACM Press (2003), 273-280. 
+8. Glaser, B.G. and Strauss, A. The Discovery of 
+Grounded Theory: Strategies for Qualitative Research.  
+Aldine Transaction, 1967. 
+9. Goode, David. Playing with My Dog, Kate: An 
+Ethnomethodological Study  of Canine-human 
+Interaction. Purdue University Press, 2007. 
+10. Irvine, Leslie. If You Tame Me: Understanding Our 
+Connection with Animals.  2004. 
+11. Jerolmack, Colin. Humans, Animals, and Play: 
+Theorizing Interaction When Intersubjectivity is 
+Problematic. Sociological Theory  27.4 (2009). 
+12. Leahu, L., Sengers, P., & Mateas, M. "Interactionist AI 
+and the promise of ubicomp, or, how to put your box in 
+the world without putting the world in your box."  In 
+Proc. Ubicomp '08, ACM Press (2008), 134-143. 
+13. Loop, M.S., Millican, L.C., and Thomas, S.R. 
+"Photopic spectral sensitivity of the cat." J. Physiol. 
+382 (1987). 
+14. Pettman, Dominic. "Love in the Time of Tamagotchi." 
+Theory, Culture & Society. 26.2-3 (2009), 189-208. 
+15. Sanders, C. "Understanding dogs: caretakers 
+attributions of mindedness in canine-human 
+relationships." J. Contemp. Ethnogr. 22.2 (1993). 
+16. Suchman, L. A. Human-machine reconfigurations: 
+Plans and situated actions.  2nd ed. 2007. 
+17. Taylor, Alex S. "M
+ achine Intelligence." In Proc. CHI 
+'09, ACM Press, 2109-2118. 
+18. Teh, K. S., Lee, S. P., and Cheok, A. D. "Poultry. 
+Internet: a remote human-pet interaction system." In 
+Extended abstracts of CHI ’06 , ACM Press, 251-254 . 
+19.
+ Turkle, Sherry. "Authenticity  in the age of digital 
+companions." Interaction Studies 8.3 (2007).
+CHI 2011 • Session: Cats, Dogs, Sports, Games & Books
+May 7–12, 2011 • Vancouver, BC, Canada
+2664

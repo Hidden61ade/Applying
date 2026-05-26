@@ -28,8 +28,9 @@ const meta: ProjectMeta[] = sorted.map((p) => ({
       Eight ways of asking the same question: <span class="text-[color:var(--color-accent)]">what can a game be?</span>
     </h1>
     <p class="text-[color:var(--color-ink-dim)] max-w-2xl mb-12">
-      Filter by the role I held on each project. Cards marked <em>Case study</em>
-      open a detail page; cards marked <em>Quick view</em> open inline.
+      Filter first by role, then by arc: gameplay joy, mechanic narrative, game
+      boundaries, and player boundaries. Cards marked <em>Case study</em> open
+      a detail page; cards marked <em>Quick view</em> open inline.
     </p>
 
     <ProjectGrid client:load projects={meta} />

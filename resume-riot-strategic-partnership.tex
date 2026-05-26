@@ -1,0 +1,201 @@
+% !TEX program = xelatex
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%   FONTS
+%----------------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[UTF8]{ctex}
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{fontawesome}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+% Section style
+\titleformat{\section}{\Large\bfseries\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{9pt}{7pt}
+
+% links
+\usepackage[unicode,draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+
+% social icons
+\makeatletter
+\@ifundefined{faMobile}{\newcommand{\faMobile}{\faMobilePhone}}{}
+\makeatother
+
+% job listing environments
+\newenvironment{jobshort}[2]
+  {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+      \textbf{#1} & \hfill & #2 \\[3.75pt]
+    \end{tabularx}
+  }{}
+
+\newenvironment{joblong}[2]
+  {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+      \textbf{#1} & \hfill & #2 \\[3.75pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut,leftmargin=1em,itemsep=3pt,label=--]
+  }
+  {
+    \end{itemize}
+    \end{minipage}
+  }
+
+%----------------------------------------------------------------------------------------
+%   BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+%   TITLE
+%----------------------------------------------------------------------------------------
+\begin{tabularx}{\linewidth}{@{} C @{} }
+{\Huge \textbf{方保骅 (Arno Fang)}} \\[7.5pt]
+{\faMapMarker\ Shenzhen \& Shanghai, China} \ $|$ \
+\href{mailto:baohuafang@link.cuhk.edu.cn}{\raisebox{-0.05\height}\faEnvelope\ baohuafang@link.cuhk.edu.cn} \ $|$ \
+\href{tel:+8615026893718}{\raisebox{-0.05\height}\faMobile\ +86\ 150\ 2689\ 3718} \\
+\href{https://github.com/Hidden61ade}{\raisebox{-0.05\height}\faGithub\ Hidden61ade} \ $|$ \
+\href{https://hiddenblade.net}{\raisebox{-0.05\height}\faGlobe\ hiddenblade.net} \ $|$ \
+\href{https://hidden61ade.itch.io/}{\raisebox{-0.05\height}\faGlobe\ hidden61ade.itch.io}
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%   SUMMARY
+%----------------------------------------------------------------------------------------
+\section{个人总结}
+计算机工程背景，面向游戏行业战略研究岗位。具备\textbf{行业研究、竞品分析、策略表达}与\textbf{跨职能项目推进}能力，能够将玩家体验观察转化为结构化结论并支持业务判断。熟悉 Python 与 AI 工具在信息搜集和流程优化中的应用，覆盖 FPS/TPS、RPG、竞速、主机与手游等多赛道；具备中英文写作与汇报能力（TOEFL 110，GRE 328）。
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION
+%----------------------------------------------------------------------------------------
+\section{教育背景}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{香港中文大学（深圳）} \hfill 2023年9月 -- 至今 \\
+电子与计算机工程学士（主修：计算机工程） \hfill \normalsize CGPA: \textbf{3.50/4.0（预计）} \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%   EXPERIENCE
+%----------------------------------------------------------------------------------------
+\section{学术研究与论文}
+
+\begin{joblong}{BS3: B\'ezier Slicing Middleware for 3D Mesh LOD Optimization}{第二作者}
+  \item 论文被 \textbf{ACM Multimedia 2025 (ACM MM'25)} 接收。DOI: \href{https://doi.org/10.1145/3746027.3755854}{10.1145/3746027.3755854}
+  \item \textbf{复杂系统开发与算法实现：}搭建端到端 Python 数据处理管线，覆盖最小二乘曲线拟合、\textbf{曲率感知采样}与泊松重建。
+  \item 提出引擎无关的 3D 内容重构方案并开源核心实现，在重建质量与传输体积间完成平衡。
+\end{joblong}
+
+%----------------------------------------------------------------------------------------
+%   WORK EXPERIENCE
+%----------------------------------------------------------------------------------------
+\section{工作经历}
+
+\begin{joblong}{腾讯科技（深圳）有限公司 -- Tiki Studio}{游戏策划实习生}
+  \item \textbf{AI 工具与流程搭建：}独立开发并部署基于 Python 的 AI 图像生成工作流，优化内部生产效率。
+  \item \textbf{快速原型与跨部门协作：}为\textit{金铲铲之战}相关策划与美术团队快速产出高质量概念原型，降低迭代成本并提升沟通效率。
+  \item \textbf{系统设计：}参与高优先级（T0）商业化资产从设计到引擎落地的开发流程，保障设计意图与技术可行性一致。
+\end{joblong}
+
+%----------------------------------------------------------------------------------------
+%   SELECTED PROJECTS
+%----------------------------------------------------------------------------------------
+\section{项目经历}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{Right Click To Activate Translator} --- 内容与系统策划 & \hfill 2024年5月 -- 至今 \\
+\multicolumn{2}{@{}X@{}}{叙事语言解谜游戏（Steam 页面可见完整世界观）：围绕“寻找走失猫 Shiro”引入异世界语言系统与 Octocats 社会设定，设计“词典编辑-线索读取-语义校正-关卡求解”的可迭代闭环。支持中英界面，获 \textbf{2024 CUSGA 最佳解谜游戏}。\href{https://store.steampowered.com/app/3128590/_/}{[Steam]}}\\
+\end{tabularx}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{Devil, Cops, Androids} --- 主策划 / 核心程序（Unity） & \hfill 2026年2月 \\
+\multicolumn{2}{@{}X@{}}{GGJ 2026 作品。48 小时内完成俯视角射击核心循环（移动-瞄准-交火-资源补给），搭建关卡灰盒与敌我信息流；基于短周期测试反馈快速迭代战斗节奏与可读性。\href{https://synapse75.itch.io/devilcopsandroids}{[Itch.io]}}\\
+\end{tabularx}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{GugugagaPenguin!} --- 核心程序 / 交互原型 & \hfill 2026年 \\
+\multicolumn{2}{@{}X@{}}{基于 \textbf{Leap Motion 2} 的体感交互原型。在 Unity 中搭建灰盒场景并处理特殊输入，完成灵敏度与物理反馈调优，验证直觉交互可行性。\href{https://www.bilibili.com/video/BV1DL9CBzEej/}{[演示视频]}}\\
+\end{tabularx}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{Hashmon} --- 全栈开发 & \hfill 2026年 \\
+\multicolumn{2}{@{}X@{}}{跨系统互操作 PoC。快速实现前端原型用于迭代验证，同时为 Solidity 合约构建\textbf{稳健数据层}，支持链上资产跨场景复用。\href{https://github.com/Hidden61ade/Hashmon}{[GitHub]}}\\
+\end{tabularx}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{Heart Keys} --- 制作人 / 程序（Unity） & \hfill 2025年10月 \\
+\multicolumn{2}{@{}X@{}}{Ludum Dare 58 3D 解谜游戏。带领 10 人团队完成“能力回收（Dash/Recall/Create）驱动关卡递进”设计；根据玩家评论迭代并发布 1.1.2 版本，修复主线钥匙缺失与关卡卡死问题。\textbf{排名 19 / 1083（32 ratings）}。\href{https://ldjam.com/events/ludum-dare/58/heart-keys}{[LDJam]}}\\
+\end{tabularx}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{The\_Birthday\_Party} --- 主策划 / 程序 / 编剧 & \hfill 2024年11月 -- 12月 \\
+\multicolumn{2}{@{}X@{}}{元叙事游戏。完成\textbf{16000 字分支剧本}并实现模拟 OS 交互与状态反馈，将“叙事分支-玩家选择-系统响应”做成可观测链路，用于验证剧情驱动产品中的留存与情绪曲线设计。\href{https://hidden61ade.itch.io/the-birthday-party}{[Itch.io]}}\\
+\end{tabularx}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}l r@{}}
+\textbf{Space Bar Porter} --- 设计 / 程序 / 叙事 & \hfill 2023年10月 \\
+\multicolumn{2}{@{}X@{}}{围绕“Limited Space”主题构建像素平台解谜玩法，设计冲刺/重力翻转等能力的空间约束机制。\textbf{排名 144 / 1597}。}\\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%   GAME INDUSTRY INSIGHT
+%----------------------------------------------------------------------------------------
+\section{游戏行业理解}
+\textbf{近期重点体验：}Marathon：失落星船、逃离鸭可夫、Death Stranding 2、Deadlock。\\
+\textbf{PC FPS/TPS（1000h+）：}Apex Legends、战地系列、CS 系列、COD 系列、彩虹六号：围攻、泰坦陨落2、The Finals、VALORANT。\\
+\textbf{电竞赛事关注：}自 2024 年起持续追踪 VCT 与 CS2 赛事，关注版本改动对阵容选择、战术节奏与观赛叙事的影响。\\
+\textbf{RPG：}幻兽帕鲁、合金装备V、黑神话：悟空、艾尔登法环、博德之门3、死亡搁浅、赛博朋克2077、巫师3、鬼泣5、对马岛之魂、刺客信条系列、看门狗系列。\\
+\textbf{竞速：}极限竞速系列、极品飞车系列、神力科莎、跑跑卡丁车、QQ 飞车。\\
+\textbf{主机：}任天堂 NS/3DS 与 Xbox One 平台。\\
+\textbf{手游：}王者荣耀、Pokemon Go、少女前线、明日方舟、女神异闻录X、绝区零、鸣潮、炽焰天穹（Heaven Burns Red）。\\
+\textbf{研究输出方式：}按“核心循环、用户动机、商业化触点、社交/电竞传播、跨媒介合作潜力”五维拆解竞品，形成可汇报的结构化观察。
+
+%----------------------------------------------------------------------------------------
+%   SKILLS & LANGUAGES
+%----------------------------------------------------------------------------------------
+\section{技能与语言}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{编程语言：} & \textbf{C\#, Python}，C++，Java，JavaScript（ES6+），Solidity \\
+\textbf{引擎与工具：} & \textbf{Unity, TouchDesigner}，UE5，Blender，Leap Motion SDK，Figma \\
+\textbf{研究与办公：} & Excel，Google Workspace，PowerPoint，Notion，结构化行业研究与报告写作 \\
+\textbf{语言能力：} & 中文（母语），英文（熟练；TOEFL 110/120，GRE 328/340） \\
+\end{tabularx}
+
+\end{document}

@@ -24,7 +24,27 @@ const ROLE_FILTERS = [
   "Interaction",
 ] as const;
 
+const ARC_FILTERS = [
+  "All",
+  "Gameplay Joy",
+  "Mechanic Narrative",
+  "Game Boundaries",
+  "Player Boundaries",
+] as const;
+
 type Filter = (typeof ROLE_FILTERS)[number];
+type ArcFilter = (typeof ARC_FILTERS)[number];
+
+const PROJECT_ARC_BY_SLUG: Record<string, Exclude<ArcFilter, "All">> = {
+  "heart-keys": "Gameplay Joy",
+  "devil-cops-androids": "Gameplay Joy",
+  "space-bar-porter": "Gameplay Joy",
+  "right-click-to-activate-translator": "Mechanic Narrative",
+  "the-birthday-party": "Mechanic Narrative",
+  "hashmon": "Game Boundaries",
+  "gugugaga-penguin": "Game Boundaries",
+  "herder-and-hunter": "Player Boundaries",
+};
 
 interface Props {
   projects: ProjectMeta[];
@@ -32,12 +52,17 @@ interface Props {
 
 export default function ProjectGrid({ projects }: Props) {
   const [filter, setFilter] = useState<Filter>("All");
+  const [arcFilter, setArcFilter] = useState<ArcFilter>("All");
   const [openSlug, setOpenSlug] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    if (filter === "All") return projects;
-    return projects.filter((p) => p.tags.includes(filter));
-  }, [filter, projects]);
+    return projects.filter((p) => {
+      const roleMatch = filter === "All" ? true : p.tags.includes(filter);
+      const projectArc = PROJECT_ARC_BY_SLUG[p.slug];
+      const arcMatch = arcFilter === "All" ? true : projectArc === arcFilter;
+      return roleMatch && arcMatch;
+    });
+  }, [arcFilter, filter, projects]);
 
   const open = openSlug ? projects.find((p) => p.slug === openSlug) : null;
 
@@ -53,6 +78,20 @@ export default function ProjectGrid({ projects }: Props) {
             type="button"
           >
             {r === "All" ? "All Work" : `As a ${r}`}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap gap-2 mb-10">
+        {ARC_FILTERS.map((a) => (
+          <button
+            key={a}
+            className="chip"
+            data-active={arcFilter === a}
+            onClick={() => setArcFilter(a)}
+            type="button"
+          >
+            {a === "All" ? "All Arcs" : a}
           </button>
         ))}
       </div>

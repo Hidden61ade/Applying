@@ -1,0 +1,1532 @@
+PAGES: 16
+
+--- PAGE 1 ---
+Look What the Cat Tapped In: Exploring Digital Interactive
+Systems Designed for the Cat Cafe Experience
+Florence P. E. Payne
+The University of Glasgow
+Glasgow, United Kingdom
+florencepayne2002@gmail.com
+Rebecca Kleinberger
+INTERACT Animal Lab
+Northeastern University
+Boston, USA
+r.kleinberger@northeastern.edu
+Ilyena Hirskyj-Douglas
+The University of Glasgow
+Glasgow, United Kingdom
+ilyena.hirskyj-
+douglas@glasgow.ac.uk
+Abstract
+Cat cafés are environments where visitor experiences centre on
+human–animal interactions. At the same time, the animals’ side of
+the experience has led to widespread ethics concerns, connected
+with the overstimulation potential of direct, intense animal–human
+interaction, with concomitant effects on animal welfare. Investigat-
+ing how technology could bring balance to this relationship, the
+paper presents MewTube, a tablet-based application designed to en-
+gage cats through curated videos while allowing humans to adjust
+playback speed in response to feline behaviour. From a five-month
+study with 28 human and 16 feline participants that compared
+tablet-based play at a cat café with traditional toys’ use there, anal-
+ysis revealed that overall enjoyment stayed constant between the
+two conditions yet toy-focused interactions led to a stronger sense
+of connection with the cats. Reflecting on our findings – e.g., in
+the absence of clear responsiveness from the cats, humans in the
+MewTube condition felt less confident that the animals enjoyed the
+interaction – reveals gaps in technology for supporting interaction
+in human–animal relationships. The paper offers recommendations
+for tackling the challenges of designing systems that respect feline
+autonomy and sensory preferences.
+CCS Concepts
+•Human-centered computing → Interaction devices.
+Keywords
+Animal–Computer Interaction, Pet, Tablet, Video, Human–Animal
+Interaction, Animal–Visitor Interaction,
+ACM Reference Format:
+Florence P. E. Payne, Rebecca Kleinberger, and Ilyena Hirskyj-Douglas.
+2025. Look What the Cat Tapped In: Exploring Digital Interactive Systems
+Designed for the Cat Cafe Experience. In The International Conference on
+Animal-Computer Interaction (ACI 2025), December 01–04, 2025, Blooming-
+ton, IN, USA. ACM, New York, NY, USA, 16 pages. https://doi.org/10.1145/
+3768539.3768541
+1 INTRODUCTION
+Numerous public spaces facilitate human–animal interactions, pri-
+marily aimed at human entertainment. These environments remain
+contentious. Plagued by persistent animal-welfare concerns [14, 29],
+This work is licensed under a Creative Commons Attribution-NonCommercial-
+NoDerivatives 4.0 International License.
+ACI 2025, Bloomington, IN, USA
+© 2025 Copyright held by the owner/author(s).
+ACM ISBN 979-8-4007-2123-6/25/12
+https://doi.org/10.1145/3768539.3768541
+they have sparked efforts by animal–computer interaction (ACI)
+researchers to start investigating how technology could genuinely
+support visitor education and animal welfare in human–animal
+spaces [37, 53]. This research has cohered largely around zoo envi-
+ronments, while other, far more immersive interspecies interaction
+has largely escaped academic attention – that at ‘animal cafés’.
+As the name suggests, these are spaces in which humans order
+food and beverages while in the presence of multiple freely roam-
+ing animals. Another defining characteristic of said settings is that
+visitors too may move freely, throughout the animals’ habitat, and
+they are often encouraged to interact directly with the non-humans.
+There are cafés dedicated to many species, from rabbits and reptiles
+to owls [43], but the first and most ubiquitous are those established
+around cats [43]. Cat cafés have gained global popularity in the
+years since 2004 [35], offering spaces for relaxation and cat-based
+interaction [38, 44]. This prominence notwithstanding, the ques-
+tion of ensuring feline welfare while meeting visitor expectations
+remains unanswered [46].
+Prominent animal-welfare charities, such as Britain’s Royal So-
+ciety for the Prevention of Cruelty to Animals, have argued to law-
+makers that direct physical contact with humans at these venues
+can cause overstimulation and/or stress to cats [ 39]. Meanwhile,
+from a scholarly perspective, many researchers characterise cat
+cafés as sites of animal labour that align cats with commodities
+even though much of the Western world does not regard cats as
+mere inert or passive objects [59]. Taking an alternative stance, cat
+café patrons have cited these places as an avenue to healing and
+relaxation and as a way to learn about cats. Hence, these environ-
+ments where animals work and live embody a fundamental tension
+between service provision by animals and their wellbeing [17]. As
+animals perform emotional labour for human patrons [ 38], their
+living conditions may, on the other hand, improve – ultimately bet-
+ter speaking to species-specific requirements [59]. Therefore, we
+cannot discount the possibility that cats too may have meaningful
+encounters within café scenarios. Since they might benefit from
+enrichment, socialisation, and interaction with visitors [59], intro-
+ducing computer entities into this ecosystem holds promise. This
+is accompanied by important design and ethics questions bound
+up with how computers can support meaningful, respectful inter-
+species interactions that balance humans’ needs with those of cats,
+honouring both.
+Tentative work by ACI scholars offers a lens for exploring animal–
+human relationships, thanks to examination of emerging technolo-
+gies that may facilitate such interspecies engagement tailored to
+both sets of needs [31, 53, 55]. Albeit limited, some ACI work with
+cats provides a starting point [36, 50, 56]. With that grounding, we
+
+--- PAGE 2 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+Figure 1: We gained insight from observing how a cat interacts with a tablet (A), cats watching video footage of birds on a laptop
+screen (B), human cat café visitors’ use of traditional toys for interaction (C), and a visitor using MewTube for interaction at a
+cat café.
+explored how an interactive video application presented via a tablet
+might yield benefits in cat cafés. Aiming to expand awareness of
+ways in which such design can reshape human–animal relations
+in public places in a way that respects both species’ needs, our
+research asked two main questions:
+• RQ1: How can interactive screen-based systems be designed
+to accommodate the needs and requirements of cats and
+humans?
+• RQ2: How does the use of a tablet system in cat cafés affect
+visitor experience and human–cat bonding?
+To address RQ1, we began by conducting observation-based
+testing with 16 residents of a cat café, monitoring their responses
+to various pre-existing touchscreen applications and video material
+presented on tablet computers. Tablets served as a fitting jumping-
+off point since they are portable and adaptable to the dynamic
+environment of a public cat café. Furthermore, since screen-based
+technologies are particularly suitable for cognitive enrichment,
+they are a highly relevant tool for exploring feline engagement in a
+shared public setting [27]. Then, to develop the case application, we
+solicited insight from a design-feedback group: reflections on prior
+experiences of cat cafés thereby informed the design of MewTube,
+a tablet-based system enabling human visitors to interact with
+a café’s cats by playing curated videos. The system lets visitors
+adjust the playback speed in response to feline engagement, and,
+to encourage respectful, non-invasive interaction, it incorporates
+concise educational guidance in interpreting feline behaviour.
+Over five months, we evaluated the effects of MewTube use on
+interactions between on human–cat interactions, again between
+human visitors and the 16 resident cats. To answer RQ2, we com-
+pared data between users of MewTube and a baseline group who
+used only traditional toys during their visit. By means of question-
+naire and interview data, we compared responses between the two
+conditions. This enabled us to assess enjoyment by the humans,
+the sense of feline engagement, and perceived human–cat bonding.
+Our findings suggest that, while MewTube can enhance the cat café
+experience, particularly for less confident visitors, it functions best
+as a complement to, not a replacement for, traditional forms of play.
+Furthermore, the system’s success depended heavily on feline re-
+sponsiveness. This finding underscores the complexity of designing
+for multispecies interactions that unfold in dynamic environments.
+With animal cafés and cat ownership still expanding globally
+[58], this paper contributes to the ACI field in a timely fashion by ex-
+amining several ethics questions that swirl around development of
+non-invasive technologies with potential to reshape human–animal
+engagements in public spaces. Our findings inspired us to articu-
+late practical design guidelines for interactive systems that foster
+interactions respectful of the animal’s autonomy, and the study’s
+evaluation of engagement in a multi-user public setting advances
+research into technology-mediated play and cat computing. Also,
+for the human–computer interaction community and beyond, this
+work demonstrates how to reframe design through a multispecies
+lens sensitive to joint human and animal user experiences.
+2 THE BACKGROUND LANDSCAPE
+Although ACI scholarship has increasingly explored interactive
+systems to support domestic species, research into feline-centred
+technologies remains scarce, as noted above. The same is true for
+technologies that facilitate animal–human interaction in human-
+visitor settings. Nonetheless, we review the literature relevant for in-
+teractive computers for animals, with special focus on cats, auditory
+and visual interfaces, and technologies that overlay animal–human
+interactions in shared public spaces.
+2.1 Animal–Computer Interaction
+Deployment of technology to enrich animals’ life, address their
+cognitive and sensory needs, and foster meaningful interactions
+with humans is on the rise. These computer systems often exploit
+auditory, olfactory and visual stimuli to initiate engagement or pave
+new avenues for such interaction as collaborative play between
+humans and animals.
+Auditory-focus systems take animals’ sensitivity to sound as
+a starting point for social-interaction, wellbeing, and enrichment
+support. Researchers who often work with this faculty examine
+how sounds of particular types affect animals’ wellbeing [12] equip-
+ping themselves to advocate giving animals control over their own
+auditory environment, control that might well enhance their auton-
+omy and welfare. For instance, highlighting sound’s potential as a
+
+--- PAGE 3 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+medium for interspecies communication, Gupfinger and Kaltern-
+brunner [16] probed how parrots can use interactive sound mech-
+anisms (traditional instruments and computer systems both) for
+collaborative creation of audio with humans and other parrots;
+they found evidence that shared auditory play can promote cogni-
+tive stimulation and cross-species social bonding. Building on that
+work, Kleinberger et al. [28] developed a music system comprising
+a branch that a macaw can move to trigger music playback within
+their enclosure. In combination, the macaw’s initiative in activat-
+ing playback, particularly during interactions with visitors, and
+positive behaviour indicators (such as nibbling and dancing) point
+both to comprehending the interaction’s nature and gaining from
+it. However, just as humans’ music preferences vary, other animals’
+auditory-enrichment desires and outcomes depend on the species
+and individual. Some scholars, observing that anthropogenic noise
+often induces stress, recommend naturalistic or calming sounds, to
+reduce strain from the environment [12], while others claim that
+any problems stem from the sound’s features rather than its human
+origin [26]. Studies from both camps accentuate what audio-based
+interaction systems offer in support of animals’ agency, wellbeing,
+and social connectedness.
+Visually based systems likewise engage with animals by taking
+advantage of natural behaviours and attractions. Touchscreen ap-
+plications have been developed for cognitive stimulation of dogs,
+birds, monkeys, and other species [8, 52], while general environ-
+mental enrichment has been sought via screens in animals’ homes
+[22]. Screen-based interfaces might indeed improve some animals’
+wellbeing: for instance, in one study of such systems, most dog-
+owners surveyed indicated that their pet enjoyed engaging with
+the system studied [52]. As for touchscreen interfaces, non-human
+primates have demonstrated engagement with touchscreen sys-
+tems (on tablets etc.) designed for humans, thereby showing both
+physical compatibility with this technology and understanding of
+it [8]. The relevant study, with marmosets, spotlights low-cost, ro-
+bust touchscreen devices’ feasibility for enrichment and research
+in the ACI domain. Yet issues remain. For example, while research
+into white-faced sakis’ video-based enrichment revealed these ani-
+mals’ preferences (for worms and underwater jellyfish videos) [21],
+it pointed to the possibility of novelty effects also: importantly,
+engagement with systems’ screens might decline over time, with
+acclimation to the system’s presence. Accordingly, early studies,
+whether pointing to benefits or to moderating effects, both offer
+valuable insight into how video-stimulus devices can be imple-
+mented for animals’ interaction, across species, and highlight the
+need for deeper examination of their use by animals. Clearly, vision-
+anchored systems, employing touchscreens, video displays, or some
+other mode of interaction, show strong potential for affording rich
+experiences by animals, via support for cognitive and sensory ex-
+periences for animals.
+2.2 Systems Supporting Animal–Human
+Interaction
+Animals in captivity interact with humans, and vice versa, in many
+settings, animal cafés, zoos, aquaria, etc. These interspecies spaces
+often permit an untrained member of the public to initiate contact
+and even touch a live animal directly. Research attests that prop-
+erly managed human–animal interactions can improve both animal
+welfare and people’s education [13]; however, negative effects too
+can ensue [46]. Studies in zoos have shown that regular petting
+of wombats does not alter their behaviour [24], while other work
+has found that close physical contact may even trigger biting re-
+sponses in sea lions [7]. Proceeding from increased awareness of
+the interconnectedness of human wellbeing with animal welfare
+[34], a growing body of research is accumulating also with regard
+to humans’ interactions with domesticated animals, including how
+digital tools, interactive devices, etc. are best developed to facilitate
+play between cats and humans.
+Among the applications developed is Purrfect Crime, by Trindade
+et al. [50], intended for cats’ and humans’ joint play. Here, cats phys-
+ically engage with projected stimuli controlled by humans using
+a Wiimote. While innovative in its use of physical space to ac-
+commodate natural feline hunting instincts, the game suffers from
+environmental constraints (e.g., the projection requires darkness).
+It illustrates another limitation in this space: lack of long-term
+behaviour data. Though the game positions cats and humans in
+competitive roles, its developers did not probe this dynamic’s in-
+fluence on emotional bonding or relationship-building. Another
+example of the gulf in ACI scholars’ understanding of interspecies
+connection, which extends far beyond observable play, is visible
+through the virtual aquarium game Felino, designed by Wester-
+laken and Gualeni [ 56]. It lets humans adjust the movement of
+on-screen fish to respond to feline behaviour, thereby promoting
+collaborative play. While allowing humans to adapt stimuli in real
+time, Felino also encourages independent interaction from cats, by
+employing visual design solidly grounded in understanding of fe-
+line sensory perception (favouring blues and greens accommodates
+cats’ colour vision, and utilising naturalistic-prey-style animations
+engages their hunting instincts). The development philosophy drew
+on Plessner’s theory of positionality to highlight the importance
+of designing for the cat’s perspective. Still, the thoughtful model
+behind Felino’s design represents only a starting point for shared
+interaction that respects feline autonomy while letting humans
+retain some control of the experience. Building on this effort at
+exploring how a computer system could be sensory-aligned for
+humans and cats toward mutually responsive interactions between
+the species, Cat Cat Revolution, by Noz and An [ 36], introduced
+a dual-device approach that applies a movement-based technique
+similar to Felino’s. Cats ‘chase’ a tablet-presented virtual mouse,
+the movement of which a human can influence via a connected
+mobile phone. This division of control supports more balanced
+interactivity and mitigates the human dominance typical of en-
+gagement with shared-interface designs. Results are not conclusive,
+though, especially with regard to felines’ engagement or sense-
+making. For their conclusion that participants enjoyed the shared
+play, the researchers relied heavily on human self-reporting. Also,
+the split-input model risks reducing physical co-presence; using
+separate devices might weaken the mutual awareness needed for
+deeper bonding.
+Also, conditions particular to cat cafés bear examination. In
+such settings, where cats often face unfamiliar humans, body lan-
+guage becomes the primary mode of communication. Important
+behaviour cues such as tail position, eye movement, and posture
+reflect emotional state, from agitation or curiosity to relaxation
+
+--- PAGE 4 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+[10, 25, 45, 47, 48]; however, visitors unfamiliar with feline be-
+haviour may create a risk of stress or discomfort by misinterpreting
+these signals. Understanding such cues is critical for designing
+spaces of respectful digital interaction. This arena offers consider-
+able room for technology to function both for education and as a
+bulwark for appropriate engagement between humans and animals
+interacting in shared spaces.
+The studies discussed above illustrate how knowledge of cat–
+human interaction and the landscape of corresponding technologies
+might evolve. Their advances showcase the potential for digital
+tools to create genuinely collaborative experiences of engagement.
+However, the focus in creating these systems – which have yet to
+be implemented in real-world, public settings where humans and
+cats interact – has been largely confined to cultivating engagement
+for the animals and humans simultaneously. There has been little
+attention to the ways in which interacting together through the
+technologies affects the relationship between cats and humans, and
+no research has been set in a cat café context. To tackle this gap in
+research and practice, we built on nascent work on animal–human
+interactions to explore a way to develop vision- and hearing-based
+tablet-computer interfaces supporting human–animal relationships
+in public settings (RQ1) and examine the influence of using such
+technologies (RQ2).
+3 Participants
+Our study involved 16 cats housed at a cat café local to the main
+research institution (Fig. 2 characterises the feline sample by pre-
+senting participants’ image, sex, breed, and age). The premises
+followed a layout common to many cat cafés, with two distinct
+areas: a public ‘café’ space and a restricted ‘cat’ space [59]. Ac-
+cessible to visitors, staff, and cats alike, the former allowed them
+free movement throughout the café space. Furnished with seating,
+cat-related amenities (such as scratching posts, climbing platforms,
+and plush beds), and boxes of toys, this was an entirely open area,
+with no private sections. In contrast, the ‘cat’ space was restricted
+to cats and café personnel only. A cat flap granted access to this
+more private space, letting cats retreat from visitor interactions
+when needing to do so. Throughout the study, cats moved between
+the two spaces, creating variety in the groupings present.
+Frequency of visits No. of visitors
+<1 per year 2
+1 a year 16
+1 every six months 5
+1 in three months 5
+Table 1: Cat café visitor numbers by visit frequency
+The study’s human participants were 28 people, aged 16–50+
+(mean age: 30.5). Eight of them identified as male and 20 as female.
+Their frequency of visiting varied, with most reporting annual visits
+(see Table 1). Participants 01-10 were sourced online, and partook
+in phase 1 of the study (n = 10). Participants 11-28 were sourced in
+person at the cat café, and were split evenly between the baseline
+and application conditions during phase 2 of the study (n = 18).
+This sample’s demographics, consistent with research into typi-
+cal cat café visitors [40], supports generalisation from our study’s
+findings. The University of Glasgow Ethics Committee granted
+approval for conducting this research (EA01/10/2024). In addition,
+since matters of ethics were fundamental to our study design and
+research questions, we reflected on them throughout the project.
+4 THE STUDY: METHODS
+The method, outlined in Figure 3, followed a two-phase approach,
+with both phases informed by human and feline input. Phase 1
+compiled design requirements by surveying cat café visitors and
+testing screen-based apps with cats, and Phase 2 tested the resulting
+system, MewTube, in real-world use.
+4.1 Phase 1: A Survey for Compiling
+Requirements
+The first phase encompassed canvassing for both human and fe-
+line requirements, in pursuit of a well-grounded application. We
+observed the 13 resident cats that interacted with two screen-based
+devices, capturing their interaction patterns via video logs of their
+behaviour. For the interaction devices, a touchscreen Samsung
+Galaxy Tab A (see Fig. 1: A) and a Dell Inspiron laptop (see Fig.
+1: B) were selected, to reflect commonplace consumer technolo-
+gies in their screen size, brightness, and interface dynamics. This
+choice allowed us to assess feline responses to systems that could
+realistically be deployed in a cat café setting. We monitored the
+cats as they engaged with a range of visual stimuli that included
+pre-existing applications developed for babies, pre-existing applica-
+tions created for cats, videos of real animals, and videos of animated
+ones (Appendix A gives full details of the applications and videos
+used in Phase 1). We filtered stimuli for inclusion of high-contrast
+movement, small rapidly moving objects, and naturalistic sound-
+scapes, all features aligned with feline predatory instincts and cats’
+visual-processing capabilities [19, 32].
+Evaluating animals’ interactions with technology presents inher-
+ent challenges, as non-human users cannot write down or verbally
+articulate their experiences [41]. In consequence, researchers must
+adopt context-specific, often subjective methods tailored to each
+species and environment. Since there is little precedent for assess-
+ing digital engagement amid the many confounding factors present
+in cat cafés, where cats interact with unfamiliar humans in a dy-
+namic social setting, developing appropriate evaluation techniques
+demands special attention.
+Taking lessons from prior research into cats’ behaviour with
+screens [56], we monitored the responses for specific actions: tap-
+ping (quickly raising a paw to press the screen), swiping (sliding
+a paw along the screen), and dragging (placing a paw on a target,
+such as a rodent image, then drawing the paw across the screen).
+In addition to these direct interactions, we recorded instances of at-
+tentive engagement: sustained visual and behavioural focus on the
+on-screen content. Drawing from methods used in studies of non-
+verbal human infants [1, 6, 51], we identified engagement by means
+of behavioural indicators – namely, tail movement and posture, the
+head’s or eyes’ tracking of motion shown on the screen, and ear
+orientation relative to the screen. We classified cats as engaged if
+they maintained attentive behaviours for more than 30 seconds,
+a cut-off suggested by the cat café staff and dovetailing with evi-
+dence that screen-focused engagements between pet animals and
+
+--- PAGE 5 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+Figure 2: The feline participants, with photos, sex, breed, and age in years.
+Figure 3: The study’s two phases and their material.
+technology typically occur in short bursts of interaction [22, 23]. In
+the context of a dynamic café environment with numerous exter-
+nal distractions, passing a 30 s threshold seemed to be a clear and
+conservative marker of focused attention, well suited to reliably
+distinguishing passing curiosity from meaningful interaction.
+In parallel with our feline observations, we gathered the cat
+café visitors’ perspectives via a brief questionnaire on their percep-
+tions of the tablet-based cat interaction. The survey form, which
+combined Likert-scale and open-ended questions to ask about the
+visitor’s preferences, perceptions, and attitudes to the idea of using
+interactive applications with cats, was given to and completed by
+10 people, seven of whom had previously visited a cat café (see
+Section 3).
+4.2 Phase 2: Tests of a Novel System’s Effects on
+the Cat Café Experience
+The second phase explored the effectiveness of our application in
+supporting considerate interactions between humans and cats. For
+this phase, we analysed only data from humans (participants 11–
+28), who were exposed to two distinct conditions: a baseline one in
+which café visitors interacted with cats by using traditional toys
+and the application condition, in which visitors engaged with cats
+by means of our application and traditional toys. Both conditions
+were experienced at the local cat café during public opening hours.
+To ensure a diverse participant pool, data collection extended across
+several days of the week (Monday–Friday) and times of day (11am–
+5pm). We adopted a between-participants design oriented toward
+the real-world setting of the café: visitors were paying for their
+time there, and many were present only for a short visit. This
+structure supported a broader sample without requiring extended
+engagement or participation in follow-up interviews. It contributed
+especially to understanding of the baseline condition, through the
+simple survey.
+In the cat café setting, we identified visitors who were already
+engaging with cats through traditional cat toys (i.e., acting in the
+baseline condition). Figure 1’s pane C shows an example. After they
+finished playing, we approached them and asked them to complete
+our survey assessing their overall enjoyment of the play with the
+traditional toys and their general experience at the café. The data
+thus solicited gave us a point of comparison for understanding how
+the application influenced visitor perceptions and actions.
+For the application condition, we similarly approached visitors
+who had already been observed playing with traditional toys, then
+invited them to use our application, MewTube, on a tablet (see Fig.
+1: D). After consenting, they were asked to use the application with
+
+--- PAGE 6 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+the cats for five minutes, with the option of continuing beyond this
+if they so wished. During their interactions, they were to read the
+educational content supplied by the application, select at least one
+video to watch with the cat(s), and adjust the playback speed at
+least once during use. Being given these three tasks guaranteed
+testing of MewTube’s three core functions (the educational content,
+video library, and adjustable playback speed) by every participant
+exposed to the application condition.
+In the intervention condition, we observed and recorded partici-
+pants’ engagement with both the application and the cats. After use,
+the visitor completed a post-experiment survey, structured similarly
+to the baseline condition’s but with additional questions specific
+to the application. This was followed by a brief semi-structured
+interview in which the participant was asked about the experience
+of using the app, the feline enjoyment perceived, comparisons to
+traditional toys, and whether the application seemed to have influ-
+enced the sense of connection to the cats. Follow-up prompts for
+in-depth follow-up on responses allowed flexibility while keeping
+the core themes at the centre of focus.
+Many participants had visited the café in the company of a friend
+or family member. In these cases, we conducted group interviews
+rather than one-on-one conversations. This not only had the benefit
+of being more time-efficient but also let interviewees take part in
+discussion among themselves, delivering richer, more considered
+responses [4].
+5 SETTING THE STAGE:
+REQUIREMENT-GATHERING
+Recording video footage of the cats as they engaged with various
+visual stimuli informed analysis aimed at identifying various be-
+haviours indicative of engagement; these are outlined in Table 2.
+Our observations also captured the cats’ engagement with applica-
+tions vs. video footage; the results are captured by Table 3.
+Cat Tapping Swiping Dragging Engaged
+1 × × × ×
+2 − − − −
+3 ✓ × × ✓
+4 × × × ✓
+5 × × × ×
+6 × × × ✓
+7 × × × ✓
+8 × × × ✓
+9 × × × ×
+10 − − − −
+11 × × × ✓
+12 × × × ×
+13 − − − −
+14 ✓ × × ✓
+15 ✓ ✓ × ✓
+16 ✓ ✓ × ✓
+Table 2: Interactions displayed by feline participants
+Table 2 identifies which cats exhibited which behaviours in the
+preliminary-testing stage. Cats 2, 10, and 13 are not represented
+here, since they remained in the café’s private, visitor-inaccessible
+Cat Applications Videos
+1 × ×
+2 − −
+3 ✓ ✓
+4 × ✓
+5 × ×
+6 × ✓
+7 × ✓
+8 × ✓
+9 × ×
+10 − −
+11 × ✓
+12 × ×
+13 − −
+14 ✓ ✓
+15 ✓ ✓
+16 ✓ ✓
+Table 3: Engagement observed from feline participants
+area throughout Phase 1. Most participants present showed interest
+in the screen-based content, with nine watching videos and four
+interacting with the applications. Four cats tapped the screen, two
+swiped, and none completed a dragging action. Visible response to
+the cat’s action did not seem necessary for sustained engagement –
+several cats continued tapping the screen independently of obvious
+feedback from doing so. Most cats seemed satisfied by watching
+the screen without taking part in physical interactions.
+The cats were noticeably more interested in the screen when
+auditory cues were being produced, with the nature of the sounds
+not appearing to have an impact. Likewise, the cats expressed no
+preference between visuals of real birds and animated mice; they did
+not engage any longer with either footage of tangible (real-world)
+animals or abstract images (animations).
+Comparison between tables 2 and 3 reveals that, while every cat
+interacting with the application also watched the videos, not all
+video-watchers engaged with the interactive elements. This pattern
+implies that, for cat café environments, giving priority to engaging
+visual content may be more effective than focusing on responsive
+functions.
+5.1 Survey-Based Understanding of Cat Café
+Visitors
+In our survey of people who had visited the cat café before (n = 10),
+80% showed interest in using a tablet application to play with cats,
+with 30% expressing strong interest. A sizeable minority, 40%, raised
+concerns about cats’ ability to maintain boundaries during interac-
+tions, of whatever sort. Thematic analysis identified four key de-
+sign considerations: control over screen content, well-designed
+sounds, simplicity of the interface , and user interest. The visi-
+tors desired an ability to adjust the elements on the screen (e.g., by
+colour and speed) in line with cats’ responses and emphasised soft,
+natural sounds’ importance in preventing distress. Many envisioned
+a simple, intuitive interface, akin to those in apps for children, and
+responded enthusiastically to the notion of digital play as a novel,
+accessible tool for those less confident around cats.
+
+--- PAGE 7 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+5.2 Findings from Requirement-Gathering
+Accordingly, we concluded that the application should function
+primarily as an engaging visual and auditory experience, rather
+than as a responsive gaming application. For feline users, it should
+be simple, hold visual and aural appeal, and not require that the
+cat’s engagement comprise physical interaction. For human users,
+it should offer some form of physical interaction, be simple enough
+to serve as a background-agnostic introduction that is accessible to
+everyone, and allow some form of control or customisation. Phase
+1’s tests with cats enabled us to establish the following list of feline
+requirements (FRs) for our application for the forthcoming:
+• FR1: Prioritise visual engagement. The application
+should grant precedence to engaging, motion-based visu-
+als over touch-based interaction by cats. Since most cats do
+not tap, swipe, or drag, the app’s effectiveness should not
+rely on them interacting physically.
+• FR2: Include auditory stimulation. Sound effects (such
+as soft bird calls or mice squeaking) should be included, to
+enhance engagement.
+• FR3: Avoid overstimulation. The application should steer
+clear of flashing lights and loud/sudden sounds, which could
+startle cats.
+We identified these three central human requirements (HRs) for the
+application:
+• HR1: Allow users control over content. Visitors should
+be able to adjust the content shown on the screen. This
+promotes engagement and aids in interacting with the cats.
+• HR2: Keep the interface simple and intuitive. The
+user interface should be minimalistic, with icons and self-
+explanatory controls instead of text-heavy menus. The appli-
+cation should be easily navigable, even for users with limited
+technical abilities.
+• HR3: Encourage consideration of cats’ boundaries. Fea-
+tures should help ensure that the application does not en-
+courage excessive intrusion into any cat’s personal space
+(e.g., there should be no need for physically guiding a cat to
+the screen).
+6 THE IMPLEMENTATION
+Developing the MewTube application demanded careful consider-
+ation of both feline requirements (FRs) and human requirements
+(HRs) identified in Phase 1 in aims of delivering an intuitive, en-
+gaging experience for both user groups. This section details the
+system’s implementation by describing, in turn, its core design
+principles, the technologies we employed, and the key interactive
+features.
+6.1 The System Developed
+We intended our interactive touchscreen application to foster non-
+invasive interaction between human visitors and feline residents
+of a cat café environment. Informed by insight gathered in the
+preliminary testing with both feline and human participants, the
+application was designed to engage cats through a curated selection
+of videos (per FR1 and FR2) and to help humans respond to feline
+behaviour by adjusting the playback speed (per HR1). The resulting
+foundation for flexible engagement tailored to the cats’ reactions
+should aid in meeting FR3: avoidance of overstimulation.
+We identified a need to feature, alongside video content, educa-
+tional content. Designing an application to guide visitors in how to
+engage with cats respectfully by delivering insight into key feline
+behaviours meets HR3, thus ensuring that it serves not only as an
+interactive tool but also as an education resource. Users gain better
+understanding of the needs of cats.
+In light of evidence that tablets are suited well to ACI contexts
+because they allow users to interact directly with the visual output
+received, without having to employ external tools (such as a mouse
+or keyboard) [42], we developed and tested MewTube on a Samsung
+Galaxy Tab A, running the Android operating system. Our initial
+testing verified the suitability of tablet interfaces for a cat café
+environment.
+We built the application with the Flutter framework, on ac-
+count of its strong performance and flexibility, coupled with the
+exceptional suitability of its rendering engine (Skia) for handling
+graphics-intensive tasks such as the video playback that counts
+among MewTube’s core functions. This too responded to FR1. The
+video_player package facilitated playback of our videos, which
+were stored locally to the application. To enable visitors to adjust
+video speed in accordance with their perceptions of the cat’s pref-
+erences and behaviour, we customised the video-player to present
+a simple, user-friendly slider interface suitable for a person with
+any level of technical abilities (thus meeting HR2). With this imple-
+mentation, café visitors can balance their focus between the cats
+and the MewTube system.
+6.2 Design Criteria and Core Features
+Developing a system to meet the needs of two, quite contrasting
+user groups – cats and humans – proved to be challenging. The
+discussion below addresses crucial aspects of the design ultimately
+created and explains how these mesh with the requirements
+articulated in Phase 1.
+Educational content
+We incorporated the introductory educational component (visible
+in pane A of Fig. 4) explicitly to support visitors in their interactions
+with the cats. Research indicates that providing guidelines for
+interaction with cats, along with insights into the meanings
+behind feline behaviours, promotes more mindful, appropriate
+interactions between human users and felines [18]. Rather than risk
+overwhelming the human user with masses of text, we structured
+the guidance in line with cognitive load theory [ 49]. Presenting
+the information payload in small, readily digestible segments
+that do not demand excessive memorisation, we offered concise,
+actionable insight that a visitor could immediately apply while
+using the application. Additionally, adhering to constructivist
+learning theory [20] equips the application to encourage learning
+through experience – observing how cats respond to certain
+stimuli and adjusting one’s interactions accordingly. This design
+not only represents the intuitive experience required for HR2 but
+also promotes mindfulness in engaging with the cats; by helping
+to reinforce appropriate boundaries and respectful interactions, it
+honours HR3.
+
+--- PAGE 8 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+Figure 4: MewTube navigation: The human participant begins on a page that supplies educational text about cat(s) behaviours
+(A), then browses a library of videos to watch with the cats (B). Making a selection prompts displaying of the video chosen,
+alongside a playback-speed slider (C).
+A rich video-library interface
+The main interface of the application, shown in Figure 4, pane
+B, follows the design conventions of popular video-streaming
+platforms, such as YouTube and Netflix, to create an experience
+that human users find familiar and intuitive. Mirroring these
+widely recognised interfaces helped put visitors at ease: they could
+navigate the system easily without prior instruction. In addition to
+meeting the need for a simple and accessible user interface (HR2),
+we responded to the requirement for genuine interactivity (HR1),
+by means of control over video selection. The design choice of
+letting humans and, by proxy, cats adjust the content displayed
+on the screen also acknowledges that, as the cats engage with the
+visual and auditory stimuli, human users too benefit from a sense
+of agency in the interaction with the application.
+Adjustable playback speed
+One distinguishing feature that sets our application apart from tra-
+ditional streaming platforms is its playback-speed control. Whereas
+conventional apps require users to enter a settings menu and man-
+ually select a playback-speed option, ours displays a slider-based
+control bar right beside the playback area (see Fig. 4: C), thereby
+affording fluid and dynamic adjustment. With this decision, for
+enhanced user engagement (per HR1), we sought to be sure that vis-
+itors can interact with the content seamlessly, without disruption to
+their experience. Our slider implementation took into account the
+findings from our preliminary research, which indicated that cats
+do not typically engage in dragging-type interactions on a screen.
+(Table 2). Therefore, we placed this dimension of control firmly in
+the hands of human users. The feature is a practical measure that,
+by preventing incidents in which a cat might accidentally alter the
+playback speed, maintains a smooth and predictable experience
+(per FR3), but simultaneously, through the facility for experiment-
+ing with different speeds to see how the cats respond, it enhances
+interaction in aims of providing an engaging, truly interactive ex-
+perience without requiring physical input from the cats themselves
+(under FR1). Thus, interaction ends up enhanced on multiple fronts.
+6.3 Curation of Videos
+We created a curated library of 12 videos sourced online, all of
+which were screened to ensure a cat-appropriate experience, with-
+out flashing visuals, rapid transitions, or sudden/abrupt noises. The
+videos typically feature smooth motion plus natural soundscapes
+or gentle music (per FR2 and FR3). We focused on two content
+types overall: footage of tangible stimuli (e.g., birds, fish, or insects
+filmed in natural settings) and abstract animations (moving shapes,
+stylised animals, etc.). A full list of the videos in our library is
+included in Appendix B. Our video selection was informed by pre-
+vious research suggesting that cats direct greater attention toward
+screen-based visuals depicting small prey, such as birds/rodents, or
+friendly conspecifics [9]. These stimuli have demonstrated appeal to
+indoor cats, particularly those with restricted access to stimulating
+real-world views [9].
+We also considered feline visual perception, with specific at-
+tention to the species’ higher flicker-fusion threshold, which is
+bound to affect how cats experience videos. According to critical
+flicker frequency (CFF) research, they can discriminate between
+
+--- PAGE 9 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+frames at 30–40 Hz under normal conditions [ 33], though some
+studies suggest that the threshold may be even higher under op-
+timal conditions. Further complicating matters, such factors as
+luminance, adaptation state, and differences between individuals
+and (especially) between one breed and another [33] can produce
+large variations in CFF. Thanks to their generally high temporal
+resolution, cats might find videos displayed at lower frame rates
+choppy or flicker-prone. Although modern Android tablets’ typical
+refresh rates (90–120 Hz) lie far above the thresholds implied, many
+games and video-content sources remain capped at 60 fps or lower,
+potentially putting them within detectable flicker range for feline
+vision. Our analysis concluded that, in normal conditions, domestic
+felines should not experience flickering from the MewTube app.
+7 ANALYSIS MECHANISMS
+The data for Phase 2’ came from post-interaction surveys and tran-
+scripts of the semi-structured interviews. Quantitative data from
+questionnaires were subjected to Mann–Whitney U-testing for
+comparison of responses between the baseline and the application
+condition. Given the small sample and the non-parametric nature
+of the Likert-scale data, this test offered appropriate measurement
+of statistical differences. Six main metrics informed the statistical
+comparisons: for 1) the participants’ enjoyment of the interaction,
+2) perceived enjoyment by the cats, 3) perceived impact on the
+human–cat connection, 4) expected likelihood of returning to the
+café, 5) overall enjoyment of the visit, and 6) the overall perceived
+connection to cats. All tests were handled by the IBM SPSS Statistics
+package.
+For the interview transcripts from the application condition, anal-
+ysis employed reflexive thematic analysis by the first and last author,
+following Braun and Clarke’s six-phase process [5]. Because the
+participants were interviewed in an operating cat café environment,
+disruptions from personnel and cats occurred on occasion; hence,
+the transcripts were cleaned of non-relevant content in preparation
+for coding. In coding performed inductively, we clustered codes
+under themes representing patterns in participants’ experiences
+and reflections on using the application. While we did not opt for
+formal guidelines for the coding, we structured the themes around
+RQ2, focusing on experiences: visitors’ perceptions of cat–tablet
+interactions, their relationships with cats, etc. Firstly, we uncovered
+themes by reviewing the café visitors’ responses in the interviews
+and watching the video recordings of their interactions. This led us
+to our initial set of themes: feline engagement, user enjoyment, im-
+pact of the technology, and user perspective. Then, the first and the
+last author coded the interview material to reveal patterns falling
+under these themes. The final themes from our analysis, codes,
+and example quotes are presented in Table 4 and unpacked below
+through our discussion of the results and their implications.
+8 FINDINGS
+Four themes emerged from our analysis: 1) feline engagement and
+interaction with the application, 2) user enjoyment of the appli-
+cation relative to traditional toys, 3) the application’s impact on
+the human–cat relationship, and 4) differences in user perspectives.
+These are summarised, with the corresponding codes and some
+illustrative quotes, in Table 4.
+Feline Engagement and Interaction with the Applica-
+tion
+Visitors’ perceptions of feline engagement with the application
+depended on the cats’ state (awake vs. sleepy) and on the felines’
+personal character and preferences. Visitors also recognised even
+when the cats were relatively unresponsive that the application
+could work if the cats were more alert. For example, P16 predicted
+that ‘if we tried it now that the cats are a bit more awake, it might
+work’. Alternating playback speed between fast and slow was per-
+ceived as increasing cats’ engagement levels, with, for instance,
+P19 stating: ‘Some cats didn’t change behaviour’ when playback
+speed changed but ‘some grew more interested’. In general, partici-
+pants exposed to the application were significantly less confident
+that the cats enjoyed the interaction in sum than those using only
+traditional toys were (p = .040; see Fig. 5).
+Enjoyment Levels Relative to Those with Traditional
+toys
+Questionnaire responses revealed no significant difference in
+participant enjoyment between the baseline and the application
+condition ( p = .094; see Fig. 6). This implies that the humans
+found both interaction styles entertaining. The interview data
+support that conclusion, in that, while participants noted that their
+engagement approach differed between use of the application and
+of traditional toys, they did not communicate an overall preference
+for either. Café visitors believed that using MewTube altered
+their general way of interacting with the cats. For example, P16
+commented that using the application ‘adds a different dimension
+to’ the interactions. Some participants stated that the app helped
+them have more appropriate engagement with the cats, with P26
+commenting on a sense that ‘the cat was more engaged with me
+than if I went up and started bothering it with a toy’. Additionally,
+some participants identified the application’s use as eliciting more
+desirable responses from cats, such as responding more with ‘a
+cute body language’ (P17). No significant differences between
+conditions were visible in responses about the likelihood of
+returning to the café either ( p = .436; see Fig. 7). Therefore, the
+interaction tools that visitors employed to engage with the cats
+seemed to have no impact on their overall experience at the café.
+The absence of a significant difference appearing in the enjoyment
+of the visit reported by the two sets of participants echoes this
+finding (p = .730; see Fig. 8).
+Application’s Impact on the Human–Cat Relationship
+Where the questionnaire illuminated a highly significant difference
+in the sense of connection with the cats – participants favoured
+the baseline condition in this regard, with p = .001 (see Fig. 9) – the
+interviews added nuance to the picture. Several stated that the app
+fostered a more personal or relaxed form of engagement, expressed
+by P17 in musings that MewTube excels for letting people ‘entice
+the cats to come and sit beside them and snuggle’. At the same time,
+lack of feline response could leave a user feeling uncomfortable or
+unsure, as with P25’s nagging sense that ‘I felt like I was annoying
+[the cats] when they didn’t react’.
+Such concerns notwithstanding, the data showed no significant
+difference in the overall connection to the cats reported after
+participants’ visit (p = .730; see Fig. 10). This suggests that, though
+the choice of interaction method shaped individual moments of
+
+--- PAGE 10 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+Theme Codes
+Feline engagement and interaction with the application •Impact of playback speed
+•Impact of cats’ preferences
+•Impact of cats’ state of mind
+Visitor enjoyment of the application, relative to traditional toys•Differences linked to visitor perceptions of feline behaviour
+•Differences in perceived interaction with cats
+Effects of the application on the human–cat relationship from the hu-
+man perspective
+•Impact of cat disengagement
+•The impact of application use on interactions with cats
+Differences in visitor perspectives •Previous experiences with cats
+•Identification of target users for the application
+Table 4: Themes and codes identified from post-interaction interview transcripts from the visitor perspective
+Figure 5: Visitor perceptions of the cats’ enjoyment of the
+toys (the baseline condition) vs. the MewTube video applica-
+tion (our intervention).
+connection, it did not define the relationship between the visitors
+and the cats.
+Differences in Visitor Perspectives
+The value seen in the application differed with participants’ earlier
+experiences with cats. First-time visitors found MewTube to be a
+non-intimidating way of initiating interactions, while those already
+familiar with cats tended not to find as much use in it. The contrast
+is captured in the comments ‘I’ve never played with cats or cat toys
+before, so I was more comfortable with the tablet’ (P26) and ‘I’m
+more comfortable with the traditional toys, because I’ve always
+been around cats’ (P25). However, even those with prior experience
+acknowledged the application’s value for less experienced visitors.
+For instance, P22 stated: ‘It would probably help people who are
+more nervous around cats. ’
+9 REFLECTIONS ON KEY FINDINGS
+Integration of digital engagement tools into multispecies settings
+has garnered increasing attention, centred particularly on such
+environments as animal cafés and zoos, where human–animal in-
+teractions constitute the core of the visitor experience [18, 54, 56].
+That provided one motive for building on prior work exploring
+tablet-based systems’ possible part in facilitating more appropriate
+human–cat interactions by examining both how cats engage with
+Figure 6: How much visitors enjoyed their interaction with
+the cats when using traditional toys and MewTube videos (in
+the baseline and intervention condition, respectively).
+Figure 7: Visitors’ estimates for their likelihood of returning,
+for cat café activities using traditional toys vs. our application
+(MewTube videos).
+tablets and how using one to mediate interactions with the ani-
+mals affects visitors’ perceptions. Below, we reflect on unravelling
+
+--- PAGE 11 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+Figure 8: Visitors’ overall enjoyment of their visit in settings
+with toys (the baseline condition) and MewTube videos (our
+application).
+Figure 9: Visitors’ perceived connectedness to the cats they
+played with when using toys (baseline) and the MewTube
+videos (our intervention).
+the complexities of designing technologies that accommodate both
+feline welfare and human expectations within a shared space.
+9.1 Interpreting Feline Responses to Digital
+Interactions
+A major theme emerging from the data is the importance of recip-
+rocal engagement in shaping humans’ perceptions of the quality of
+their interactions with animals. Traditional toys elicit immediate
+physical responses sparked by cats’ instincts. These chasing, pounc-
+ing, and batting actions give instant feedback to humans even if
+the behaviours’ meaning might not be obvious. This may explain
+why participants reported a stronger sense of connection to the
+cats in the baseline setting (as Fig. 9 shows): their actions directly
+exerted influence on the animals’ visible behaviour. Interactions
+Figure 10: Our application compared to the baseline – over-
+all perceived connection to cats when visitors used toys vs.
+MewTube videos.
+with the tablet-based app, on the other hand, often had a more pas-
+sive and observation-oriented nature, with cats engaging at their
+own discretion. As several participants exposed to the application
+condition reported instances of cats being intrigued by the video
+but not actively interacting (e.g., P12’s ‘They like to watch it, but
+weren’t very interactive’), uncertainty lingered: was the interaction
+meaningful for the cats and the humans both?
+This result implies that, for digital engagement tools to enhance
+human–cat bonding, they should maximise feedback to the visitors.
+However, we would question such an approach to reciprocity, be-
+cause it might impose anthropocentric expectations on cats. The
+human pattern of anthropomorphising non-human agents, assign-
+ing our own meanings to their observable behaviours [ 11], may
+prompt us to seek out interactions that mesh with our human
+understanding – e.g., with physical responses of tapping or swip-
+ing. Our research suggests that felines in cat café environments
+might demonstrate their engagement with screen-based devices
+by showing attentiveness rather than via active physical motions.
+Perhaps, then, instead of designing technologies to elicit human-
+desired behaviours from cats, we should concentrate on educating
+visitors in interpreting natural feline responses and fostering ap-
+preciation for them. This proposal is consistent with a conclusion
+from research into designing digital systems for animal end users:
+animals must be respected as legitimate stakeholders [30], and the
+designs should accommodate their needs [42]. We harbour no il-
+lusions that shifting from anthropocentric to cat centred design
+is a challenge-free undertaking. Many nuances of human–animal
+interaction technologies hold relevance. Perhaps most prominently,
+entirely prioritising animals’ preferences over human expectations
+in commercial environments such as cat cafés could undermine
+visitor satisfaction and, ultimately, the venue’s sustainability. The
+problem lies in arriving at design approaches that respect feline
+agency while still providing meaningful experiences for visitors,
+a balance that requires considering both species’ needs carefully,
+without compromising either.
+
+--- PAGE 12 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+Recommendation 1: So that human visitors to cat cafés
+can more fully understand the cats they engage with, computer
+systems for the cats’ use should support insight into feline
+behaviour.
+9.2 Uncertainty Surrounding What Cats Might
+Be Enjoying
+The significant difference in perceived enjoyment by cats suggests
+that participants felt less confident in the felines’ enjoyment of
+interacting with the app relative to the baseline artefacts. Again,
+the divergence likely arises from the tablet-based engagement’s
+lack of clear behavioural cues (what even is a ‘good’ cat–tablet
+interaction?), which renders it more difficult for the visitor to judge
+whether the interaction was positive, meaningful, etc. for the cats.
+Many participants’ struggles to interpret cat–tablet behaviour man-
+ifested themselves in uncertainty and, in some cases, discomfort.
+One participant (P25) even wondered whether use of the appli-
+cation was intrusive or disruptive for the cats. This observation
+is consistent with prior studies identifying a critical challenge of
+ACI research: our inability to understand animals’ experiences and
+therefore design systems that meet their unique needs [2, 30, 42].
+The issue of uncertainty points to a broader consideration in
+digital systems designed for animals – inherent reliance on hu-
+man interpretations of engagement. A mismatch clearly can exist
+between these and the behaviour interpreted. While traditional
+toys naturally initiate a well-known cycle of action and response,
+screen-based interactions do not always yield clear, immediate, or
+expected feedback. This raises important questions about evidence.
+How can humans craft interactive systems that facilitate genuine
+feline engagement and simultaneously grant users a clearer win-
+dow to understanding how – and to what extent – the cats are
+engaging?
+Recommendation 2: Those developing applications for
+cat cafés should concentrate on creating systems that clearly
+communicate to human users how cats are engaging – not least
+by considering signs from the negative and positive behaviours
+possible.
+9.3 Digital Interaction’s Role As a Mediator for
+New Visitors
+The contrasts visible in our results illuminate not just the above-
+mentioned challenges in interpreting feline responses but also dif-
+ferences in visitor needs, alongside how digital systems can address
+factors such as experience level. Because participants familiar with
+feline behaviour tended to favour traditional toys while first-time
+visitors and others less confident around cats found the tablet to be
+a non-intimidating way of getting eased into interaction, we recog-
+nised that digital systems designed for animal use hold promise
+as an entry point for people uncomfortable with interacting di-
+rectly with animals. In marked contrast against the traditional toys,
+which require close physical interaction, the application offered
+a lower-pressure, observation-anchored way of interacting. This
+held particular appeal for those with less experience or more uncer-
+tainty in the realm of feline behaviour, giving them a valuable way
+to engage without fear of mishandling or overwhelming the cats.
+Rather than take the place of traditional forms of play, digital
+tools of MewTube’s sort could be strategically positioned as a bridge
+guiding first-time cat café visitors toward more direct interaction.
+By assisting users to engage in a passive, observation-based inter-
+action before transitioning to physical play, the application could
+reduce anxiety and build confidence in those unfamiliar with feline
+behaviour.
+Moreover, this structured approach to interaction could greatly
+benefit cat café settings at large. Many of these venues face chal-
+lenges from younger visitors, who may struggle to understand cats’
+boundaries and sometimes engage via actions that stress or over-
+whelm the animals, such as chasing them [3]. In captive settings
+especially, such applications could serve as an alternative interac-
+tion method for children, whereby they can interact without posing
+a risk of unwanted physical contact. If combined with embedded
+educational content, such as guidance on reading feline body lan-
+guage, the tools could strongly support more mindful, appropriate
+visitor–cat interaction across the board.
+Recommendation 3: Computer systems for interactive use
+in cat cafés can significantly assist first-time and less experi-
+ences cat café visitors by providing structure for non-physical
+interactions with cats.
+9.4 The Impact of Interaction Timing
+Another pivotal factor emerging in engagement with the applica-
+tion is the timing of interactions, particularly in relation to the
+cats’ natural activity cycles. Participants frequently reported that
+MewTube elicited engagement less effectively when the cats were
+sleepy or in a state of relaxation (P12 and P16 are cases in point).
+While some cats displayed curiosity and passively observed the
+on-screen stimulus, others ignored it entirely, so participants ended
+up questioning whether the application is a meaningful tool for
+interaction.
+That uncertainty, introduced above, underscores another chal-
+lenge unique to designing digital experiences for non-human users,
+that engagement is not solely a function of the technology itself. It
+gets shaped also by external, context-dependent factors. Whereas
+visitors can derive entertainment from traditional toys regardless
+of feline responsiveness, the application required some level of
+participation from the cats. When this was not forthcoming, some
+visitors experienced frustration or disengagement. For example,
+P25 suggested that the effectiveness of the tool was contingent on
+the cats’ readiness to interact, rather than on its inherent design.
+Hence, our findings suggest that the application should be treated
+not as a universally applicable tool for engagement but, rather more,
+as one that is best utilised at optimal times: during the cats’ peak
+activity periods, when they are naturally more active and receptive
+to interaction efforts. In a cat café setting, where visitor expecta-
+tions are shaped by a desire for playful, reciprocal interactions,
+providing the application during spans of feline inactivity might
+lead to disengagement or disappointment. Instead of positioning
+the technology as a stand-alone alternative to traditional toys, a
+better strategy could involve applying it as a supplementary option
+at the peak of cats’ activity cycle.
+
+--- PAGE 13 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+Recommendation 4: Future interactive computer systems
+for cat cafés should be designed to account for cats’ natural
+activity cycles, ensuring that timing interactions for when the
+cats interactions occur when the cats are at their most receptive.
+9.5 The Role of Toys in the Cat Café Experience
+Irrespective of differences in how visitors interacted with the cats,
+the method of interacting – via traditional toys or the application –
+did not seem to have significant effects on their overall enjoyment
+of the visit or their likelihood of returning, as noted above. This im-
+plies that factors beyond the specific interaction tools (such as the
+cats themselves, the café’s atmosphere, and the social environment)
+play a larger role in shaping visitor satisfaction. Likewise, from
+a design perspective, the individual engagement tools, whether
+digital or physical, appear secondary to the broader experience of
+the human at a cat café. While visitors may favour some types of in-
+teraction above others, these preferences do not strongly influence
+their overall perception of the experience. In short, the choice of
+tools seems less important than the fundamental appeal of the visit
+itself. This conclusion dovetails with scholarly reports that cats in
+Shanghai cat cafés, working alongside human staff, constituted the
+primary attractant for visitors [59].
+Interestingly, this stands in contrast against findings from zoo
+environments, where researchers have documented technology’s
+significant enhancement of visitor enjoyment [53]. The discrepancy
+might reflect the fundamental difference in interaction style – zoo
+visitors primarily observe animals from a distance, whereas cat café
+patrons engage in direct tactile contact. This suggests that technol-
+ogy’s positive effect on enjoyment may be most pronounced when
+direct physical interaction is unavailable; i.e., it might serve as a
+supplementary engagement mechanism rather than a competitor to
+hands-on experiences. This distinction indicates that digital systems
+for cat cafés probably should be designed differently from zoo tech-
+nologies, to prioritise subtle enhancement over direct-engagement
+mechanisms.
+The findings presented above highlight a vital consideration for
+future digital systems developed for cat cafés: their engagement
+tools should complement and align with, rather than function to
+replace, the holistic café experience. In venues that facilitate direct
+animal–human contact, the greatest value stems from the direct
+human–animal interactions, with technology operating as an en-
+hancement, not a substitute. This conclusion too articulates the
+objective at the heart of multispecies design: digital systems must
+balance the needs of multiple stakeholders, accommodating both
+animal-welfare requirements and visitors’ engagement expecta-
+tions.
+Recommendation 5: Interactive computing systems at cat
+cafés should serve as supplementary engagement tools, round-
+ing out the existing café experience.
+10 LIMITATIONS AND PATHS FOR FUTURE
+WORK
+The project’s findings represent a first step within specific contexts
+of time and place. Further progress requires working with more
+(feline and human) participants, over longer spans of time, for fuller
+exploration of how interactive computer systems can facilitate
+human–cat interactions in cat cafés. Likewise, further enquiry that
+considers multiple café environments, background cultures, and
+target species at cafés would expand our knowledge from that
+provided by this study, as would addressing seasonal and other
+temporal factors.
+A substantial limitation in our study arose from the variability in
+cats’ responsiveness to taking part in the study, or in how (and how
+much) they engaged with the human and/or tablet. Namely, this im-
+posed uneven effects on user experiences. Visitors encountering an
+aloof/disengaged cat faced a highly limited opportunity to interact
+with MewTube so could not fully assess how using it might influence
+their connection with the animal. The study also faced challenges
+linked with the setting’s scope, involving a business environment.
+Held during the cat café’s operation as usual, the research sessions
+were subject to interruptions from non-participating visitors and
+from café staff. In a similar vein, encouraging participants to engage
+freely with the cats produced variations in how the application was
+used. While improving ecological validity, this autonomy might
+have introduced inconsistencies in the source data. Another limi-
+tation identified was rooted in the cats’ natural activity cycles; as
+noted above, these influenced engagement with the application and
+in some cases reduced the chances of the cat showing interest in
+interacting with visitors. Several factors affected responsiveness,
+from the time of day (including whether the session coincided with
+the cat’s rest period or feeding time) to the interval between inter-
+actions or the individual’s temperament. All of these limitations,
+which are part and parcel of a cat café environment, underscore
+the complexities of designing and evaluating digital systems for
+human–animal interaction in real-world contexts.
+We speculate that the results could have been affected also by
+the individual’s temperament – i.e., each cat’s distinct personality.
+Building on this awareness, the app’s provision of information on
+cats could encompass not only generic information on felines as
+our implementation did but also a more personalised approach. Ed-
+ucation about specific cats’ personality, preferences, and behaviour
+patterns might represent an interesting line of research. Café vis-
+itors might value an additional layer of information, especially if
+less familiar with feline behaviour and more reliant on the app.
+Our design drew from recent work around how to shape more
+appropriate human–animal interactions in public spaces, but plenty
+of room remains as we look toward the future. Regarding cats in
+particular, we see animal shelters as a strong candidate for future
+research, as cats housed at shelters often experience acute stress
+and fear [15, 57]. App-based facilitation could exhibit special value
+for the wellbeing of stressed shelter cats, animals often exhibiting
+withdrawal behaviours that, by complicating traditional assess-
+ment, potentially prolong the animal’s stay and reduce adoption
+rates [15, 57]. A tool similar to ours could enrich the life of cats
+at shelters while simultaneously opening an avenue for potential
+adopters to interact with them in a less intrusive, perhaps less stress-
+inducing manner. Research probing the outcomes could even exploit
+feline biomarkers (e.g., cortisol levels) and ethograms to delve more
+deeply into the cats’ experience of interactive technologies and
+inform the guidance to visitors. Importantly, such measurements
+might enable assessing the application from the cats’ perspective
+directly. Alongside physiological metrics, researchers conducting
+
+--- PAGE 14 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+future work should establish ethics protocols specifically tuned
+for ACI studies. Ethics guidance, both for designers and for the
+human users of the human–animal devices, should incorporate
+solid, standardised welfare-assessment criteria, to be applied for
+engaging with the device initially and ascertaining when to halt or
+resume the screen-based interaction in light of the animal’s actions.
+Such frameworks promise to hold special value for commercial
+applications, as a safeguard against economic pressures that might
+act counter to animal-welfare considerations.
+Deployment in other domains possesses potential too. Tablet
+applications such as the one we developed could furnish ways to
+engage with pet cats in the home. While some systems have been
+launched to facilitate interaction between humans and cats in a do-
+mestic setting [36, 50, 56], there is little insight into how using such
+systems affects relations between humans and pets. Future itera-
+tions could explore how the application might strengthen existing
+bonds. When working to figure out whether interactive comput-
+ing technologies could be successful in a cat café environment, we
+tested laptop and tablet computers. While this was a convenient
+choice – both were portable devices familiar to the visitors and staff
+we approached – such devices are created with humans as their
+primary end user. One must bear in mind the anthropocentric bias
+thereby ‘baked into’ the resulting application. Exploring other form
+factors, such as devices embedded in toys as implemented in some
+studies with companion animals [30], could uncover routes toward
+a system better tailored to feline users’ physical and cognitive needs.
+Lastly, the effectiveness of educational content furnished within the
+application setting warrants further exploration. While we included
+a few basic education points by way of introduction to MewTube,
+its impact on visitor behaviour and cat wellbeing was not directly
+tested. Future studies should address this factor too: does such con-
+tent actually bring improvements to visitors’ interaction with cats?
+11 Final Thoughts
+Our study contributed to investigating tablet-based tools’ possible
+position in the human–animal interaction at cat cafés. Developing
+the MewTube application to cater for cats and humans alike revealed
+that an interactive video-player app offers an alternative method
+of visitor engagement with cats in a café setting. Importantly, the
+utility of the application remains contingent upon humans’ inter-
+pretation of feline behaviours. In particular, cats’ interaction with
+the screen-based application was more passive and observational
+in nature, leading to visitor uncertainty surrounding the cats’ level
+of engagement whereas traditional toys elicited more immediate,
+observable responses. Coupled with the absence of a significant
+influence of the interaction-tool type on human satisfaction with
+the overall café experience, this highlights the importance of consid-
+ering the experience as a whole. Furthermore, our work illustrates
+efforts at mindful design aimed at interactive interfaces that medi-
+ate human–cat interaction in a manner sensitive to both feline and
+human needs. This study contributes to the ACI field also by offer-
+ing recommendations for how digital tools can be integrated for
+balanced human–animal interaction in public interspecies spaces.
+References
+[1] Richard N. Aslin. 2006. What’s in a look? Developmental Science 10 (2006), 48–53.
+Issue 1. https://doi.org/10.1145/161468.161471
+[2] Fredrik Aspling, Oskar Juhlin, and Heli Väätäjä. 2018. Understanding animals: a
+critical challenge in ACI. In Proceedings of the 10th Nordic Conference on Human-
+Computer Interaction (Oslo, Norway) (NordiCHI ’18). Association for Comput-
+ing Machinery, New York, NY, USA, 148–160. https://doi.org/10.1145/3240167.
+3240226
+[3] Claire Bates. 2016. Are cat cafes good for cats? BBC. Retrieved August 19, 2025
+from https://www.bbc.co.uk/news/magazine-37199653
+[4] Michael Bloor, Jane Jane Frankland, Michelle Thomas, and Kate Robson. 2011.
+Focus Groups in Social Research (1st ed.). Fundamental Algorithms, Vol. 1. SAGE
+Publications Ltd. https://doi.org/10.4135/9781849209175
+[5] Virginia Braun and Victoria Clarke. 2006. Using thematic analysis in psychology.
+Qualitative research in psychology 3, 2 (2006), 77–101. https://doi.org/10.1191/
+1478088706qp063oa
+[6] Nicole Conrad, Jennifer J. Walsh, Jennifer M. Allen, and Christine D. Tsang. 2011.
+Examining infants’ preferences for tempo in lullabies and playsongs. Canadian
+Journal of Experimental Psychology 63, 3 (2011), 168–172. https://doi.org/10.1037/
+a0023296
+[7] Silvana Laura Dans, Enrique Alberto Crespo, and Mariano Alberto Coscarella.
+2017. Wildlife tourism: Underwater behavioral responses of South American
+sea lions to swimmers. Applied Animal Behaviour Science 188 (2017), 91–96.
+https://doi.org/10.1016/j.applanim.2016.12.010
+[8] Vinícius Donisete Donisete, Lima Rodrigues, and Robert John Young. 2024. Inves-
+tigation through animal–computer interaction: A proof-of-concept study for the
+behavioural experimentation of colour vision in zoo-housed primates. Animals
+14, 13 (2024), 1979. https://doi.org/10.3390/ani14131979
+[9] Sarah LH Ellis. 2009. Environmental Enrichment: Practical Strategies for Im-
+proving Feline Welfare. Journal of Feline Medicine and Surgery 11, 11, Article 1
+(November 2009), 11 pages. https://doi.org/10.1016/j.jfms.2009.09.011
+[10] Sarah LH Ellis. 2018. Recognising and assessing feline emotions during the
+consultation: history, body language and behaviour. Journal of feline medicine
+and surgery 20, 5 (2018), 445–456. https://doi.org/10.1177/1098612x18771206
+[11] Nicholas Epley, Adam Waytz, Scott Akalis, and John T Cacioppo. 2008. When
+We Need A Human: Motivational Determinants of Anthropomorphism. Social
+Cognition 26, 2 (2008). https://doi.org/10.1521/soco.2008.26.2.143
+[12] Fiona French, Dominique Potvin, Ilyena Hirskyj-Douglas, Neil Evans, Azadeh
+Jalali, Rébecca Kleinberger, Ruedi Nager, Oluwaseun Serah Iyasere, Saeed
+Shafiei Sabet, Michelle Spierings, and Pralle Kriengwatana. 2024. Empower-
+ing Animals Through Technology: Enhancing Animal Agency in the Sound
+Environment. In Proceedings of the International Conference on Animal-Computer
+Interaction (ACI ’24). Association for Computing Machinery, New York, NY, USA,
+Article 17, 5 pages. https://doi.org/10.1145/3702336.3702354
+[13] Anne E Goodenough, Katie McDonald, Kayleigh Moody, and Clare Wheeler. 2019.
+Are "visitor effects" overestimated? Behaviour in captive lemurs is mainly driven
+by co-variation with time and weather. Journal of Zoo and Aquarium Research 7,
+2 (2019), 59–66. https://doi.org/10.19227/jzar.v7i2.343
+[14] Jenny Gray. 2017. Zoo Ethics: The Challenges of Compassionate Conservation .
+Vol. 1. CSIRO Publishing, Cornell University Press, VIC, Australia.
+[15] Brenda Griffin. 2012. Shelter Medicine for Veterinarians and Staff (2nd ed.). Wiley,
+NJ, USA, Chapter Feline Care in the Animal Shelter. https://doi.org/10.1002/
+9781119421511.ch10
+[16] Reinhard Gupfinger and Martin Kaltenbrunner. 2020. Animal-Centred Sonic
+Interaction Design: Musical Instruments and Interfaces for Grey Parrots. In
+Proceedings of the Sixth International Conference on Animal-Computer Interaction
+(Haifa, Israel) (ACI ’19). Association for Computing Machinery, New York, NY,
+USA, Article 10, 11 pages. https://doi.org/10.1145/3371049.3371062
+[17] Donna J. Haraway. 2013. When Species Meet. U of Minnesota Press, MN, USA.
+[18] Camilla Haywood, Lucia Ripari, Jo Puzzo, and Lauren R. Finka Rachel Foreman-
+Worsley. 2021. Providing Humans With Practical, Best Practice Handling Guide-
+lines During Human-Cat Interactions Increases Cats’ Affiliative Behaviour and
+Reduces Aggression and Signs of Conflict. Sec. Veterinary Humanities and Social
+Sciences 8 (2021). https://doi.org/10.3389/fvets.2021.714143
+[19] Sarah Health. 2018. Understanding feline emotions: . . . and their role in problem
+behaviours. Journal of Feline Medicine and Surgery 20 (2018), 437–444. Issue 5.
+https://doi.org/10.1177/1098612X18771205
+[20] George E. Hein. 1991. Constructivist learning theory. CECA (International
+Committee of Museum Educators) Conference 12 (1991), 1–10. Retrieved August
+19, 2025 from http://beta.edtechpolicy.org/AAASGW/Session2/const_inquiry_
+paper.pdf
+[21] Ilyena Hirskyj-Douglas and Vilma Kankaanpää. 2021. Exploring how white-
+faced sakis control digital visual enrichment systems. Animals 11, 2 (2021), 557.
+https://doi.org/10.3390/ani11020557
+[22] Ilyena Hirskyj-Douglas, Aurélien Nioche, and Danielius Sukys. 2024. Prototyping
+an Immersive Screen Interfaces for Dogs’ to Control Screens in Their Home.
+In Proceedings of the International Conference on Animal-Computer Interaction
+(ACI ’24). Association for Computing Machinery, New York, NY, USA, Article 6,
+15 pages. https://doi.org/10.1145/3702336.3702342
+[23] Ilyena Hirskyj-Douglas, Janet C. Read, and Brendan Cassidy. 2017. A dog
+centred approach to the analysis of dogs’ interactions with media on TV
+
+--- PAGE 15 ---
+Look What the Cat Tapped In: Exploring Digital Interactive Systems Designed for the Cat Cafe Experience ACI 2025, December 01–04, 2025, Bloomington, IN, USA
+screens. International Journal of Human-Computer Studies 98 (2017), 12 pages.
+https://doi.org/10.1016/j.ijhcs.2016.05.007
+[24] Lindsay A Hogan, Stephen D Johnston, Allan T Lisle, Tamara Keeley, Phoenix
+Wong, Vere Nicolson, Alan B Horsup, Tina Janssen, and Clive JC Phillips. 2011.
+Behavioural and physiological responses of captive wombats (Lasiorhinus lat-
+ifrons) to regular handling by humans. Applied Animal Behaviour Science 134,
+3-4 (2011), 217–228.
+[25] Tasmin Humphrey, Leanne Proops, Jemma Forman, Rebecca Spooner, and Karen
+McComb. 2020. The role of cat eye narrowing movements in cat–human com-
+munication. Scientific Reports 10, 1 (2020), 16503.
+[26] Vilma Kankaanpää, Fay E Clark, and Ilyena Hirskyj-Douglas. 2024. LemurLounge:
+Lemurs’ Individual-Level, Group, and Cross-Species Use of an Interactive Audio
+Device in Zoos. In Proceedings of the 2024 CHI Conference on Human Factors in
+Computing Systems (Honolulu, HI, USA) (CHI ’24). Association for Computing
+Machinery, New York, NY, USA, Article 628, 14 pages. https://doi.org/10.1145/
+3613904.3641888
+[27] Rebecca Kleinberger, Lena Ashooh, Keavan Farsad, and Ilyena Hirskyj-Douglas.
+2025. Animals’ Entanglement with Technology: a Scoping Review. InProceedings
+of the 2025 CHI Conference on Human Factors in Computing Systems (CHI ’25) .
+Association for Computing Machinery, New York, NY, USA, Article 767, 22 pages.
+https://doi.org/10.1145/3706598.3713384
+[28] Rébecca Kleinberger, Anne HK Harrington, Lydia Yu, Akito Van Troyer, David
+Su, Janet M Baker, and Gabriel Miller. 2020. Interspecies interactions mediated
+by technology: An avian case study at the zoo. In Proceedings of the 2020 CHI
+Conference on Human Factors in Computing Systems . 1–12. https://dl.acm.org/
+doi/epdf/10.1145/3313831.3376858
+[29] Keira Kwan. 2025. An Evaluation of the Ethics of Zoos . Master’s thesis. Flintridge
+Sacred Heart. Retrieved August 19, 2025 from https://jsar.fsha.org/index.php/
+jsar/article/view/95
+[30] Shaun Lawson, Ben Kirman, and Conor Linehan. 2016. Power, participation, and
+the dog internet. Interactions 23, 4 (June 2016), 37–41. https://doi.org/10.1145/
+2942442
+[31] Ping Lee, David Cheok, Soon James, Lyn Debra, Wen Jie, Wang Chuang, and
+Farzam Farbiz. 2006. A mobile pet wearable computer and mixed reality system
+for human–poultry interaction through the internet. Personal Ubiquitous Comput.
+10, 5 (July 2006), 301–317. https://doi.org/10.1007/s00779-005-0051-6
+[32] Jeremy Long, Anthony Estey, David Bartle, Sven Olsen, and Amy A. Gooch. 2010.
+Catalyst: seeing through the eyes of a cat. In Proceedings of the Fifth International
+Conference on the Foundations of Digital Games (Monterey, California) (FDG ’10).
+Association for Computing Machinery, New York, NY, USA, 116–123. https:
+//doi.org/10.1145/1822348.1822364
+[33] Michael S Loop and Trudy J Frey. 1982. Critical flicker frequency in monocularly
+deprived cats. Behavioural Brain Research 6, 2 (1982), 185–194. https://doi.org/
+10.1016/0166-4328(82)90013-4
+[34] Laëtitia Maréchal, Ana Maria Barcelos, Justine Cole, and Meagan King. 2024.
+Human–Animal Welfare: The Interconnectedness of Human Well-Being and Animal
+Welfare. Routledge. 65–78 pages.
+[35] Bình Nghiêm-Phú and Da-Húóng Pha.m-Lê. 2023. The Psychological Benefits
+and Costs, and the Servicescape Components of Animal Cafés: A Study in Japan.
+Services Marketing Quarterly 44, 1 (2023), 16–29. https://doi.org/10.1080/15332969.
+2021.1995583
+[36] Frank Noz and Jinsoo An. 2011. Cat cat revolution: an interspecies gaming expe-
+rience. In Proceedings of the SIGCHI Conference on Human Factors in Computing
+Systems (Vancouver, BC, Canada) (CHI ’11). Association for Computing Machin-
+ery, New York, NY, USA, 2661–2664. https://doi.org/10.1145/1978942.1979331
+[37] Roosa Piitulainen and Ilyena Hirskyj-Douglas. 2020. Music for monkeys: Building
+methods to design with white-faced sakis for animal-driven audio enrichment
+devices. Animals 10, 10 (2020), 1768. https://doi.org/10.3390/ani10101768
+[38] Lorraine Plourde. 2014. Cat cafés, affective labor, and the healing boom in Japan.
+Japanese Studies 34, 2 (2014), 115–133. https://doi.org/10.1080/10371397.2014.
+928183
+[39] Cats Protection. 2025.Where do we stand on common issues affecting cats in the UK?
+We have set out our position on everything from air guns to dog attacks . Retrieved
+August 29, 2025 from https://www.cats.org.uk/what-we-do/campaigning/where-
+we-stand
+[40] Ratravee Rattanasilpkalcharn. 2016. A Study of Factors Influencing Behavioral
+Intentions to Repurchase towards Cat Café in Thailand: A Case Study of Cataholic
+Café. Master’s thesis. Graduate School of Business.
+[41] Sarah E. Ritvo and Robert S. Allison. 2014. Challenges Related to Nonhuman
+Animal-Computer Interaction: Usability and ’Liking’. InProceedings of the 2014
+Workshops on Advances in Computer Entertainment Conference (Funchal, Portugal)
+(ACE ’14 Workshops). Association for Computing Machinery, New York, NY, USA,
+Article 4, 7 pages. https://doi.org/10.1145/2693787.2693795
+[42] Sarah E. Ritvo and Robert S. Allison. 2017. Designing for the exceptional user:
+Nonhuman animal-computer interaction (ACI). Computers in Human Behavior
+70 (2017), 222–233. https://doi.org/10.1016/j.chb.2016.12.062
+[43] Amanda S Robinson. 2017. Animal Socialities: Healing and Affect in Japanese
+Animal Cafes. Ph. D. Dissertation. University of Pittsburgh, Pittsburgh, PA.
+[44] Amanda S Robinson. 2019. Finding healing through animal companionship
+in Japanese animal cafés. Medical humanities 45, 2 (2019), 190–198. https:
+//doi.org/10.1136/medhum-2018-011635
+[45] Ilona Rodan. 2010. Understanding feline behavior and application for appropriate
+handling and management. Topics in companion animal medicine 25, 4 (2010),
+178–188. https://doi.org/10.1053/j.tcam.2010.09.001
+[46] RSPCA. 2025. RSPCA and Cats Protection call for phase-out of cat cafes . Retrieved
+August 19, 20255 from https://www.rspca.org.uk/-/news-rspca-and-cats-
+protection-call-for-phase-out-of-cat-caf%C3%A9s-following-surge-in-new-
+businesses
+[47] Julie K Shaw and Debbie Martin. 2014. Canine and feline behavior for vet-
+erinary technicians and nurses . John Wiley & Sons. https://doi.org/10.1002/
+9781119421412
+[48] K. Julie Shaw and Debbie Martin. 2014. Canine and Feline Behavior for Veterinary
+Technicians and Nurses (1st ed.). Vol. 1. Wiley. https://doi.org/doi.org/10.1002/
+9781119421412.ch3
+[49] John Sweller. 2011. Cognitive Load Theory.Psychology of Learning and Motivation
+55, 2, 37–76. https://doi.org/10.1016/B978-0-12-387691-1.00002-8
+[50] Rui Trindade, Micaela Sousa, Cristina Hart, Nádia Vieira, Roberto Rodrigues,
+and João França. 2015. Purrfect Crime: Exploring Animal Computer Interaction
+through a Digital Game for Humans and Cats. In Proceedings of the 33rd Annual
+ACM Conference Extended Abstracts on Human Factors in Computing Systems
+(Seoul, Republic of Korea) (CHI EA ’15). Association for Computing Machinery,
+New York, NY, USA, 93–96. https://doi.org/10.1145/2702613.2728660
+[51] Chiara Turati, Eloisa Valenza, Irene Leo, and Francesca Simion. 2005. Three-
+month-olds’ visual preference for faces and its underlying visual processing
+mechanisms. Journal of Experimental Child Psychology 90 (2005), 225–273. Issue
+3. https://doi.org/10.1016/j.jecp.2004.11.001
+[52] Lisa J. Wallis, Friederike Range, Enikő Kubinyi, Durga Chapagain, Jessica Serra,
+and Ludwig Huber. 2017. Utilising dog-computer interactions to provide mental
+stimulation in dogs especially during ageing. In Proceedings of the Fourth In-
+ternational Conference on Animal-Computer Interaction (Milton Keynes, United
+Kingdom) (ACI ’17). Association for Computing Machinery, New York, NY, USA,
+Article 1, 12 pages. https://doi.org/10.1145/3152130.3152146
+[53] Jiaqi Wang, Stephen Anthony Brewster, and Ilyena Hirskyj-Douglas. 2025. Re-
+shaping Human-Animal Relationships: Exploring Lemur and Human Enrich-
+ment through Smell, Sound, and Sight. In Proceedings of the 2025 CHI Con-
+ference on Human Factors in Computing Systems (CHI ’25) . Association for
+Computing Machinery, New York, NY, USA, Article 744, 19 pages. https:
+//doi.org/10.1145/3706598.3713311
+[54] Sarah Webber, Marcus Carter, Sally Sherwen, Wally Smith, Zaher Joukhadar,
+and Frank Vetere. 2017. Kinecting with Orangutans: Zoo Visitors’ Empathetic
+Responses to Animals’ Use of Interactive Technology. InProceedings of the 2017
+CHI Conference on Human Factors in Computing Systems (Denver, Colorado, USA)
+(CHI ’17). Association for Computing Machinery, New York, NY, USA, 6075–6088.
+https://doi.org/10.1145/3025453.3025729
+[55] Alexandra Weilenmann and Oskar Juhlin. 2011. Understanding people and
+animals: the use of a positioning system in ordinary human-canine interaction.
+In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems
+(Vancouver, BC, Canada) (CHI ’11). Association for Computing Machinery, New
+York, NY, USA, 2631–2640. https://doi.org/10.1145/1978942.1979328
+[56] Michelle Westerlaken and Stefano Gualeni. 2014. Felino: The philosophical
+practice of making an interspecies video game. (2014), 1–12. https://www.um.
+edu.mt/library/oar//handle/123456789/23589
+[57] Tianyu Zhang. 2020. Advancing Non-profit Organizations Through Technol-
+ogy and Informatization: An analysis on improving the underdeveloped animal
+shelters and rescues industry. https://doi.org/10.1051/e3sconf/202021801047
+[58] Xu Zhang, Yuansi He, Shuai Yang, and Daiping Wang. 2024. Human preferences
+for dogs and cats in China: The current situation and influencing factors of
+watching online videos and pet ownership. Animals 14, 23 (2024), 3458. https:
+//doi.org/10.3390/ani14233458
+[59] Yizheng Zhao, Pinyu Chen, and Xiang Kong. 2024. More than human consump-
+tion space: human–animal encounters and relationships in cat cafés in Shanghai.
+Social & Cultural Geography 25, 6 (2024), 872–890. https://doi.org/10.1080/
+14649365.2023.2206791
+
+--- PAGE 16 ---
+ACI 2025, December 01–04, 2025, Bloomington, IN, USA Payne et al.
+Figure 11: Screenshot of Cat Alone 2 on the mouse setting
+Figure 12: Screenshot of Cat Alone 2 on the orb setting
+Figure 13: Screenshot of Cat Alone 2 on the water droplet
+setting
+A Phase 1 Stimuli
+During Phase 1 of requirement gathering, we explored four different
+stimuli: the Cat Alone 2 game, a musical baby game, and two videos
+of animated mice and real birds.
+Cat Alone 2 (available at: https://play.google.com/store/apps/
+details?id=com.galbro.catalone2&hl=en_GB) is a tablet game devel-
+oped specifically for use by cats, where they can interact with the
+game by tapping on different items as they travel randomly around
+the screen. For this phase of testing, we utilised the mouse (Figure
+11), orb (Figure 12) and water droplet settings (Figure 13).
+In the mouse setting, a mouse travels around the screen, popping
+in and out of the holes around the edges, with a squeaking noise
+is played, and the tablet vibrates when the mouse is caught. In the
+orb setting, an orb bounces around the screen, with a small trail of
+light following it. Gentle popping noises play whenever it hits the
+edge of the screen, and when it is ‘caught’, a high-pitched bubbling
+sound plays while the tablet vibrates. In the water droplet setting,
+droplets of water fall from a pipe at the top of the screen, with a
+plopping noise. When the drops are ‘caught’, a splash noise plays,
+while the tablet vibrates.
+Figure 14: Screenshot of Baby Games on the keyboard setting
+For Baby Games stimuli (available at: https://play.google.com/
+store/apps/details?id=com.rvappstudios.baby.games.piano.phone.
+kids&hl=en_GB) We used the music room game mode, which
+provides users with virtual representations of a piano and keyboard
+(Figure 14).
+The videos used were sourced from YouTube and included
+an animated mice video (https://youtu.be/qW-KIjHjjHM?si=
+bSdfCMiuwVDf7gYG), and a real bird video (https://youtu.be/
+xbs7FT7dXYc?si=rhPw7T1xaVZmbPOK).
+B MewTube Videos
+• CAT GAMES - Catching Mice! Entertainment Video
+for Cats to Watch: https://youtu.be/qW-KIjHjjHM?si=
+xNYvLAMp0dguIfRk
+• Disco Fruit Party! - Fun video with music and dancing: https:
+//youtu.be/b65MoVwANq4?si=hxuARaQm_bxzVX7Q
+• Footage of Whales & Jellyfish: https://youtu.be/
+iNrPV5sEoCw?si=c7q_UlYKZiAiJPgS
+• Relaxing And Stimulating Bird Videos For Your Kitty: https:
+//youtu.be/rjzWTrt5cd0?si=D4j_rcQA-no7CwSM
+• Neon Light Tunnel: https://youtu.be/HZPs57Lp90A?si=
+gG7MoCwoEbxFtUsZ
+• Cat Games - Soccer Ball: https://youtu.be/m9VX0kILTl0?si=
+Covu3md6hq03i0Ig
+• Funny Squirrel Dance: https://youtu.be/iXVKPyFQFFw?si=
+yvf60ExMrY4TFcFT
+• Fish Videos for Cats: https://youtu.be/2xmngxAgKe8?si=
+4ilPZlRELpJf7TnB
+• Mouse Video for Cats: https://youtu.be/8se7AhdLpcU?si=
+E7zQlBzLktCicwjV
+• Black Birds and Squirrels: https://youtu.be/ns0-Au8Brwg?
+si=v4JUEWIY_SWlFd-E
+• Yarn Ball: https://youtu.be/hiBkoRj0Pqc?si=
+RvVN6Du8gmf5Mzfd
+• Spring Birds: https://youtu.be/o-pDL6SbVFI?si=
+h0stwobhrgFqMfTn
+,

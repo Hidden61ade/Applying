@@ -50,6 +50,12 @@
 32. [威斯康星大学麦迪逊 — MS in Computer Science](#32-威斯康星大学麦迪逊--ms-in-computer-science)
 33. [杜克大学 — MS/MEng in Electrical & Computer Engineering（ECE，独立于 GDDI）](#33-杜克大学--msmeng-in-electrical--computer-engineeringece独立于-gddi)
 
+**CMU 补充项目**
+34. [CMU SCS — MS in Artificial Intelligence and Innovation (MSAII)](#34-cmu-scs--ms-in-artificial-intelligence-and-innovation-msaii)
+35. [CMU III — Master of Integrated Innovation for Products & Services (MIIPS)](#35-cmu-iii--master-of-integrated-innovation-for-products--services-miips)
+36. [CMU HCII — Master of Tangible Interaction Design (MTID)](#36-cmu-hcii--master-of-tangible-interaction-design-mtid)
+37. [CMU SoA — MS in Computational Design (MSCD)](#37-cmu-soa--ms-in-computational-design-mscd)
+
 ---
 
 ## 美国项目
@@ -1271,6 +1277,154 @@ UW-Madison CS 官网在本次研究中受 Cloudflare 保护无法自动抓取，
 
 ---
 
+## CMU 补充项目
+
+> 已收录 CMU 项目：#4 ETC MET、#16 HCII MHCI。本节补充 4 个对 Arno 跨界 profile（程序员 + 作家 + 游戏设计师 + ACM MM 论文 + 腾讯 Tiki 实习）适配度较高的 CMU MS 项目。
+>
+> ⚠️ **已排除**：MSE / MSIT-SE（要求 2 年全职 SE 工作经验）、MSCS / MSCV / MSR（research-heavy，几乎只录顶会一作 + 研究 sponsorship）。
+
+---
+
+### 34. CMU SCS — MS in Artificial Intelligence and Innovation (MSAII)
+
+| 项目信息 | |
+|---|---|
+| **院校** | Carnegie Mellon University, School of Computer Science (SCS), Language Technologies Institute |
+| **学位** | Master of Science in Artificial Intelligence and Innovation |
+| **时长** | 16 个月（含暑期 capstone） |
+| **官方网站** | https://msaii.cs.cmu.edu/ |
+
+#### 项目定位
+- **应用型 AI**：非研究型 MS，强调"AI + 产品 / 项目落地"，与 MSML / MSCS 区分明显
+- 属于 SCS 学位（学位含金量与 MSCS 同级）
+- 重视 capstone 项目、产品思维、工业实习
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **简历（Resume）** | 重点展示 AI 项目经历、工业实习、产品落地经验 |
+| **个人陈述 / SOP** | 申请动机、AI 应用兴趣、职业目标 |
+| **推荐信** | 3 封（学术 + 工业混合） |
+| **成绩单** | 官方成绩单 |
+| **语言成绩** | TOEFL / IELTS（CMU SCS 标准，TOEFL 通常 ≥100） |
+| **GRE** | 可选（建议提供，Arno 328 分应附上） |
+| **作品集 / 项目链接** | 无强制要求，但强烈建议在简历 / SOP 内附链接 |
+
+#### ⚠️ 申请建议
+- Arno 的 **ACM MM 论文 + 腾讯 Tiki AI 实习**与项目定位高度对口
+- 截止日期：通常 **12 月中旬**（具体年度查官网）
+- 申请费：$100
+- 录取竞争激烈（SCS 旗下，中国申请人池超强）
+- 联系：msaii-admissions@cs.cmu.edu
+
+---
+
+### 35. CMU III — Master of Integrated Innovation for Products & Services (MIIPS)
+
+| 项目信息 | |
+|---|---|
+| **院校** | Carnegie Mellon University, Integrated Innovation Institute（跨 SCS / Engineering / Design 三学院） |
+| **学位** | Master of Integrated Innovation for Products & Services |
+| **时长** | 12–16 个月（可选 Pittsburgh / Silicon Valley 校区） |
+| **官方网站** | https://www.cmu.edu/iii/programs/miips/ |
+
+#### 项目定位
+- **产品创新 + 工程 + 商业 + 设计**四位一体；类似 Stanford d.school 的 CMU 版本
+- 不要求 SE 工作经验，应届可申
+- **GPA 敏感度较低**，更重视作品集 / SOP / 创新故事 / 跨学科背景
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **在线申请** | III 系统 |
+| **简历（Resume）** | 跨学科经历、产品 / 项目经验 |
+| **个人陈述** | 申请动机、跨学科故事、职业目标 |
+| **推荐信** | 通常 3 封（学术 + 行业混合） |
+| **成绩单** | 官方成绩单 |
+| **语言成绩** | TOEFL / IELTS（CMU 校级最低，TOEFL 通常 ≥84） |
+| **GRE** | 可选 |
+| **作品集** | **强烈建议**（产品 / 设计 / 项目作品） |
+| **视频陈述** | 部分年份要求短视频自我介绍 |
+
+#### ⚠️ 申请建议
+- Arno 的**跨界身份（程序员 + 作家 + 游戏设计师）**正是该项目寻找的人选
+- The Birthday Party 这种"游戏作为写作工具"的项目可作为核心叙事
+- 截止日期：通常分多轮（**12 月、2 月、4 月**滚动审核）
+- 业界对 MIIPS 的"工程含金量"评价不如 MSCS / MSAII，但跨界就业灵活
+- 联系：iii-admissions@cmu.edu
+
+---
+
+### 36. CMU HCII — Master of Tangible Interaction Design (MTID)
+
+| 项目信息 | |
+|---|---|
+| **院校** | Carnegie Mellon University, Human-Computer Interaction Institute (HCII) |
+| **学位** | Master of Tangible Interaction Design |
+| **时长** | 2 年 |
+| **官方网站** | https://www.hcii.cmu.edu/academics/mtid |
+
+#### 项目定位
+- **物理交互设计**：硬件 + 软件 + 物理装置；介于 HCI 与 art-tech 之间
+- 项目规模较小（每届约 10–15 人），录取率高于 MHCI
+- 作品集主导，GPA 不是核心评估因素
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **简历（Resume）** | 设计 / 编程 / 硬件 / 装置经历 |
+| **个人陈述** | 创作动机、对 tangible interaction 的思考 |
+| **推荐信** | 通常 3 封 |
+| **成绩单** | 官方成绩单 |
+| **语言成绩** | TOEFL ≥100（CMU 校级） / IELTS ≥7.5 |
+| **GRE** | 可选 |
+| **作品集** | ⭐ **必须**（核心评估材料） |
+
+#### ⚠️ 申请建议
+- Arno 的"游戏作为写作工具"哲学非常适合做交互装置（The Birthday Party 可延伸为 tangible installation）
+- 就业方向较窄：主要面向 art-tech / museum / R&D lab，不如 MHCI 直接对接业界
+- 截止日期：通常 **12 月 1 日**（与 HCII 其他项目同步）
+- 联系：mtid-admissions@cs.cmu.edu
+
+---
+
+### 37. CMU SoA — MS in Computational Design (MSCD)
+
+| 项目信息 | |
+|---|---|
+| **院校** | Carnegie Mellon University, School of Architecture (SoA) |
+| **学位** | Master of Science in Computational Design |
+| **时长** | 1–2 年（视背景而定） |
+| **官方网站** | https://soa.cmu.edu/mscd |
+
+#### 项目定位
+- **参数化设计 / generative design / computational creativity**：编程 + 设计的交叉
+- 接受非建筑背景申请人
+- 强调 procedural / algorithmic 思维（与 Houdini-style 程序化内容生成对口）
+
+#### 申请材料
+
+| 材料 | 说明 |
+|---|---|
+| **简历（Resume）** | 编程 / 设计 / 程序化生成 / 技术美术经验 |
+| **个人陈述** | 对计算设计的兴趣、研究 / 项目方向 |
+| **推荐信** | 通常 3 封 |
+| **成绩单** | 官方成绩单 |
+| **语言成绩** | TOEFL ≥100 / IELTS ≥7.5（CMU 校级） |
+| **GRE** | 可选 |
+| **作品集** | ⭐ **必须**（编程 + 设计混合作品） |
+
+#### ⚠️ 申请建议
+- 与 Arno 的技术美术 + Unity + 程序化内容经验高度对口
+- 定位偏建筑 / digital fabrication，游戏方向不算"主流毕业去向"
+- 截止日期：通常 **1 月中旬**
+- 联系：soa-admissions@andrew.cmu.edu
+
+---
+
 ## 快速对比表
 
 | # | 项目 | 学位 | 时长 | GRE | 推荐信 | Portfolio | 截止日期（参考） |
@@ -1308,6 +1462,10 @@ UW-Madison CS 官网在本次研究中受 Cloudflare 保护无法自动抓取，
 | **31** | **UCI MS Informatics** | **MS** | **约4个quarter** | **建议提供** | **2–3封** | **❌** | **查官网** |
 | **32** | **UW-Madison CS MS** | **MS** | **查官网** | **查官网** | **3封** | **❌** | **查官网** |
 | **33** | **杜克大学 ECE MS/MEng** | **MS/MEng** | **30学分** | **查官网** | **查官网** | **❌** | **查官网** |
+| **34** | **CMU MSAII** | **MS** | **16个月** | **可选** | **3封** | **建议（链接）** | **约12月中旬** |
+| **35** | **CMU MIIPS** | **MS级** | **12–16个月** | **可选** | **3封** | **✅（强烈建议）** | **多轮滚动（12月/2月/4月）** |
+| **36** | **CMU MTID** | **MS** | **2年** | **可选** | **3封** | **✅（必须）** | **约12月1日** |
+| **37** | **CMU MSCD** | **MS** | **1–2年** | **可选** | **3封** | **✅（必须）** | **约1月中旬** |
 
 ---
 
@@ -1344,7 +1502,11 @@ UW-Madison CS 官网在本次研究中受 Cloudflare 保护无法自动抓取，
 | **UCI MS Informatics** | **查 UCI Graduate Division** | **查 UCI Graduate Division** | **查 grad.uci.edu/admissions** |
 | **UW-Madison CS MS** | **查官网** | **查官网** | **查 cs.wisc.edu/graduate** |
 | **杜克大学 ECE MS/MEng** | **查官网** | **查官网** | **查 ece.duke.edu/academics/masters** |
+| **CMU MSAII** | **≥100（SCS 标准）** | **≥7.5** | **查 msaii.cs.cmu.edu** |
+| **CMU MIIPS** | **≥84（CMU 校级最低）** | **≥7.0** | **查 cmu.edu/iii** |
+| **CMU MTID** | **≥100（CMU 校级）** | **≥7.5** | **查 hcii.cmu.edu/academics/mtid** |
+| **CMU MSCD** | **≥100（CMU 校级）** | **≥7.5** | **查 soa.cmu.edu/mscd** |
 
 ---
 
-*最后更新：2025 年 5 月。所有信息均来源于各院校官网，建议申请前再次核实最新要求。新增项目（#16–#24）中标注「查官网」的条目，因院校官网使用 JavaScript 动态加载，部分细节未能直接抓取，请以官网为准。补充项目（#26–#33）涵盖 UPenn CGGT、西北大学 MSCS、哥大 CS MS、哥大 CE MS、Cornell Tech、UCI MS Informatics、UW-Madison CS MS、杜克 ECE MS/MEng；⚠️ UCI MHCID 因低驻校不支持 F-1 签证，国际学生请注意。*
+*最后更新：2025 年 5 月。所有信息均来源于各院校官网，建议申请前再次核实最新要求。新增项目（#16–#24）中标注「查官网」的条目，因院校官网使用 JavaScript 动态加载，部分细节未能直接抓取，请以官网为准。补充项目（#26–#33）涵盖 UPenn CGGT、西北大学 MSCS、哥大 CS MS、哥大 CE MS、Cornell Tech、UCI MS Informatics、UW-Madison CS MS、杜克 ECE MS/MEng；⚠️ UCI MHCID 因低驻校不支持 F-1 签证，国际学生请注意。CMU 补充（#34–#37）涵盖 MSAII、MIIPS、MTID、MSCD，已排除 MSE / MSIT-SE（要求 2 年 SE 工作经验）及 MSCS / MSCV / MSR（research-heavy，门槛过高）。*
