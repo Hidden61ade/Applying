@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export type ProjectMeta = {
@@ -32,6 +32,13 @@ const ARC_FILTERS = [
   "Player Boundaries",
 ] as const;
 
+const ARC_FILTER_ORDER: Exclude<ArcFilter, "All">[] = [
+  "Gameplay Joy",
+  "Mechanic Narrative",
+  "Game Boundaries",
+  "Player Boundaries",
+];
+
 type Filter = (typeof ROLE_FILTERS)[number];
 type ArcFilter = (typeof ARC_FILTERS)[number];
 
@@ -55,14 +62,35 @@ export default function ProjectGrid({ projects }: Props) {
   const [arcFilter, setArcFilter] = useState<ArcFilter>("All");
   const [openSlug, setOpenSlug] = useState<string | null>(null);
 
+  const roleFiltered = useMemo(() => {
+    if (filter === "All") return projects;
+    return projects.filter((p) => p.tags.includes(filter));
+  }, [filter, projects]);
+
+  const availableArcFilters = useMemo(() => {
+    const arcSet = new Set<Exclude<ArcFilter, "All">>();
+    roleFiltered.forEach((p) => {
+      const arc = PROJECT_ARC_BY_SLUG[p.slug];
+      if (arc) arcSet.add(arc);
+    });
+
+    const arcsInOrder = ARC_FILTER_ORDER.filter((arc) => arcSet.has(arc));
+    return ["All", ...arcsInOrder] as ArcFilter[];
+  }, [roleFiltered]);
+
+  useEffect(() => {
+    if (!availableArcFilters.includes(arcFilter)) {
+      setArcFilter("All");
+    }
+  }, [arcFilter, availableArcFilters]);
+
   const filtered = useMemo(() => {
-    return projects.filter((p) => {
-      const roleMatch = filter === "All" ? true : p.tags.includes(filter);
+    return roleFiltered.filter((p) => {
       const projectArc = PROJECT_ARC_BY_SLUG[p.slug];
       const arcMatch = arcFilter === "All" ? true : projectArc === arcFilter;
-      return roleMatch && arcMatch;
+      return arcMatch;
     });
-  }, [arcFilter, filter, projects]);
+  }, [arcFilter, roleFiltered]);
 
   const open = openSlug ? projects.find((p) => p.slug === openSlug) : null;
 
@@ -83,7 +111,7 @@ export default function ProjectGrid({ projects }: Props) {
       </div>
 
       <div className="flex flex-wrap gap-2 mb-10">
-        {ARC_FILTERS.map((a) => (
+        {availableArcFilters.map((a) => (
           <button
             key={a}
             className="chip"
