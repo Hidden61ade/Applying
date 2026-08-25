@@ -43,12 +43,13 @@ export default function ProjectGrid({ projects }: Props) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-x-4 gap-y-1 mb-12 border-b border-[color:var(--color-rule)]">
         {ROLE_FILTERS.map((r) => (
           <button
             key={r}
-            className="chip"
+            className="chip min-h-11"
             data-active={filter === r}
+            aria-pressed={filter === r}
             onClick={() => setFilter(r)}
             type="button"
           >
@@ -59,7 +60,7 @@ export default function ProjectGrid({ projects }: Props) {
 
       <motion.div
         layout
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10"
       >
         <AnimatePresence mode="popLayout">
           {filtered.map((p) => (
@@ -70,7 +71,7 @@ export default function ProjectGrid({ projects }: Props) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: [0.2, 0.7, 0.2, 1] }}
-              className="group relative rounded-2xl overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-bg-2)] hover:border-[color:var(--color-ink-dim)] transition-colors"
+              className="group relative overflow-hidden border-t border-[color:var(--color-rule)] bg-[color:var(--color-bg-2)] hover:border-[color:var(--color-accent)] transition-colors"
             >
               <Card project={p} onOpen={() => setOpenSlug(p.slug)} />
             </motion.article>
@@ -82,21 +83,32 @@ export default function ProjectGrid({ projects }: Props) {
         {open && (
           <motion.div
             className="fixed inset-0 z-[60] bg-[color:var(--color-bg)]/85 backdrop-blur-sm flex items-center justify-center p-6"
+            role="presentation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpenSlug(null)}
           >
             <motion.div
-              className="max-w-2xl w-full bg-[color:var(--color-bg-2)] border border-[color:var(--color-rule)] rounded-2xl p-8"
+              className="max-w-2xl max-h-[88vh] overflow-y-auto w-full bg-[color:var(--color-bg-2)] border border-[color:var(--color-rule)] p-6 md:p-8"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`quick-view-${open.slug}`}
               initial={{ y: 24, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 12, opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
+              {open.cover && (
+                <img
+                  src={open.cover}
+                  alt={`Cover art for ${open.title}`}
+                  className="aspect-video w-full object-cover mb-7"
+                />
+              )}
               <p className="eyebrow">{open.year} · {open.role}</p>
-              <h3 className="display-lg mt-2 mb-4">{open.title}</h3>
+              <h3 id={`quick-view-${open.slug}`} className="display-lg mt-2 mb-4">{open.title}</h3>
               {open.award && (
                 <p className="text-[color:var(--color-accent-2)] mb-3 text-sm">{open.award}</p>
               )}
@@ -143,7 +155,17 @@ function Card({
 }) {
   const isDeep = project.depth === "deep";
   const inner = (
-    <div className="p-6 flex flex-col h-full min-h-[260px]">
+    <div className="flex flex-col h-full">
+      {project.cover && (
+        <div className="aspect-video overflow-hidden bg-[color:var(--color-bg)]">
+          <img
+            src={project.cover}
+            alt={`Cover art for ${project.title}`}
+            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]"
+          />
+        </div>
+      )}
+      <div className="p-5 md:p-6 flex flex-col flex-1 min-h-[250px]">
       <div className="flex items-start justify-between gap-3">
         <p className="eyebrow">{project.year}</p>
         <span
@@ -172,6 +194,7 @@ function Card({
         {project.tags.slice(0, 4).map((t) => (
           <span key={t} className="chip">{t}</span>
         ))}
+      </div>
       </div>
     </div>
   );

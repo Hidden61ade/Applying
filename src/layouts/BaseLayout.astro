@@ -36,8 +36,9 @@ const {
     <title>{title}</title>
   </head>
   <body class="grain">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <Sidebar />
-    <main class="md:ml-[240px] min-h-screen">
+    <main id="main-content" class="md:ml-[272px] min-h-screen">
       <slot />
       <Footer />
     </main>

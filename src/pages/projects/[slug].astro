@@ -16,13 +16,15 @@ const d = entry.data;
 
 <BaseLayout title={`${d.title} — Baohua Fang`} description={d.summary}>
   {d.cover && (
-    <div class="w-full" style="background-color: var(--color-bg-2);">
-      <img
-        src={d.cover}
-        alt={d.title}
-        class="w-full h-auto block"
-        transition:name={`cover-${entry.id}`}
-      />
+    <div class="container-wide pt-6 md:pt-10">
+      <div class="aspect-video w-full overflow-hidden bg-[color:var(--color-bg-2)]">
+        <img
+          src={d.cover}
+          alt={`Cover art for ${d.title}`}
+          class="w-full h-full object-cover block"
+          transition:name={`cover-${entry.id}`}
+        />
+      </div>
     </div>
   )}
   <article class="container-wide pt-12 pb-24 max-w-3xl">

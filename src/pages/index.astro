@@ -7,6 +7,7 @@ const projects = (await getCollection("projects"))
   .sort((a, b) => a.data.order - b.data.order);
 
 const coverProjects = projects.filter((p) => p.data.cover);
+const featuredProject = coverProjects.find((p) => p.data.depth === "deep") ?? coverProjects[0];
 
 const tints = [
   "#1a1714",
@@ -18,15 +19,13 @@ const tints = [
   "#1c1a15",
 ];
 
-const roleMap: Record<string, string[]> = {
-  "right-click-to-activate-translator": ["designer", "scripter"],
-  "the-birthday-party": ["designer", "programmer", "scripter"],
-  "heart-keys": ["designer", "programmer"],
-  "gugugaga-penguin": ["designer", "programmer", "artist"],
-  "devil-cops-androids": ["designer", "programmer", "scripter"],
-  "space-bar-porter": ["designer", "scripter"],
-  "hashmon": ["designer", "programmer", "artist"],
-};
+const roleFilters = [
+  { label: "All work", role: "" },
+  { label: "Design", role: "designer" },
+  { label: "Programming", role: "programmer" },
+  { label: "Writing", role: "writer" },
+  { label: "Interaction", role: "interaction" },
+] as const;
 
 type Lineage = "joy" | "mechanic" | "boundary";
 const lineageMap: Record<string, Lineage> = {
@@ -57,66 +56,67 @@ for (const p of projects) {
 ---
 
 <BaseLayout>
-  <!-- ① Hero: full viewport -->
-  <section class="relative min-h-screen flex items-center overflow-hidden">
-    <!-- Left: text -->
-    <div class="relative z-10 px-6 md:px-12 lg:px-16 w-full md:w-[52%] py-24">
-      <p class="eyebrow mb-10">Baohua (Arno) Fang · CUHK-Shenzhen</p>
-      <h1 class="display-xl leading-[0.92]">
-        To broaden<br />
-        the boundaries<br />
-        of what a<br />
-        <em class="text-[color:var(--color-accent)]">"story"</em><br />
-        can be.
+  <section class="home-hero container-wide">
+    <div class="home-hero__copy">
+      <p class="eyebrow">Baohua (Arno) Fang · CUHK-Shenzhen</p>
+      <h1 class="home-hero__title">
+        To broaden the boundaries of what a <em>story</em> can be.
       </h1>
+      <p class="home-hero__lede">
+        Game designer and creative technologist working across systemic narrative,
+        interaction prototyping, and engineering.
+      </p>
+      <div class="home-hero__actions">
+        <a class="button-primary" href="#selected-work">Explore selected work <span aria-hidden="true">↓</span></a>
+        <a class="text-link" href="/about">More about me <span aria-hidden="true">→</span></a>
+      </div>
+      <dl class="home-hero__focus" aria-label="Areas of focus">
+        <div><dt>01</dt><dd>Systemic narrative</dd></div>
+        <div><dt>02</dt><dd>Interaction prototypes</dd></div>
+        <div><dt>03</dt><dd>Creative engineering</dd></div>
+      </dl>
     </div>
 
-    <!-- Right: crossfade cover slideshow -->
-    <div class="absolute right-0 top-0 h-full w-[55%] hidden md:block" aria-hidden="true">
-      {coverProjects.map((p, i) => (
-        <div class:list={["hero-cover absolute inset-0", { active: i === 0 }]}>
+    {featuredProject && (
+      <a
+        class="home-featured group"
+        href={featuredProject.data.depth === "deep" ? `/projects/${featuredProject.id}` : "/projects"}
+        aria-label={`View featured project: ${featuredProject.data.title}`}
+      >
+        <div class="home-featured__image">
           <img
-            src={p.data.cover}
-            alt=""
-            class="w-full h-full object-cover opacity-75"
-            style={`object-position: ${p.data.coverPosition ?? "center"}`}
+            src={featuredProject.data.cover}
+            alt={`Cover art for ${featuredProject.data.title}`}
+            style={`object-position: ${featuredProject.data.coverPosition ?? "center"}`}
           />
         </div>
-      ))}
-      <!-- Fade left edge into bg -->
-      <div
-        class="absolute inset-y-0 left-0 w-[28%] pointer-events-none z-10"
-        style="background: linear-gradient(to right, #0d0d0f 0%, transparent 100%)"
-      ></div>
-    </div>
-
-    <!-- Scroll cue -->
-    <div class="absolute bottom-8 left-6 md:left-12 lg:left-16 flex items-center gap-3 text-[color:var(--color-ink-dim)]">
-      <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-      <span class="scroll-arrow block w-px h-8 bg-[color:var(--color-rule)] relative overflow-hidden">
-        <span class="scroll-tick absolute top-0 left-0 w-full h-2 bg-[color:var(--color-ink-dim)]"></span>
-      </span>
-    </div>
+        <div class="home-featured__caption">
+          <span><small>Featured case study</small>{featuredProject.data.title}</span>
+          <span class="home-featured__arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+    )}
   </section>
 
-  <!-- Divider -->
-  <div class="rule mx-6 md:mx-12 lg:mx-16"></div>
+  <section id="selected-work" class="selected-work container-wide">
+    <header class="selected-work__header">
+      <div>
+        <p class="eyebrow">Selected work · {projects.length} projects</p>
+        <h2>Ideas made playable.</h2>
+      </div>
+      <p>
+        A project-first view of my design practice, grouped by the question each
+        body of work explores.
+      </p>
+    </header>
 
-  <!-- ② Project grid -->
-  <section class="px-6 md:px-12 lg:px-16 pt-14 pb-24">
-    <!-- Role filter tabs -->
-    <div class="role-tabs-bar" role="tablist" aria-label="Filter by role">
-      {([
-        { label: "As Designer", role: "" },
-        { label: "As Programmer", role: "programmer" },
-        { label: "As Scripter", role: "scripter" },
-        { label: "As Artist", role: "artist" },
-      ] as const).map(({ label, role }) => (
+    <div class="role-tabs-bar" role="group" aria-label="Filter projects by contribution">
+      {roleFilters.map(({ label, role }) => (
         <button
           class:list={["role-tab", { active: role === "" }]}
           data-role={role}
-          role="tab"
-          aria-selected={role === "" ? "true" : "false"}
+          type="button"
+          aria-pressed={role === "" ? "true" : "false"}
         >
           {label}
         </button>
@@ -133,11 +133,11 @@ for (const p of projects) {
               <p class="lineage-caption">{lin.caption}</p>
               <h2 class="lineage-title">{lin.title}</h2>
             </header>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+            <div class="home-project-grid">
               {items.map((p, i) => {
                 const href = p.data.depth === "deep" ? `/projects/${p.id}` : "/projects";
                 const tint = tints[i % tints.length];
-                const roles = roleMap[p.id] ?? ["designer"];
+                const roles = p.data.tags.map((tag) => tag.toLowerCase());
                 return (
                   <a
                     href={href}
@@ -145,15 +145,11 @@ for (const p of projects) {
                     data-roles={roles.join(" ")}
                     style={`transition-delay: ${(i % 3) * 80}ms; view-transition-name: card-${p.id};`}
                   >
-                    <div
-                      class="aspect-video w-full overflow-hidden"
-                      style={`background-color: ${tint}`}
-                    >
+                    <div class="project-card__media" style={`background-color: ${tint}`}>
                       {p.data.cover ? (
                         <img
                           src={p.data.cover}
-                          alt={p.data.title}
-                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                          alt={`Cover art for ${p.data.title}`}
                           style={`object-position: ${p.data.coverPosition ?? "center"}`}
                           transition:name={`cover-${p.id}`}
                         />
@@ -163,19 +159,19 @@ for (const p of projects) {
                         </span>
                       )}
                     </div>
-                    <div class="mt-3">
-                      <p class="eyebrow text-[10px] mb-1 transition-colors duration-300 group-hover:text-[color:var(--color-accent-2)]">{p.data.year} · {p.data.role.split(" / ")[0]}</p>
-                      <div class="flex items-start gap-0 overflow-hidden">
-                        <span
-                          class="flex-shrink-0 w-5 -translate-x-5 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-sm pt-[3px] text-[color:var(--color-accent)]"
-                          aria-hidden="true"
-                        >→</span>
-                        <h3 class="font-[var(--font-display)] text-lg md:text-xl font-normal leading-snug -translate-x-5 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[color:var(--color-accent)]" transition:name={`title-${p.id}`}>
+                    <div class="project-card__body">
+                      <div class="project-card__meta">
+                        <p>{p.data.year} · {p.data.role.split(" / ")[0]}</p>
+                        <span>{p.data.depth === "deep" ? "Case study" : "Quick view"}</span>
+                      </div>
+                      <div class="project-card__title-row">
+                        <h3 transition:name={`title-${p.id}`}>
                           {p.data.title}
                         </h3>
+                        <span aria-hidden="true">→</span>
                       </div>
                       {(p.data.hook || p.data.summary) && (
-                        <p class="mt-1.5 text-sm text-[color:var(--color-ink-dim)] leading-relaxed line-clamp-2 transition-colors duration-300 group-hover:text-[color:var(--color-ink)]/70">
+                        <p class="project-card__summary">
                           {p.data.hook ?? p.data.summary}
                         </p>
                       )}
@@ -192,16 +188,156 @@ for (const p of projects) {
 </BaseLayout>
 
 <style>
-  /* ── Role filter tabs ── */
+  .home-hero {
+    min-height: min(860px, calc(100vh - 1rem));
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+    padding-top: clamp(3rem, 7vh, 6.5rem);
+    padding-bottom: clamp(4rem, 9vh, 7rem);
+  }
+  .home-hero__copy {
+    max-width: 47rem;
+  }
+  .home-hero__title {
+    margin-top: 1.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(3.35rem, 6.5vw, 7rem);
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+  .home-hero__title em {
+    color: var(--color-accent);
+    font-weight: inherit;
+  }
+  .home-hero__lede {
+    max-width: 38rem;
+    margin-top: 2rem;
+    color: var(--color-ink-dim);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.65;
+  }
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .home-hero__focus {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: clamp(3rem, 8vh, 5rem);
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .home-hero__focus div {
+    display: flex;
+    gap: 0.65rem;
+    align-items: baseline;
+  }
+  .home-hero__focus dt {
+    color: var(--color-accent);
+    font: 500 0.62rem/1 var(--font-mono);
+    letter-spacing: 0.12em;
+  }
+  .home-hero__focus dd {
+    color: var(--color-ink-dim);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+  .home-featured {
+    display: block;
+    align-self: center;
+  }
+  .home-featured__image {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-bg-2);
+  }
+  .home-featured__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid color-mix(in srgb, var(--color-ink) 13%, transparent);
+    pointer-events: none;
+  }
+  .home-featured__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.82) contrast(1.04);
+    transition: transform 550ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
+  }
+  .home-featured:hover img {
+    transform: scale(1.025);
+    filter: saturate(1) contrast(1.04);
+  }
+  .home-featured__caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.9rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+  .home-featured__caption small {
+    display: block;
+    margin-bottom: 0.1rem;
+    color: var(--color-ink-dim);
+    font: 500 0.62rem/1.5 var(--font-sans);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .home-featured__arrow {
+    color: var(--color-accent);
+    transition: transform 200ms ease;
+  }
+  .home-featured:hover .home-featured__arrow {
+    transform: translate(0.2rem, -0.2rem);
+  }
+
+  .selected-work {
+    padding-top: clamp(4rem, 9vw, 8rem);
+    padding-bottom: 6rem;
+    border-top: 1px solid var(--color-rule);
+    scroll-margin-top: 7rem;
+  }
+  .selected-work__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+  .selected-work__header h2 {
+    margin-top: 0.75rem;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 400;
+    line-height: 1;
+  }
+  .selected-work__header > p {
+    max-width: 36rem;
+    color: var(--color-ink-dim);
+    line-height: 1.65;
+  }
+
   .role-tabs-bar {
     display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--color-rule);
-    margin-bottom: 2.5rem;
+    margin-bottom: 4rem;
     gap: 0;
   }
   .role-tab {
-    padding: 0.5rem 1.25rem;
+    min-height: 44px;
+    padding: 0.65rem clamp(0.75rem, 2vw, 1.25rem);
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -223,16 +359,17 @@ for (const p of projects) {
 
   /* ── Lineage section headings ── */
   .lineage-section {
-    margin-bottom: 3.5rem;
+    margin-bottom: clamp(4rem, 8vw, 7rem);
   }
   .lineage-section:last-child {
     margin-bottom: 0;
   }
   .lineage-header {
-    margin-bottom: 1.4rem;
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
+    margin-bottom: 1.75rem;
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.45fr) 1fr;
+    align-items: end;
+    gap: 1.5rem;
     border-bottom: 1px solid var(--color-rule);
     padding-bottom: 0.6rem;
   }
@@ -245,39 +382,94 @@ for (const p of projects) {
   }
   .lineage-title {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: clamp(1.55rem, 2.8vw, 2.4rem);
     font-weight: 400;
     color: var(--color-ink);
     line-height: 1.2;
   }
+  .home-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: clamp(1.75rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
+  }
+  .project-card__media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .project-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
+  }
+  .project-card:hover .project-card__media img {
+    transform: scale(1.035);
+    filter: saturate(1.08);
+  }
+  .project-card__body {
+    padding-top: 0.9rem;
+  }
+  .project-card__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--color-ink-dim);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .project-card__meta span {
+    color: var(--color-accent-2);
+    white-space: nowrap;
+  }
+  .project-card__title-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: start;
+    margin-top: 0.55rem;
+  }
+  .project-card__title-row h3 {
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.16;
+    transition: color 200ms ease;
+  }
+  .project-card__title-row span {
+    color: var(--color-accent);
+    transition: transform 200ms ease;
+  }
+  .project-card:hover .project-card__title-row h3 {
+    color: var(--color-accent);
+  }
+  .project-card:hover .project-card__title-row span {
+    transform: translateX(0.25rem);
+  }
+  .project-card__summary {
+    display: -webkit-box;
+    margin-top: 0.65rem;
+    overflow: hidden;
+    color: var(--color-ink-dim);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 
   /* ── Filter: hide non-matching cards ── */
+  #lineage-stack[data-filter="designer"] .project-card:not([data-roles~="designer"]),
   #lineage-stack[data-filter="programmer"] .project-card:not([data-roles~="programmer"]),
-  #lineage-stack[data-filter="scripter"]  .project-card:not([data-roles~="scripter"]),
-  #lineage-stack[data-filter="artist"]    .project-card:not([data-roles~="artist"]) {
+  #lineage-stack[data-filter="writer"] .project-card:not([data-roles~="writer"]),
+  #lineage-stack[data-filter="interaction"] .project-card:not([data-roles~="interaction"]) {
     display: none;
   }
   /* Collapse a lineage section if it has zero matching cards */
+  #lineage-stack[data-filter="designer"] .lineage-section:not(:has(.project-card[data-roles~="designer"])),
   #lineage-stack[data-filter="programmer"] .lineage-section:not(:has(.project-card[data-roles~="programmer"])),
-  #lineage-stack[data-filter="scripter"]  .lineage-section:not(:has(.project-card[data-roles~="scripter"])),
-  #lineage-stack[data-filter="artist"]    .lineage-section:not(:has(.project-card[data-roles~="artist"])) {
+  #lineage-stack[data-filter="writer"] .lineage-section:not(:has(.project-card[data-roles~="writer"])),
+  #lineage-stack[data-filter="interaction"] .lineage-section:not(:has(.project-card[data-roles~="interaction"])) {
     display: none;
-  }
-
-  @keyframes slide-down {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(400%); }
-  }
-  .scroll-tick {
-    animation: slide-down 1.6s ease-in-out infinite;
-  }
-
-  .hero-cover {
-    opacity: 0;
-    transition: opacity 1.4s ease;
-  }
-  .hero-cover.active {
-    opacity: 1;
   }
 
   .card-reveal {
@@ -289,21 +481,52 @@ for (const p of projects) {
     opacity: 1;
     transform: translateY(0);
   }
+  @media (max-width: 1180px) {
+    .home-hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      gap: 3rem;
+    }
+    .selected-work__header {
+      grid-template-columns: 1fr;
+    }
+    .home-featured {
+      width: min(100%, 38rem);
+    }
+    .home-featured__image {
+      aspect-ratio: 16 / 10;
+    }
+  }
+  @media (max-width: 640px) {
+    .home-hero {
+      padding-top: 3.5rem;
+      padding-bottom: 4rem;
+    }
+    .home-hero__title {
+      font-size: clamp(3rem, 14vw, 4.3rem);
+    }
+    .home-hero__focus {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+    .lineage-header {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .role-tabs-bar {
+      flex-wrap: nowrap;
+      margin-inline: -1.5rem;
+      padding-inline: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .role-tabs-bar::-webkit-scrollbar {
+      display: none;
+    }
+  }
 </style>
 
 <script is:inline>
-  function initHero() {
-    var covers = document.querySelectorAll('.hero-cover');
-    if (covers.length <= 1) return;
-    if (window._heroInterval) clearInterval(window._heroInterval);
-    var idx = 0;
-    window._heroInterval = setInterval(function () {
-      covers[idx].classList.remove('active');
-      idx = (idx + 1) % covers.length;
-      covers[idx].classList.add('active');
-    }, 5000);
-  }
-
   function initScrollReveal() {
     var cards = document.querySelectorAll('.card-reveal');
     if (!cards.length) return;
@@ -319,7 +542,6 @@ for (const p of projects) {
   }
 
   document.addEventListener('astro:page-load', function () {
-    initHero();
     initScrollReveal();
   });
 </script>
@@ -335,10 +557,10 @@ for (const p of projects) {
       tab.addEventListener('click', () => {
         const role = tab.dataset.role ?? '';
 
-        // Update aria + active class
+        // Update pressed state + active class
         tabs.forEach((t) => {
           t.classList.toggle('active', t === tab);
-          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+          t.setAttribute('aria-pressed', t === tab ? 'true' : 'false');
         });
 
         // Animate with View Transitions API if available
