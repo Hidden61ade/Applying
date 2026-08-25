@@ -1,11 +1,12 @@
 ---
+type: "project"
 title: "Devil, Cops, Androids"
 year: "2026"
 role: "Lead Designer / Programmer"
 summary: "A Global Game Jam 2026 entry: a top-down shooter built end-to-end in 48 hours. Later selected for public exhibition at the SSE Open Day."
 hook: "Forty-eight hours, one loop, hundreds of public play sessions."
 depth: "light"
-cover: "/covers/devilcopsandroidscover.jpg"
+cover: "/media/projects/devil-cops-androids/images/cover.jpg"
 tags: ["Designer", "Programmer", "Jam", "Unity"]
 order: 60
 links:

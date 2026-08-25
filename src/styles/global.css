@@ -408,6 +408,99 @@
   color: var(--color-accent);
 }
 
+.prose-content .portfolio-video,
+.prose-content .portfolio-playable {
+  margin-block: 2.5rem;
+}
+
+.portfolio-video video {
+  display: block;
+  width: 100%;
+  max-height: min(72vh, 46rem);
+  background: #050505;
+  border: 1px solid var(--color-rule);
+}
+
+.portfolio-video figcaption,
+.portfolio-playable figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.65rem;
+  color: var(--color-ink-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.portfolio-playable figcaption a {
+  color: var(--color-ink);
+  text-underline-offset: 0.2em;
+}
+
+.portfolio-playable__stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  background:
+    radial-gradient(circle at 78% 22%, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 34%),
+    linear-gradient(145deg, var(--color-bg-2), #09090b);
+}
+
+.portfolio-playable__launch,
+.portfolio-playable iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.portfolio-playable__launch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 2rem;
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 180ms ease;
+}
+
+.portfolio-playable__launch:hover {
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.portfolio-playable__launch strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.portfolio-playable__launch small {
+  color: var(--color-ink-dim);
+  font-size: 0.72rem;
+}
+
+.portfolio-playable__eyebrow {
+  color: var(--color-accent);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.portfolio-playable iframe[hidden],
+.portfolio-playable__launch[hidden] {
+  display: none;
+}
+
 /* Subtle noise grain on dark bg */
 .grain::before {
   content: "";

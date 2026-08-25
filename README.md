@@ -14,6 +14,12 @@ npm.cmd run build    # static site -> ./dist
 
 > Use `.cmd` suffix in PowerShell, or run from `cmd.exe` directly.
 
+## Edit content
+
+- Open the repository root as an Obsidian vault for Live Preview writing and drag/paste media.
+- Use Front Matter CMS in VS Code for project metadata, content dashboards, snippets, and the live site preview.
+- See [CONTENT_EDITING.md](CONTENT_EDITING.md) for the folder convention and Markdown syntax for images, videos, and H5/WebGL builds.
+
 ## Project structure
 
 ```

@@ -1,10 +1,11 @@
 ---
+type: "project"
 title: "Hashmon: Web3 Digital Companion"
 year: "2026"
 role: "Full-Stack Developer"
 summary: "A cross-system interoperability proof-of-concept. Frontend prototyping for rapid iteration, paired with a robust data layer for Solidity contracts to ensure seamless on-chain asset reuse."
 depth: "light"
-cover: "/covers/hashmoncover.png"
+cover: "/media/projects/hashmon/images/cover.png"
 coverPosition: "center"
 tags: ["Programmer", "Web3", "Experimental"]
 order: 90

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.framework.startCommand": "npm.cmd run dev",
+  "frontMatter.site.baseURL": "https://hidden61ade.com",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.preview.pathName": "projects",
+  "frontMatter.preview.trailingSlash": true,
+  "frontMatter.content.supportedFileTypes": ["md"],
+  "frontMatter.content.publicFolder": {
+    "path": "[[workspace]]/public",
+    "relative": false
+  },
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Portfolio projects",
+      "path": "[[workspace]]/src/content/projects",
+      "excludeSubdir": true,
+      "contentTypes": ["project"]
+    }
+  ],
+  "frontMatter.content.wysiwyg": true,
+  "frontMatter.content.hideFm": true,
+  "frontMatter.content.hideFmMessage": "Project metadata is managed in the Front Matter panel or Obsidian Properties.",
+  "frontMatter.content.fmHighlight": true,
+  "frontMatter.media.pasteBehavior": "auto",
+  "frontMatter.media.pasteFolder": "[[workspace]]/public/media/_inbox",
+  "frontMatter.media.pasteFileName": "image-{date}-{time}",
+  "frontMatter.panel.openOnSupportedFile": true,
+  "frontMatter.dashboard.openOnStart": false,
+  "frontMatter.validation.enabled": true,
+  "frontMatter.templates.enabled": true,
+  "frontMatter.templates.folder": "templates",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "project",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Content type",
+          "name": "type",
+          "type": "string",
+          "default": "project",
+          "hidden": true,
+          "required": true
+        },
+        {
+          "title": "Project title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Year / period",
+          "name": "year",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Role",
+          "name": "role",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Card summary",
+          "name": "summary",
+          "type": "string",
+          "single": false,
+          "required": true
+        },
+        {
+          "title": "Card hook",
+          "name": "hook",
+          "type": "string",
+          "single": false
+        },
+        {
+          "title": "Page depth",
+          "name": "depth",
+          "type": "choice",
+          "choices": [
+            { "id": "deep", "title": "Case study page" },
+            { "id": "light", "title": "Quick view only" }
+          ],
+          "default": "light",
+          "required": true
+        },
+        {
+          "title": "Cover",
+          "name": "cover",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Cover crop",
+          "name": "coverPosition",
+          "type": "choice",
+          "choices": ["center", "left", "right", "top", "bottom"],
+          "default": "center"
+        },
+        {
+          "title": "Contribution and topic tags",
+          "name": "tags",
+          "type": "tags",
+          "required": true
+        },
+        {
+          "title": "Award",
+          "name": "award",
+          "type": "string"
+        },
+        {
+          "title": "External links",
+          "name": "links",
+          "type": "fields",
+          "multiple": true,
+          "fields": [
+            { "title": "Label", "name": "label", "type": "string", "required": true },
+            { "title": "URL", "name": "href", "type": "string", "required": true }
+          ]
+        },
+        {
+          "title": "Display order",
+          "name": "order",
+          "type": "number",
+          "default": 100,
+          "numberOptions": { "isDecimal": false, "min": 0, "max": 999, "step": 1 },
+          "required": true
+        },
+        {
+          "title": "Hide from website",
+          "name": "hidden",
+          "type": "boolean",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "frontMatter.content.snippets": {
+    "Portfolio video": {
+      "title": "Portfolio video",
+      "description": "Insert a responsive local video. Paths may begin with public/ for Obsidian compatibility.",
+      "openingTags": "{{",
+      "closingTags": "}}",
+      "body": [
+        "![{{caption}}]({{videoPath}} \"poster={{posterPath}}\")"
+      ],
+      "fields": [
+        { "name": "caption", "title": "Caption", "type": "string", "default": "Gameplay video" },
+        { "name": "videoPath", "title": "Video path", "type": "string", "default": "public/media/projects/project-slug/videos/trailer.mp4" },
+        { "name": "posterPath", "title": "Poster path (optional)", "type": "string", "default": "" }
+      ]
+    },
+    "Playable H5 build": {
+      "title": "Playable H5 build",
+      "description": "Insert a click-to-load H5 or WebGL build.",
+      "openingTags": "{{",
+      "closingTags": "}}",
+      "body": [
+        "[{{caption}}]({{gamePath}} \"playable\")"
+      ],
+      "fields": [
+        { "name": "caption", "title": "Accessible title", "type": "string", "default": "Play the browser build" },
+        { "name": "gamePath", "title": "H5 index URL", "type": "string", "default": "public/playables/project-slug/index.html" }
+      ]
+    }
+  }
+}

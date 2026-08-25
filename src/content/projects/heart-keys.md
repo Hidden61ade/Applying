@@ -1,11 +1,12 @@
 ---
+type: "project"
 title: "Heart Keys"
 year: "2025"
 role: "Director / Programmer"
 summary: "A 3D puzzle game built for Ludum Dare 58 with a 10-person cross-disciplinary team. Ranked 19 / 1,083 overall."
 hook: "Ten people, 72 hours, one feeling: the quiet ache of opening something you have closed for too long."
 depth: "deep"
-cover: "/covers/heartkeyscoverver3.png"
+cover: "/media/projects/heart-keys/images/cover.png"
 tags: ["Director", "Programmer", "Designer", "Puzzle", "Jam", "Unity"]
 award: "Ranked 19 / 1,083 — Ludum Dare 58"
 order: 30

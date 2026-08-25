@@ -1,4 +1,5 @@
 ---
+type: "project"
 title: "The Herder and the Hunter"
 year: "2026–Present"
 role: "Designer / Researcher / Programmer"

@@ -67,3 +67,25 @@ const d = entry.data;
     </div>
   </article>
 </BaseLayout>
+
+<script>
+  function initializePlayableEmbeds(): void {
+    document.querySelectorAll<HTMLElement>("[data-playable-embed]").forEach((embed) => {
+      const launch = embed.querySelector<HTMLButtonElement>("[data-playable-launch]");
+      const frame = embed.querySelector<HTMLIFrameElement>("[data-playable-frame]");
+      if (!launch || !frame || launch.dataset.initialized === "true") return;
+
+      launch.dataset.initialized = "true";
+      launch.addEventListener("click", () => {
+        const source = launch.dataset.src;
+        if (!source) return;
+        frame.src = source;
+        frame.hidden = false;
+        launch.hidden = true;
+        frame.focus();
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initializePlayableEmbeds);
+</script>

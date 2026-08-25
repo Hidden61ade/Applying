@@ -1,0 +1,15 @@
+{
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "public/media/_inbox",
+  "newLinkFormat": "absolute",
+  "showUnsupportedFiles": true,
+  "userIgnoreFilters": [
+    "node_modules/",
+    "dist/",
+    ".git/",
+    ".astro/",
+    ".github/",
+    "public/playables/"
+  ],
+  "useMarkdownLinks": true
+}

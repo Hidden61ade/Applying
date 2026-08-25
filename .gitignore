@@ -4,7 +4,14 @@ dist/
 .env
 .env.production
 .DS_Store
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+
+# Obsidian: keep shared editing settings, ignore local UI/session state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/plugins/
 
 # personal application materials — never publish
 *.pdf
