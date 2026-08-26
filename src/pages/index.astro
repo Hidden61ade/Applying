@@ -578,14 +578,21 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
 
   .project-preview__body {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.42fr);
-    gap: 1.6rem;
+    grid-template-columns: minmax(0, 1fr) minmax(10.5rem, 0.38fr);
+    gap: 1.25rem;
     margin-top: 1.2rem;
   }
 
+  .project-preview__copy {
+    min-width: 0;
+  }
+
   .project-preview__copy h3 {
-    font-size: clamp(2rem, 3.7vw, 3.65rem);
-    line-height: 0.9;
+    max-width: 100%;
+    font-size: clamp(1.9rem, 2.8vw, 3.1rem);
+    line-height: 0.94;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .project-preview__copy p {
@@ -618,6 +625,7 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
 
   .project-preview__facts dd {
     color: var(--color-ink);
+    overflow-wrap: anywhere;
   }
 
   .project-preview__actions {
