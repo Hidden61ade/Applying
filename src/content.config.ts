@@ -15,6 +15,7 @@ const projects = defineCollection({
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
     coverPosition: z.string().default("center"),
+    coverFit: z.enum(["cover", "contain"]).default("cover"),
     video: z.string().optional(),
     award: z.string().optional(),
     links: z

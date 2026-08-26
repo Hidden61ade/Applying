@@ -43,6 +43,7 @@ const projectClientData = visibleProjects.map((p) => ({
   award: p.data.award ?? "",
   cover: p.data.cover ?? "",
   coverPosition: p.data.coverPosition ?? "center",
+  coverFit: p.data.coverFit ?? "cover",
   href: p.data.depth === "deep" ? `/projects/${p.id}` : "/projects",
   links: p.data.links,
 }));
@@ -152,7 +153,7 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
             <img
               src={defaultProject.data.cover}
               alt={`Cover art for ${defaultProject.data.title}`}
-              style={`object-position: ${defaultProject.data.coverPosition ?? "center"}`}
+              style={`object-position: ${defaultProject.data.coverPosition ?? "center"}; object-fit: ${defaultProject.data.coverFit ?? "cover"}`}
               data-preview-image
             />
           ) : (
@@ -547,7 +548,7 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
   }
 
   .project-preview__media {
-    height: 225px;
+    aspect-ratio: 16 / 9;
     margin-top: 0.95rem;
     overflow: hidden;
     background: #1a1a18;
@@ -758,6 +759,7 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     award: string;
     cover: string;
     coverPosition: string;
+    coverFit: "cover" | "contain";
     href: string;
     links: { label: string; href: string }[];
   };
@@ -806,6 +808,7 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
             image.src = project.cover;
             image.alt = `Cover art for ${project.title}`;
             image.style.objectPosition = project.coverPosition;
+            image.style.objectFit = project.coverFit;
             image.dataset.previewImage = "";
             media.append(image);
           } else {

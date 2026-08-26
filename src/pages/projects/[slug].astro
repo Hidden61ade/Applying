@@ -22,7 +22,7 @@ const d = entry.data;
           src={d.cover}
           alt={`Cover art for ${d.title}`}
           class="w-full h-full object-cover block"
-          style={`object-position: ${d.coverPosition ?? "center"}`}
+          style={`object-position: ${d.coverPosition ?? "center"}; object-fit: ${d.coverFit ?? "cover"}`}
           transition:name={`cover-${entry.id}`}
         />
       </div>

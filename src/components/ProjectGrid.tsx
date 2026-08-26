@@ -12,6 +12,7 @@ export type ProjectMeta = {
   tags: string[];
   award?: string;
   cover?: string;
+  coverFit?: "cover" | "contain";
   links: { label: string; href: string }[];
 };
 
@@ -128,7 +129,7 @@ export default function ProjectGrid({ projects }: Props) {
                   <img
                     src={open.cover}
                     alt={`Cover art for ${open.title}`}
-                    className="w-full h-full min-h-[250px] md:min-h-[560px] object-cover"
+                    className={`w-full h-full min-h-[250px] md:min-h-[560px] ${open.coverFit === "contain" ? "object-contain bg-white" : "object-cover"}`}
                   />
                 ) : (
                   <div className="h-full min-h-[250px] md:min-h-[560px] bg-[linear-gradient(145deg,var(--color-ink),var(--color-accent))]" />
@@ -190,7 +191,7 @@ function Card({
           <img
             src={project.cover}
             alt={`Cover art for ${project.title}`}
-            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]"
+            className={`w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.035] ${project.coverFit === "contain" ? "object-contain bg-white" : "object-cover"}`}
           />
         </div>
       )}
