@@ -548,17 +548,21 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
   }
 
   .project-preview__media {
-    aspect-ratio: 16 / 9;
     margin-top: 0.95rem;
     overflow: hidden;
-    background: #1a1a18;
+    background: transparent;
   }
 
-  .project-preview__media img,
+  .project-preview__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .project-preview__media > div {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    min-height: 225px;
+    aspect-ratio: 16 / 9;
   }
 
   .project-preview__media img {
@@ -733,7 +737,7 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
       grid-template-columns: 2rem minmax(0, 1fr) 5.2rem;
     }
     .project-preview__media {
-      height: 180px;
+      height: auto;
     }
     .project-preview__actions {
       align-items: stretch;
