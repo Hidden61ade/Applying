@@ -2,24 +2,24 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-32 border-t border-[color:var(--color-rule)]">
-  <div class="container-wide py-12 flex flex-col md:flex-row gap-6 md:items-end md:justify-between">
-    <div>
-      <p class="display-lg">The media of possibilities.</p>
-      <p class="text-[color:var(--color-ink-dim)] mt-2">
+<footer class="site-footer">
+  <div class="container-wide site-footer__inner">
+    <div class="site-footer__statement">
+      <p>The media of possibilities.</p>
+      <span>The blade is hidden.</span>
+    </div>
+    <div class="site-footer__contact">
+      <p>
         <a
           href="mailto:baohuafang@link.cuhk.edu.cn"
-          class="underline underline-offset-4 hover:text-[color:var(--color-accent)]"
         >
           baohuafang@link.cuhk.edu.cn
         </a>
       </p>
-    </div>
-    <div class="text-sm text-[color:var(--color-ink-dim)] flex flex-col md:items-end gap-1">
-      <div class="flex gap-4">
-        <a href="https://github.com/Hidden61ade" class="hover:text-[color:var(--color-ink)]">GitHub</a>
-        <a href="https://hidden61ade.itch.io" class="hover:text-[color:var(--color-ink)]">itch.io</a>
-        <a href="https://archive.hiddenblade.net" class="hover:text-[color:var(--color-ink)]">Archive</a>
+      <div class="site-footer__links">
+        <a href="https://github.com/Hidden61ade">GitHub</a>
+        <a href="https://hidden61ade.itch.io">itch.io</a>
+        <a href="https://archive.hiddenblade.net">Archive</a>
       </div>
       <span>© {year} Baohua Fang. All rights reserved.</span>
     </div>

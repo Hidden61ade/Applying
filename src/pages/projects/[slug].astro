@@ -17,17 +17,18 @@ const d = entry.data;
 <BaseLayout title={`${d.title} — Baohua Fang`} description={d.summary}>
   {d.cover && (
     <div class="container-wide pt-6 md:pt-10">
-      <div class="aspect-video w-full overflow-hidden bg-[color:var(--color-bg-2)]">
+      <div class="aspect-video w-full overflow-hidden bg-[color:var(--color-bg-2)] border-y border-[color:var(--color-rule)]">
         <img
           src={d.cover}
           alt={`Cover art for ${d.title}`}
           class="w-full h-full object-cover block"
+          style={`object-position: ${d.coverPosition ?? "center"}`}
           transition:name={`cover-${entry.id}`}
         />
       </div>
     </div>
   )}
-  <article class="container-wide pt-12 pb-24 max-w-3xl">
+  <article class="container-wide pt-12 pb-24 max-w-4xl">
     <a href="/projects" class="eyebrow hover:text-[color:var(--color-ink)]">
       ← All projects
     </a>
@@ -53,7 +54,7 @@ const d = entry.data;
               href={l.href}
               target="_blank"
               rel="noreferrer"
-              class="underline underline-offset-4 hover:text-[color:var(--color-accent)]"
+            class="button-secondary"
             >
               {l.label} ↗
             </a>

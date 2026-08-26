@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import Sidebar from "../components/Sidebar.astro";
+import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 
@@ -31,14 +31,14 @@ const {
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap"
     />
     <title>{title}</title>
   </head>
-  <body class="grain">
+  <body class="paper">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <Sidebar />
-    <main id="main-content" class="md:ml-[272px] min-h-screen">
+    <Nav />
+    <main id="main-content" class="min-h-screen">
       <slot />
       <Footer />
     </main>

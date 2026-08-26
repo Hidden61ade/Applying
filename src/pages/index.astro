@@ -6,28 +6,8 @@ const projects = (await getCollection("projects"))
   .filter((p) => !p.data.hidden)
   .sort((a, b) => a.data.order - b.data.order);
 
-const coverProjects = projects.filter((p) => p.data.cover);
-const featuredProject = coverProjects.find((p) => p.data.depth === "deep") ?? coverProjects[0];
-
-const tints = [
-  "#1a1714",
-  "#1c1a16",
-  "#1a1815",
-  "#1e1b17",
-  "#1b1916",
-  "#1d1b17",
-  "#1c1a15",
-];
-
-const roleFilters = [
-  { label: "All work", role: "" },
-  { label: "Design", role: "designer" },
-  { label: "Programming", role: "programmer" },
-  { label: "Writing", role: "writer" },
-  { label: "Interaction", role: "interaction" },
-] as const;
-
 type Lineage = "joy" | "mechanic" | "boundary";
+
 const lineageMap: Record<string, Lineage> = {
   "heart-keys": "joy",
   "devil-cops-androids": "joy",
@@ -39,539 +19,862 @@ const lineageMap: Record<string, Lineage> = {
 };
 
 const lineages: { id: Lineage; title: string; caption: string }[] = [
-  { id: "joy", title: "The Joy of Play", caption: "01 — where it begins" },
-  { id: "mechanic", title: "Mechanic as Narrative", caption: "02 — where the system speaks" },
-  { id: "boundary", title: "The Boundaries of a Game", caption: "03 — where the form bends" },
+  { id: "joy", title: "DISC 01", caption: "Joy & mechanics" },
+  { id: "mechanic", title: "DISC 02", caption: "Narrative systems" },
+  { id: "boundary", title: "DISC 03", caption: "Media boundaries" },
 ];
 
-const projectsByLineage: Record<Lineage, typeof projects> = {
-  joy: [],
-  mechanic: [],
-  boundary: [],
-};
-for (const p of projects) {
-  const l = lineageMap[p.id];
-  if (l) projectsByLineage[l].push(p);
-}
+const visibleProjects = projects.filter((p) => lineageMap[p.id]);
+const defaultLineage: Lineage = "mechanic";
+const defaultProject =
+  visibleProjects.find((p) => lineageMap[p.id] === defaultLineage && p.data.depth === "deep") ??
+  visibleProjects[0];
+
+const projectClientData = visibleProjects.map((p) => ({
+  id: p.id,
+  lineage: lineageMap[p.id],
+  title: p.data.title,
+  year: p.data.year,
+  role: p.data.role,
+  summary: p.data.summary,
+  hook: p.data.hook ?? p.data.summary,
+  depth: p.data.depth,
+  tags: p.data.tags,
+  award: p.data.award ?? "",
+  cover: p.data.cover ?? "",
+  coverPosition: p.data.coverPosition ?? "center",
+  href: p.data.depth === "deep" ? `/projects/${p.id}` : "/projects",
+  links: p.data.links,
+}));
+
+const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\u003c");
 ---
 
 <BaseLayout>
-  <section class="home-hero container-wide">
-    <div class="home-hero__copy">
-      <p class="eyebrow">Baohua (Arno) Fang · CUHK-Shenzhen</p>
-      <h1 class="home-hero__title">
-        To broaden the boundaries of what a <em>story</em> can be.
-      </h1>
-      <p class="home-hero__lede">
-        Game designer and creative technologist working across systemic narrative,
-        interaction prototyping, and engineering.
-      </p>
-      <div class="home-hero__actions">
-        <a class="button-primary" href="#selected-work">Explore selected work <span aria-hidden="true">↓</span></a>
-        <a class="text-link" href="/about">More about me <span aria-hidden="true">→</span></a>
-      </div>
-      <dl class="home-hero__focus" aria-label="Areas of focus">
-        <div><dt>01</dt><dd>Systemic narrative</dd></div>
-        <div><dt>02</dt><dd>Interaction prototypes</dd></div>
-        <div><dt>03</dt><dd>Creative engineering</dd></div>
-      </dl>
+  <section class="identity-hero" aria-labelledby="home-title">
+    <div class="identity-hero__meta">
+      <span>Baohua Fang · Technical Game Designer</span>
+      <span>Selected practice · 2023—2026</span>
     </div>
 
-    {featuredProject && (
-      <a
-        class="home-featured group"
-        href={featuredProject.data.depth === "deep" ? `/projects/${featuredProject.id}` : "/projects"}
-        aria-label={`View featured project: ${featuredProject.data.title}`}
-      >
-        <div class="home-featured__image">
-          <img
-            src={featuredProject.data.cover}
-            alt={`Cover art for ${featuredProject.data.title}`}
-            style={`object-position: ${featuredProject.data.coverPosition ?? "center"}`}
-          />
-        </div>
-        <div class="home-featured__caption">
-          <span><small>Featured case study</small>{featuredProject.data.title}</span>
-          <span class="home-featured__arrow" aria-hidden="true">↗</span>
-        </div>
-      </a>
-    )}
+    <img class="identity-hero__mark" src="/logo.png" alt="" aria-hidden="true" />
+
+    <div class="identity-hero__copy">
+      <p class="eyebrow">Systems · Narrative · Creative Technology</p>
+      <h1 id="home-title">
+        <span>From prose</span>
+        <span>to <em>play.</em></span>
+      </h1>
+      <p>
+        I design systems where narrative becomes something the player can do.
+      </p>
+    </div>
+
+    <div class="identity-hero__footer">
+      <p>CUHK-Shenzhen · Shanghai / Shenzhen</p>
+      <div>
+        <a href="#selected-work">Selected work ↓</a>
+        <a href="/about">About →</a>
+      </div>
+    </div>
   </section>
 
-  <section id="selected-work" class="selected-work container-wide">
-    <header class="selected-work__header">
+  <section id="selected-work" class="work-section container-wide">
+    <header class="work-section__header">
       <div>
-        <p class="eyebrow">Selected work · {projects.length} projects</p>
+        <p class="eyebrow">Selected work · {visibleProjects.length} projects</p>
         <h2>Ideas made playable.</h2>
       </div>
       <p>
-        A project-first view of my design practice, grouped by the question each
-        body of work explores.
+        Choose a creative lineage, then inspect the role, evidence, and media for
+        each project without losing your place.
       </p>
     </header>
 
-    <div class="role-tabs-bar" role="group" aria-label="Filter projects by contribution">
-      {roleFilters.map(({ label, role }) => (
-        <button
-          class:list={["role-tab", { active: role === "" }]}
-          data-role={role}
-          type="button"
-          aria-pressed={role === "" ? "true" : "false"}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
+    <div class="work-console" data-work-console>
+      <aside class="lineage-index" aria-label="Creative lineages">
+        <p class="console-label">Creative lineages</p>
+        {lineages.map((lineage) => (
+          <button
+            class="lineage-choice"
+            type="button"
+            data-lineage-choice={lineage.id}
+            aria-pressed={lineage.id === defaultLineage ? "true" : "false"}
+          >
+            <span class="lineage-choice__disc" aria-hidden="true"></span>
+            <span>
+              <strong>{lineage.title}</strong>
+              <small>{lineage.caption}</small>
+            </span>
+          </button>
+        ))}
+      </aside>
 
-    <div id="lineage-stack">
-      {lineages.map((lin) => {
-        const items = projectsByLineage[lin.id];
-        if (!items.length) return null;
-        return (
-          <section class="lineage-section" data-lineage={lin.id}>
-            <header class="lineage-header">
-              <p class="lineage-caption">{lin.caption}</p>
-              <h2 class="lineage-title">{lin.title}</h2>
-            </header>
-            <div class="home-project-grid">
-              {items.map((p, i) => {
-                const href = p.data.depth === "deep" ? `/projects/${p.id}` : "/projects";
-                const tint = tints[i % tints.length];
-                const roles = p.data.tags.map((tag) => tag.toLowerCase());
-                return (
-                  <a
-                    href={href}
-                    class="group block card-reveal project-card"
-                    data-roles={roles.join(" ")}
-                    style={`transition-delay: ${(i % 3) * 80}ms; view-transition-name: card-${p.id};`}
-                  >
-                    <div class="project-card__media" style={`background-color: ${tint}`}>
-                      {p.data.cover ? (
-                        <img
-                          src={p.data.cover}
-                          alt={`Cover art for ${p.data.title}`}
-                          style={`object-position: ${p.data.coverPosition ?? "center"}`}
-                          transition:name={`cover-${p.id}`}
-                        />
-                      ) : (
-                        <span class="text-[color:var(--color-ink)]/30 text-xs tracking-[0.2em] uppercase flex items-end h-full p-4">
-                          {p.data.year}
-                        </span>
-                      )}
-                    </div>
-                    <div class="project-card__body">
-                      <div class="project-card__meta">
-                        <p>{p.data.year} · {p.data.role.split(" / ")[0]}</p>
-                        <span>{p.data.depth === "deep" ? "Case study" : "Quick view"}</span>
-                      </div>
-                      <div class="project-card__title-row">
-                        <h3 transition:name={`title-${p.id}`}>
-                          {p.data.title}
-                        </h3>
-                        <span aria-hidden="true">→</span>
-                      </div>
-                      {(p.data.hook || p.data.summary) && (
-                        <p class="project-card__summary">
-                          {p.data.hook ?? p.data.summary}
-                        </p>
-                      )}
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          </section>
-        );
-      })}
+      <div class="project-index" aria-label="Project index">
+        <div class="project-index__header">
+          <span>Project index</span>
+          <span>Choose a project</span>
+        </div>
+        <div class="project-index__rows" data-project-rows>
+          {visibleProjects.map((project, index) => {
+            const isSelected = project.id === defaultProject.id;
+            return (
+              <button
+                class="project-row"
+                type="button"
+                data-project-choice={project.id}
+                data-lineage={lineageMap[project.id]}
+                aria-pressed={isSelected ? "true" : "false"}
+                hidden={lineageMap[project.id] !== defaultLineage}
+              >
+                <span class="project-row__number">{String(index + 1).padStart(2, "0")}.</span>
+                <span class="project-row__copy">
+                  <strong>{project.data.title}</strong>
+                  <small>{project.data.role}</small>
+                </span>
+                <span class="project-row__evidence">
+                  {project.data.award ?? (project.data.depth === "deep" ? "Case study" : "Quick view")}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <article class="project-preview" aria-live="polite" data-project-preview>
+        <header class="project-preview__header">
+          <span data-preview-code>CASE 01 / {defaultProject.data.depth === "deep" ? "CASE STUDY" : "QUICK VIEW"}</span>
+          <span data-preview-year>{defaultProject.data.year}</span>
+        </header>
+
+        <div class="project-preview__media" data-preview-media>
+          {defaultProject.data.cover ? (
+            <img
+              src={defaultProject.data.cover}
+              alt={`Cover art for ${defaultProject.data.title}`}
+              style={`object-position: ${defaultProject.data.coverPosition ?? "center"}`}
+              data-preview-image
+            />
+          ) : (
+            <div data-preview-image-placeholder></div>
+          )}
+        </div>
+
+        <div class="project-preview__body">
+          <div class="project-preview__copy">
+            <h3 data-preview-title>{defaultProject.data.title}</h3>
+            <p data-preview-summary>{defaultProject.data.hook ?? defaultProject.data.summary}</p>
+          </div>
+          <dl class="project-preview__facts">
+            <div><dt>Role</dt><dd data-preview-role>{defaultProject.data.role}</dd></div>
+            <div><dt>Evidence</dt><dd data-preview-evidence>{defaultProject.data.award ?? "Playable project"}</dd></div>
+            <div><dt>Media</dt><dd data-preview-tags>{defaultProject.data.tags.slice(0, 3).join(" · ")}</dd></div>
+          </dl>
+        </div>
+
+        <footer class="project-preview__actions">
+          <div data-preview-links>
+            {defaultProject.data.links.slice(0, 2).map((link) => (
+              <a href={link.href} target="_blank" rel="noreferrer" class="button-secondary">
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
+          <a
+            href={defaultProject.data.depth === "deep" ? `/projects/${defaultProject.id}` : "/projects"}
+            class="button-primary"
+            data-preview-primary
+          >
+            {defaultProject.data.depth === "deep" ? "Read full case" : "Open quick view"} →
+          </a>
+        </footer>
+      </article>
     </div>
   </section>
+
+  <script id="portfolio-project-data" type="application/json" set:html={serializedProjects} is:inline></script>
 </BaseLayout>
 
 <style>
-  .home-hero {
-    min-height: min(860px, calc(100vh - 1rem));
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
-    align-items: center;
-    gap: clamp(3rem, 7vw, 7rem);
-    padding-top: clamp(3rem, 7vh, 6.5rem);
-    padding-bottom: clamp(4rem, 9vh, 7rem);
-  }
-  .home-hero__copy {
-    max-width: 47rem;
-  }
-  .home-hero__title {
-    margin-top: 1.5rem;
-    font-family: var(--font-display);
-    font-size: clamp(3.35rem, 6.5vw, 7rem);
-    font-weight: 400;
-    line-height: 0.96;
-    letter-spacing: -0.04em;
-    text-wrap: balance;
-  }
-  .home-hero__title em {
-    color: var(--color-accent);
-    font-weight: inherit;
-  }
-  .home-hero__lede {
-    max-width: 38rem;
-    margin-top: 2rem;
-    color: var(--color-ink-dim);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    line-height: 1.65;
-  }
-  .home-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.5rem;
-    margin-top: 2rem;
-  }
-  .home-hero__focus {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: clamp(3rem, 8vh, 5rem);
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-rule);
-  }
-  .home-hero__focus div {
-    display: flex;
-    gap: 0.65rem;
-    align-items: baseline;
-  }
-  .home-hero__focus dt {
-    color: var(--color-accent);
-    font: 500 0.62rem/1 var(--font-mono);
-    letter-spacing: 0.12em;
-  }
-  .home-hero__focus dd {
-    color: var(--color-ink-dim);
-    font-size: 0.75rem;
-    line-height: 1.35;
-  }
-  .home-featured {
-    display: block;
-    align-self: center;
-  }
-  .home-featured__image {
+  .identity-hero {
     position: relative;
-    aspect-ratio: 4 / 5;
+    min-height: min(690px, calc(100vh - 62px));
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.5rem clamp(1.25rem, 4vw, 3.5rem) 2rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     overflow: hidden;
-    background: var(--color-bg-2);
-  }
-  .home-featured__image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 1px solid color-mix(in srgb, var(--color-ink) 13%, transparent);
-    pointer-events: none;
-  }
-  .home-featured__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(0.82) contrast(1.04);
-    transition: transform 550ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
-  }
-  .home-featured:hover img {
-    transform: scale(1.025);
-    filter: saturate(1) contrast(1.04);
-  }
-  .home-featured__caption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 0.9rem;
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-  }
-  .home-featured__caption small {
-    display: block;
-    margin-bottom: 0.1rem;
-    color: var(--color-ink-dim);
-    font: 500 0.62rem/1.5 var(--font-sans);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-  .home-featured__arrow {
-    color: var(--color-accent);
-    transition: transform 200ms ease;
-  }
-  .home-featured:hover .home-featured__arrow {
-    transform: translate(0.2rem, -0.2rem);
+    border-bottom: 1px solid var(--color-rule);
   }
 
-  .selected-work {
-    padding-top: clamp(4rem, 9vw, 8rem);
-    padding-bottom: 6rem;
-    border-top: 1px solid var(--color-rule);
-    scroll-margin-top: 7rem;
-  }
-  .selected-work__header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
+  .identity-hero__meta,
+  .identity-hero__footer {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
     gap: 2rem;
-    align-items: end;
-    margin-bottom: 3rem;
-  }
-  .selected-work__header h2 {
-    margin-top: 0.75rem;
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    font-weight: 400;
-    line-height: 1;
-  }
-  .selected-work__header > p {
-    max-width: 36rem;
     color: var(--color-ink-dim);
-    line-height: 1.65;
-  }
-
-  .role-tabs-bar {
-    display: flex;
-    flex-wrap: wrap;
-    border-bottom: 1px solid var(--color-rule);
-    margin-bottom: 4rem;
-    gap: 0;
-  }
-  .role-tab {
-    min-height: 44px;
-    padding: 0.65rem clamp(0.75rem, 2vw, 1.25rem);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-ink-dim);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    background: none;
-    cursor: pointer;
-    transition: color 0.2s ease, border-color 0.2s ease;
-    white-space: nowrap;
-  }
-  .role-tab:hover {
-    color: var(--color-ink);
-  }
-  .role-tab.active {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
-  }
-
-  /* ── Lineage section headings ── */
-  .lineage-section {
-    margin-bottom: clamp(4rem, 8vw, 7rem);
-  }
-  .lineage-section:last-child {
-    margin-bottom: 0;
-  }
-  .lineage-header {
-    margin-bottom: 1.75rem;
-    display: grid;
-    grid-template-columns: minmax(9rem, 0.45fr) 1fr;
-    align-items: end;
-    gap: 1.5rem;
-    border-bottom: 1px solid var(--color-rule);
-    padding-bottom: 0.6rem;
-  }
-  .lineage-caption {
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-ink-dim);
-    white-space: nowrap;
-  }
-  .lineage-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.55rem, 2.8vw, 2.4rem);
-    font-weight: 400;
-    color: var(--color-ink);
-    line-height: 1.2;
-  }
-  .home-project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-    gap: clamp(1.75rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
-  }
-  .project-card__media {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-  .project-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
-  }
-  .project-card:hover .project-card__media img {
-    transform: scale(1.035);
-    filter: saturate(1.08);
-  }
-  .project-card__body {
-    padding-top: 0.9rem;
-  }
-  .project-card__meta {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    color: var(--color-ink-dim);
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
+    font-size: 0.62rem;
+    letter-spacing: 0.11em;
     line-height: 1.4;
     text-transform: uppercase;
   }
-  .project-card__meta span {
-    color: var(--color-accent-2);
-    white-space: nowrap;
-  }
-  .project-card__title-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: start;
-    margin-top: 0.55rem;
-  }
-  .project-card__title-row h3 {
-    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
-    font-weight: 400;
-    line-height: 1.16;
-    transition: color 200ms ease;
-  }
-  .project-card__title-row span {
-    color: var(--color-accent);
-    transition: transform 200ms ease;
-  }
-  .project-card:hover .project-card__title-row h3 {
-    color: var(--color-accent);
-  }
-  .project-card:hover .project-card__title-row span {
-    transform: translateX(0.25rem);
-  }
-  .project-card__summary {
-    display: -webkit-box;
-    margin-top: 0.65rem;
-    overflow: hidden;
-    color: var(--color-ink-dim);
-    font-size: 0.82rem;
-    line-height: 1.55;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
 
-  /* ── Filter: hide non-matching cards ── */
-  #lineage-stack[data-filter="designer"] .project-card:not([data-roles~="designer"]),
-  #lineage-stack[data-filter="programmer"] .project-card:not([data-roles~="programmer"]),
-  #lineage-stack[data-filter="writer"] .project-card:not([data-roles~="writer"]),
-  #lineage-stack[data-filter="interaction"] .project-card:not([data-roles~="interaction"]) {
-    display: none;
-  }
-  /* Collapse a lineage section if it has zero matching cards */
-  #lineage-stack[data-filter="designer"] .lineage-section:not(:has(.project-card[data-roles~="designer"])),
-  #lineage-stack[data-filter="programmer"] .lineage-section:not(:has(.project-card[data-roles~="programmer"])),
-  #lineage-stack[data-filter="writer"] .lineage-section:not(:has(.project-card[data-roles~="writer"])),
-  #lineage-stack[data-filter="interaction"] .lineage-section:not(:has(.project-card[data-roles~="interaction"])) {
-    display: none;
-  }
-
-  .card-reveal {
+  .identity-hero__mark {
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 49%;
+    width: min(58vw, 620px);
+    transform: translate(-50%, -50%) scale(0.94);
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    filter: grayscale(1) contrast(1.12);
+    mix-blend-mode: multiply;
+    animation: logo-arrive 1000ms 120ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
   }
-  .card-reveal.revealed {
+
+  .identity-hero__copy {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    justify-self: center;
+    width: min(100%, 800px);
+    text-align: center;
+  }
+
+  .identity-hero__copy .eyebrow {
+    opacity: 0;
+    animation: copy-arrive 600ms 250ms ease forwards;
+  }
+
+  .identity-hero__copy h1 {
+    margin-top: 0.85rem;
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 9vw, 8.6rem);
+    font-weight: 400;
+    line-height: 0.73;
+    letter-spacing: -0.05em;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: copy-arrive 720ms 340ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+  }
+
+  .identity-hero__copy h1 span {
+    display: block;
+  }
+
+  .identity-hero__copy h1 em {
+    font-weight: inherit;
+  }
+
+  .identity-hero__copy > p:last-child {
+    max-width: 34rem;
+    margin: 1.5rem auto 0;
+    color: var(--color-ink-dim);
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    line-height: 1.35;
+    opacity: 0;
+    animation: copy-arrive 600ms 470ms ease forwards;
+  }
+
+  .identity-hero__footer {
+    align-items: flex-end;
+  }
+
+  .identity-hero__footer div {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .identity-hero__footer a {
+    color: var(--color-ink);
+    transition: color 180ms ease;
+  }
+
+  .identity-hero__footer a:hover {
+    color: var(--color-accent);
+  }
+
+  .work-section {
+    padding-top: clamp(4.5rem, 9vw, 7.5rem);
+    padding-bottom: 2rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .work-section__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.55fr);
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 2.25rem;
+  }
+
+  .work-section__header h2 {
+    margin-top: 0.65rem;
+    font-size: clamp(3rem, 6.2vw, 6rem);
+    line-height: 0.9;
+  }
+
+  .work-section__header > p {
+    color: var(--color-ink-dim);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .work-console {
+    min-height: 550px;
+    display: grid;
+    grid-template-columns: 180px minmax(330px, 35%) minmax(0, 1fr);
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 550ms ease, transform 550ms ease;
+  }
+
+  .work-console.revealed {
     opacity: 1;
     transform: translateY(0);
   }
-  @media (max-width: 1180px) {
-    .home-hero {
+
+  .console-label,
+  .project-index__header,
+  .project-preview__header {
+    color: var(--color-ink-dim);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .lineage-index {
+    padding: 1.15rem 1rem 1.25rem 0;
+    border-right: 1px solid var(--color-rule);
+    background: var(--color-bg-2);
+  }
+
+  .console-label {
+    margin: 0 0 0.85rem 1rem;
+  }
+
+  .lineage-choice {
+    width: 100%;
+    min-height: 104px;
+    padding: 0.8rem 0.65rem 0.8rem 3.8rem;
+    position: relative;
+    border: 0;
+    border-top: 1px solid var(--color-rule);
+    background: transparent;
+    color: var(--color-ink);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  .lineage-choice:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .lineage-choice__disc {
+    position: absolute;
+    left: 0.75rem;
+    top: 1.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.56;
+    transition: transform 240ms ease;
+  }
+
+  .lineage-choice__disc::after {
+    content: "";
+    position: absolute;
+    inset: 0.75rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+  }
+
+  .lineage-choice:hover .lineage-choice__disc {
+    transform: rotate(15deg) scale(1.05);
+  }
+
+  .lineage-choice strong,
+  .lineage-choice small {
+    display: block;
+  }
+
+  .lineage-choice strong {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .lineage-choice small {
+    margin-top: 0.55rem;
+    color: var(--color-ink-dim);
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .lineage-choice[aria-pressed="true"] {
+    background: var(--color-ink);
+    color: #fff;
+  }
+
+  .lineage-choice[aria-pressed="true"] small {
+    color: #c8c5bd;
+  }
+
+  .project-index {
+    padding: 1.15rem 0 1.25rem 1.2rem;
+    border-right: 1px solid var(--color-rule);
+  }
+
+  .project-index__header,
+  .project-preview__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-index__header {
+    padding: 0 1.1rem 0.85rem 0;
+  }
+
+  .project-index__rows.is-switching {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .project-index__rows {
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+
+  .project-row {
+    width: 100%;
+    min-height: 91px;
+    padding: 0.75rem 1rem 0.75rem 0;
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr) 6.2rem;
+    gap: 0.6rem;
+    align-items: center;
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
+    background: transparent;
+    color: var(--color-accent);
+    cursor: pointer;
+    text-align: left;
+    transition: padding 180ms ease, background-color 180ms ease, color 180ms ease;
+  }
+
+  .project-row:last-child {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
+  }
+
+  .project-row:hover,
+  .project-row:focus-visible {
+    padding-left: 0.65rem;
+    outline: 0;
+    background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+  }
+
+  .project-row[aria-pressed="true"] {
+    padding-left: 0.65rem;
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .project-row[hidden] {
+    display: none;
+  }
+
+  .project-row__number {
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+
+  .project-row__copy strong,
+  .project-row__copy small {
+    display: block;
+  }
+
+  .project-row__copy strong {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .project-row__copy small,
+  .project-row__evidence {
+    margin-top: 0.45rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.065em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .project-row__evidence {
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .project-preview {
+    min-width: 0;
+    padding: 1.15rem 1.25rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-2);
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+
+  .project-preview.is-switching {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .project-preview__header {
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .project-preview__media {
+    height: 225px;
+    margin-top: 0.95rem;
+    overflow: hidden;
+    background: #1a1a18;
+  }
+
+  .project-preview__media img,
+  .project-preview__media > div {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-preview__media img {
+    filter: saturate(0.82) contrast(1.03);
+    transition: transform 500ms cubic-bezier(0.2, 0.75, 0.2, 1), filter 250ms ease;
+  }
+
+  .project-preview:hover .project-preview__media img {
+    transform: scale(1.02);
+    filter: saturate(1) contrast(1.03);
+  }
+
+  .project-preview__media > div {
+    background:
+      radial-gradient(circle at 65% 35%, transparent 0 12%, rgba(255,255,255,.65) 12.5% 13%, transparent 13.5%),
+      linear-gradient(135deg, #191918 0 48%, var(--color-accent) 49% 65%, #d6d1c7 66%);
+  }
+
+  .project-preview__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.42fr);
+    gap: 1.6rem;
+    margin-top: 1.2rem;
+  }
+
+  .project-preview__copy h3 {
+    font-size: clamp(2rem, 3.7vw, 3.65rem);
+    line-height: 0.9;
+  }
+
+  .project-preview__copy p {
+    max-width: 42rem;
+    margin-top: 0.75rem;
+    color: var(--color-ink-dim);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .project-preview__facts {
+    align-self: start;
+  }
+
+  .project-preview__facts div {
+    display: grid;
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0.55rem;
+    padding: 0.45rem 0;
+    border-top: 1px solid var(--color-rule);
+    font-size: 0.58rem;
+    line-height: 1.4;
+  }
+
+  .project-preview__facts dt {
+    color: var(--color-ink-dim);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .project-preview__facts dd {
+    color: var(--color-ink);
+  }
+
+  .project-preview__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+  }
+
+  .project-preview__actions > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  @keyframes logo-arrive {
+    to { opacity: 0.12; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  @keyframes copy-arrive {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1080px) {
+    .work-console {
+      grid-template-columns: 155px minmax(310px, 42%) minmax(0, 1fr);
+    }
+    .project-preview__body {
       grid-template-columns: 1fr;
-      min-height: auto;
-      gap: 3rem;
     }
-    .selected-work__header {
-      grid-template-columns: 1fr;
-    }
-    .home-featured {
-      width: min(100%, 38rem);
-    }
-    .home-featured__image {
-      aspect-ratio: 16 / 10;
+    .project-preview__facts {
+      display: none;
     }
   }
-  @media (max-width: 640px) {
-    .home-hero {
-      padding-top: 3.5rem;
-      padding-bottom: 4rem;
-    }
-    .home-hero__title {
-      font-size: clamp(3rem, 14vw, 4.3rem);
-    }
-    .home-hero__focus {
+
+  @media (max-width: 800px) {
+    .work-section__header {
       grid-template-columns: 1fr;
-      gap: 0.55rem;
     }
-    .lineage-header {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
+    .work-console {
+      display: flex;
+      flex-direction: column;
     }
-    .role-tabs-bar {
-      flex-wrap: nowrap;
-      margin-inline: -1.5rem;
-      padding-inline: 1.5rem;
-      overflow-x: auto;
-      scrollbar-width: none;
+    .lineage-index {
+      padding: 0.8rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.45rem;
+      border-right: 0;
+      border-bottom: 1px solid var(--color-rule);
     }
-    .role-tabs-bar::-webkit-scrollbar {
+    .console-label {
       display: none;
+    }
+    .lineage-choice {
+      min-height: 72px;
+      padding: 0.7rem;
+      border: 1px solid var(--color-rule);
+    }
+    .lineage-choice:last-child {
+      border-bottom: 1px solid var(--color-rule);
+    }
+    .lineage-choice__disc {
+      display: none;
+    }
+    .project-index {
+      padding-left: 1rem;
+      border-right: 0;
+      border-bottom: 1px solid var(--color-rule);
+    }
+    .project-preview {
+      min-height: 520px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .identity-hero {
+      min-height: 520px;
+      padding: 1rem 1.1rem 1.3rem;
+    }
+    .identity-hero__meta span:last-child,
+    .identity-hero__footer > p {
+      display: none;
+    }
+    .identity-hero__mark {
+      width: 78vw;
+    }
+    .identity-hero__copy h1 {
+      font-size: clamp(3.9rem, 18vw, 5.6rem);
+    }
+    .identity-hero__footer {
+      justify-content: flex-end;
+    }
+    .lineage-choice strong {
+      font-size: 0.92rem;
+    }
+    .lineage-choice small {
+      font-size: 0.43rem;
+    }
+    .project-row {
+      grid-template-columns: 2rem minmax(0, 1fr) 5.2rem;
+    }
+    .project-preview__media {
+      height: 180px;
+    }
+    .project-preview__actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+    .project-preview__actions .button-primary {
+      width: 100%;
     }
   }
 </style>
 
-<script is:inline>
-  function initScrollReveal() {
-    var cards = document.querySelectorAll('.card-reveal');
-    if (!cards.length) return;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('revealed');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    cards.forEach(function (c) { io.observe(c); });
-  }
-
-  document.addEventListener('astro:page-load', function () {
-    initScrollReveal();
-  });
-</script>
-
 <script>
-  // Astro-processed script: TypeScript, bundled, deduped
-  function initRoleTabs(): void {
-    const tabs = document.querySelectorAll<HTMLButtonElement>('.role-tab');
-    const stack = document.getElementById('lineage-stack');
-    if (!stack || !tabs.length) return;
+  type ProjectData = {
+    id: string;
+    lineage: string;
+    title: string;
+    year: string;
+    role: string;
+    summary: string;
+    hook: string;
+    depth: "deep" | "light";
+    tags: string[];
+    award: string;
+    cover: string;
+    coverPosition: string;
+    href: string;
+    links: { label: string; href: string }[];
+  };
 
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const role = tab.dataset.role ?? '';
+  function initHomePortfolio(): void {
+    const consoleElement = document.querySelector<HTMLElement>("[data-work-console]");
+    const dataElement = document.getElementById("portfolio-project-data");
+    if (!consoleElement || !dataElement || consoleElement.dataset.initialized === "true") return;
 
-        // Update pressed state + active class
-        tabs.forEach((t) => {
-          t.classList.toggle('active', t === tab);
-          t.setAttribute('aria-pressed', t === tab ? 'true' : 'false');
-        });
+    const projects = JSON.parse(dataElement.textContent ?? "[]") as ProjectData[];
+    const preview = consoleElement.querySelector<HTMLElement>("[data-project-preview]");
+    const rows = consoleElement.querySelector<HTMLElement>("[data-project-rows]");
+    if (!preview || !rows || !projects.length) return;
 
-        // Animate with View Transitions API if available
-        if ('startViewTransition' in document) {
-          document.startViewTransition(() => { stack.dataset.filter = role; });
-        } else {
-          stack.dataset.filter = role;
+    consoleElement.dataset.initialized = "true";
+
+    const findProject = (id: string) => projects.find((project) => project.id === id);
+
+    function updatePreview(project: ProjectData): void {
+      preview?.classList.add("is-switching");
+
+      window.setTimeout(() => {
+        const code = preview?.querySelector<HTMLElement>("[data-preview-code]");
+        const year = preview?.querySelector<HTMLElement>("[data-preview-year]");
+        const title = preview?.querySelector<HTMLElement>("[data-preview-title]");
+        const summary = preview?.querySelector<HTMLElement>("[data-preview-summary]");
+        const role = preview?.querySelector<HTMLElement>("[data-preview-role]");
+        const evidence = preview?.querySelector<HTMLElement>("[data-preview-evidence]");
+        const tags = preview?.querySelector<HTMLElement>("[data-preview-tags]");
+        const media = preview?.querySelector<HTMLElement>("[data-preview-media]");
+        const links = preview?.querySelector<HTMLElement>("[data-preview-links]");
+        const primary = preview?.querySelector<HTMLAnchorElement>("[data-preview-primary]");
+
+        if (code) code.textContent = `${project.depth === "deep" ? "CASE STUDY" : "QUICK VIEW"} / ${project.lineage.toUpperCase()}`;
+        if (year) year.textContent = project.year;
+        if (title) title.textContent = project.title;
+        if (summary) summary.textContent = project.hook || project.summary;
+        if (role) role.textContent = project.role;
+        if (evidence) evidence.textContent = project.award || "Playable project";
+        if (tags) tags.textContent = project.tags.slice(0, 3).join(" · ");
+
+        if (media) {
+          media.replaceChildren();
+          if (project.cover) {
+            const image = document.createElement("img");
+            image.src = project.cover;
+            image.alt = `Cover art for ${project.title}`;
+            image.style.objectPosition = project.coverPosition;
+            image.dataset.previewImage = "";
+            media.append(image);
+          } else {
+            const placeholder = document.createElement("div");
+            placeholder.dataset.previewImagePlaceholder = "";
+            media.append(placeholder);
+          }
         }
+
+        if (links) {
+          links.replaceChildren();
+          project.links.slice(0, 2).forEach((link) => {
+            const anchor = document.createElement("a");
+            anchor.href = link.href;
+            anchor.target = "_blank";
+            anchor.rel = "noreferrer";
+            anchor.className = "button-secondary";
+            anchor.textContent = `${link.label} ↗`;
+            links.append(anchor);
+          });
+        }
+
+        if (primary) {
+          primary.href = project.href;
+          primary.textContent = project.depth === "deep" ? "Read full case →" : "Open quick view →";
+        }
+
+        preview?.classList.remove("is-switching");
+      }, 150);
+    }
+
+    function selectProject(id: string): void {
+      const project = findProject(id);
+      if (!project) return;
+      consoleElement?.querySelectorAll<HTMLButtonElement>("[data-project-choice]").forEach((row) => {
+        row.setAttribute("aria-pressed", row.dataset.projectChoice === id ? "true" : "false");
       });
+      updatePreview(project);
+    }
+
+    function selectLineage(lineage: string): void {
+      rows?.classList.add("is-switching");
+      consoleElement?.querySelectorAll<HTMLButtonElement>("[data-lineage-choice]").forEach((choice) => {
+        choice.setAttribute("aria-pressed", choice.dataset.lineageChoice === lineage ? "true" : "false");
+      });
+
+      window.setTimeout(() => {
+        const matching = projects.filter((project) => project.lineage === lineage);
+        consoleElement?.querySelectorAll<HTMLButtonElement>("[data-project-choice]").forEach((row) => {
+          row.hidden = row.dataset.lineage !== lineage;
+        });
+        rows?.classList.remove("is-switching");
+        if (matching[0]) selectProject(matching[0].id);
+      }, 150);
+    }
+
+    consoleElement.querySelectorAll<HTMLButtonElement>("[data-lineage-choice]").forEach((choice) => {
+      choice.addEventListener("click", () => selectLineage(choice.dataset.lineageChoice ?? ""));
     });
+
+    consoleElement.querySelectorAll<HTMLButtonElement>("[data-project-choice]").forEach((row) => {
+      row.addEventListener("click", () => selectProject(row.dataset.projectChoice ?? ""));
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            consoleElement.classList.add("revealed");
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.08 },
+    );
+    observer.observe(consoleElement);
   }
 
-  document.addEventListener('astro:page-load', initRoleTabs);
+  document.addEventListener("astro:page-load", initHomePortfolio);
 </script>
