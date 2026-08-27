@@ -5,7 +5,7 @@ year: "2026"
 role: "Full-Stack Developer"
 summary: "A cross-system interoperability proof-of-concept. Frontend prototyping for rapid iteration, paired with a robust data layer for Solidity contracts to ensure seamless on-chain asset reuse."
 depth: "light"
-cover: "/media/projects/hashmon/images/logo.jpg"
+cover: "/media/projects/hashmon/images/cover-1280.webp"
 coverPosition: "center"
 coverFit: "contain"
 tags: ["Programmer", "Web3", "Experimental"]

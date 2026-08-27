@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  getProjectCoverSrcSet,
+  PROJECT_GRID_IMAGE_SIZES,
+  PROJECT_QUICK_VIEW_IMAGE_SIZES,
+} from "../lib/responsive-image";
 
 export type ProjectMeta = {
   slug: string;
@@ -128,7 +133,11 @@ export default function ProjectGrid({ projects }: Props) {
                 {open.cover ? (
                   <img
                     src={open.cover}
+                    srcSet={getProjectCoverSrcSet(open.cover)}
+                    sizes={PROJECT_QUICK_VIEW_IMAGE_SIZES}
                     alt={`Cover art for ${open.title}`}
+                    loading="lazy"
+                    decoding="async"
                     className={`w-full h-full min-h-[250px] md:min-h-[560px] ${open.coverFit === "contain" ? "object-contain bg-white" : "object-cover"}`}
                   />
                 ) : (
@@ -190,7 +199,11 @@ function Card({
         <div className="aspect-[16/10] overflow-hidden bg-[color:var(--color-bg-2)]">
           <img
             src={project.cover}
+            srcSet={getProjectCoverSrcSet(project.cover)}
+            sizes={PROJECT_GRID_IMAGE_SIZES}
             alt={`Cover art for ${project.title}`}
+            loading="lazy"
+            decoding="async"
             className={`w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.035] ${project.coverFit === "contain" ? "object-contain bg-white" : "object-cover"}`}
           />
         </div>

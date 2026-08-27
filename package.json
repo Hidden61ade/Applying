@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:content": "node tests/portfolio-markdown-embeds.mjs"
+    "test:content": "node tests/portfolio-markdown-embeds.mjs",
+    "optimize:media": "node scripts/optimize-portfolio-media.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

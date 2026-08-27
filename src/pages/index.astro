@@ -1,5 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EditorialTransition from "../components/EditorialTransition.astro";
+import StickyWorkHeader from "../components/StickyWorkHeader.astro";
+import {
+  getProjectCoverSrcSet,
+  PROJECT_HOME_PREVIEW_IMAGE_SIZES,
+} from "../lib/responsive-image";
 import { getCollection } from "astro:content";
 
 const projects = (await getCollection("projects"))
@@ -42,6 +48,7 @@ const projectClientData = visibleProjects.map((p) => ({
   tags: p.data.tags,
   award: p.data.award ?? "",
   cover: p.data.cover ?? "",
+  coverSrcSet: p.data.cover ? (getProjectCoverSrcSet(p.data.cover) ?? "") : "",
   coverPosition: p.data.coverPosition ?? "center",
   coverFit: p.data.coverFit ?? "cover",
   href: p.data.depth === "deep" ? `/projects/${p.id}` : "/projects",
@@ -52,23 +59,48 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
 ---
 
 <BaseLayout>
-  <section class="identity-hero" aria-labelledby="home-title">
+  <section class="identity-hero" aria-labelledby="home-title" data-identity-hero>
     <div class="identity-hero__meta">
       <span>Baohua Fang · Technical Game Designer</span>
-      <span>Selected practice · 2023—2026</span>
+      <span>Independent practice · 2023—2026</span>
     </div>
 
-    <img class="identity-hero__mark" src="/logo.png" alt="" aria-hidden="true" />
+    <div class="identity-hero__stage">
+      <div class="identity-hero__watermark" aria-hidden="true">
+        <div class="identity-hero__watermark-layer identity-hero__watermark-layer--fill">
+          <span>HIDDEN</span><em>61ADE</em>
+        </div>
+        <div class="identity-hero__watermark-layer identity-hero__watermark-layer--stroke">
+          <span>HIDDEN</span><em>61ADE</em>
+        </div>
+      </div>
 
-    <div class="identity-hero__copy">
-      <p class="eyebrow">Systems · Narrative · Creative Technology</p>
-      <h1 id="home-title">
-        <span>From prose</span>
-        <span>to <em>play.</em></span>
-      </h1>
-      <p>
-        I design systems where narrative becomes something the player can do.
-      </p>
+      <div class="identity-hero__rail">
+        <img
+          class="identity-hero__mark"
+          src="/logo-480.webp"
+          srcset="/logo-480.webp 480w, /logo-1024.webp 1024w"
+          sizes="(max-width: 600px) 34vw, 180px"
+          width="480"
+          height="480"
+          decoding="async"
+          alt=""
+          aria-hidden="true"
+        />
+        <p>The blade is hidden.</p>
+        <span>Identity / 01</span>
+      </div>
+
+      <div class="identity-hero__copy">
+        <p class="eyebrow">Systems · Narrative · Creative Technology</p>
+        <h1 id="home-title">
+          <span>From prose</span>
+          <span>to <em>play.</em></span>
+        </h1>
+        <p>
+          I design systems where narrative becomes something the player can do.
+        </p>
+      </div>
     </div>
 
     <div class="identity-hero__footer">
@@ -80,11 +112,15 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     </div>
   </section>
 
-  <section id="selected-work" class="work-section container-wide">
+  <EditorialTransition />
+
+  <div id="selected-work" class="work-shell">
+    <StickyWorkHeader count={visibleProjects.length} />
+    <section class="work-section container-wide" aria-labelledby="work-heading">
     <header class="work-section__header">
       <div>
         <p class="eyebrow">Selected work · {visibleProjects.length} projects</p>
-        <h2>Ideas made playable.</h2>
+        <h2 id="work-heading">Ideas made playable.</h2>
       </div>
       <p>
         Choose a creative lineage, then inspect the role, evidence, and media for
@@ -152,8 +188,12 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
           {defaultProject.data.cover ? (
             <img
               src={defaultProject.data.cover}
+              srcset={getProjectCoverSrcSet(defaultProject.data.cover)}
+              sizes={PROJECT_HOME_PREVIEW_IMAGE_SIZES}
               alt={`Cover art for ${defaultProject.data.title}`}
               style={`object-position: ${defaultProject.data.coverPosition ?? "center"}; object-fit: ${defaultProject.data.coverFit ?? "cover"}`}
+              decoding="async"
+              fetchpriority="high"
               data-preview-image
             />
           ) : (
@@ -191,7 +231,8 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
         </footer>
       </article>
     </div>
-  </section>
+    </section>
+  </div>
 
   <script id="portfolio-project-data" type="application/json" set:html={serializedProjects} is:inline></script>
 </BaseLayout>
@@ -199,10 +240,10 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
 <style>
   .identity-hero {
     position: relative;
-    min-height: min(690px, calc(100vh - 62px));
+    min-height: max(690px, calc(100svh - 62px));
     max-width: 1440px;
     margin: 0 auto;
-    padding: 1.5rem clamp(1.25rem, 4vw, 3.5rem) 2rem;
+    padding: 1.4rem clamp(1.25rem, 4vw, 3.5rem) 1.8rem;
     display: grid;
     grid-template-rows: auto 1fr auto;
     overflow: hidden;
@@ -223,26 +264,118 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     text-transform: uppercase;
   }
 
-  .identity-hero__mark {
+  .identity-hero__stage {
+    position: relative;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.38fr) minmax(0, 0.62fr);
+    isolation: isolate;
+  }
+
+  .identity-hero__stage::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 38%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--color-rule) 16% 84%, transparent);
+  }
+
+  .identity-hero__watermark {
     position: absolute;
     z-index: 0;
-    left: 50%;
-    top: 49%;
-    width: min(58vw, 620px);
-    transform: translate(-50%, -50%) scale(0.94);
+    inset: 2% auto auto -5%;
+    width: min(67vw, 940px);
+    height: 90%;
+    pointer-events: none;
+    transition: opacity 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .identity-hero__watermark-layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: clamp(7rem, 14vw, 13.5rem);
+    font-weight: 300;
+    letter-spacing: -0.075em;
+    line-height: 0.67;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: opacity 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .identity-hero__watermark-layer em {
+    margin-left: 12%;
+    font-family: var(--font-display);
+    font-style: italic;
+    letter-spacing: -0.055em;
+  }
+
+  .identity-hero__watermark-layer--fill {
+    color: color-mix(in srgb, var(--color-ink) 7%, transparent);
+    opacity: 1;
+  }
+
+  .identity-hero__watermark-layer--stroke {
+    color: transparent;
     opacity: 0;
-    filter: grayscale(1) contrast(1.12);
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-ink) 15%, transparent);
+  }
+
+  .identity-hero.is-outline .identity-hero__watermark-layer--fill {
+    opacity: 0;
+  }
+
+  .identity-hero.is-outline .identity-hero__watermark-layer--stroke {
+    opacity: 1;
+  }
+
+  .identity-hero__rail {
+    position: relative;
+    z-index: 2;
+    padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem) 3rem 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+  }
+
+  .identity-hero__mark {
+    width: clamp(6rem, 12vw, 11rem);
+    height: auto;
+    opacity: 0.82;
+    filter: grayscale(1) contrast(1.18);
     mix-blend-mode: multiply;
-    animation: logo-arrive 1000ms 120ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+  }
+
+  .identity-hero__rail p {
+    align-self: end;
+    max-width: 11rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.1vw, 3rem);
+    line-height: 0.95;
+  }
+
+  .identity-hero__rail span {
+    margin-top: 1.1rem;
+    color: var(--color-ink-dim);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
   .identity-hero__copy {
     position: relative;
     z-index: 2;
-    align-self: center;
-    justify-self: center;
-    width: min(100%, 800px);
-    text-align: center;
+    align-self: end;
+    width: min(100%, 810px);
+    margin-left: auto;
+    padding: 0 0 clamp(3rem, 8vh, 6.5rem) clamp(2rem, 5vw, 6rem);
+    text-align: left;
   }
 
   .identity-hero__copy .eyebrow {
@@ -254,9 +387,9 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     margin-top: 0.85rem;
     color: var(--color-accent);
     font-family: var(--font-display);
-    font-size: clamp(4rem, 9vw, 8.6rem);
+    font-size: clamp(4.6rem, 8.4vw, 8.3rem);
     font-weight: 400;
-    line-height: 0.73;
+    line-height: 0.76;
     letter-spacing: -0.05em;
     opacity: 0;
     transform: translateY(14px);
@@ -267,17 +400,21 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     display: block;
   }
 
+  .identity-hero__copy h1 span:last-child {
+    margin-left: 12%;
+  }
+
   .identity-hero__copy h1 em {
     font-weight: inherit;
   }
 
   .identity-hero__copy > p:last-child {
-    max-width: 34rem;
-    margin: 1.5rem auto 0;
+    max-width: 30rem;
+    margin: 1.6rem 0 0 18%;
     color: var(--color-ink-dim);
-    font-family: var(--font-display);
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
-    line-height: 1.35;
+    font-size: clamp(0.95rem, 1.45vw, 1.15rem);
+    font-weight: 350;
+    line-height: 1.48;
     opacity: 0;
     animation: copy-arrive 600ms 470ms ease forwards;
   }
@@ -300,10 +437,14 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     color: var(--color-accent);
   }
 
+  .work-shell {
+    position: relative;
+    scroll-margin-top: 4rem;
+  }
+
   .work-section {
-    padding-top: clamp(4.5rem, 9vw, 7.5rem);
+    padding-top: clamp(3.5rem, 7vw, 6rem);
     padding-bottom: 2rem;
-    scroll-margin-top: 6rem;
   }
 
   .work-section__header {
@@ -649,15 +790,23 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     gap: 0.45rem;
   }
 
-  @keyframes logo-arrive {
-    to { opacity: 0.12; transform: translate(-50%, -50%) scale(1); }
-  }
-
   @keyframes copy-arrive {
     to { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 1080px) {
+    .identity-hero__stage {
+      grid-template-columns: minmax(13rem, 0.42fr) minmax(0, 0.58fr);
+    }
+    .identity-hero__stage::before {
+      left: 42%;
+    }
+    .identity-hero__copy {
+      padding-left: clamp(1.5rem, 4vw, 3rem);
+    }
+    .identity-hero__copy h1 {
+      font-size: clamp(4.4rem, 9vw, 7rem);
+    }
     .work-console {
       grid-template-columns: 155px minmax(310px, 42%) minmax(0, 1fr);
     }
@@ -711,18 +860,58 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
 
   @media (max-width: 600px) {
     .identity-hero {
-      min-height: 520px;
+      min-height: max(650px, calc(100svh - 54px));
       padding: 1rem 1.1rem 1.3rem;
     }
     .identity-hero__meta span:last-child,
     .identity-hero__footer > p {
       display: none;
     }
+    .identity-hero__stage {
+      grid-template-columns: 1fr;
+    }
+    .identity-hero__stage::before {
+      left: 27%;
+    }
+    .identity-hero__watermark {
+      inset: 2% auto auto -34%;
+      width: 126vw;
+      height: 66%;
+    }
+    .identity-hero__watermark-layer {
+      font-size: clamp(6.1rem, 31vw, 8.2rem);
+      line-height: 0.72;
+    }
+    .identity-hero__rail {
+      position: absolute;
+      inset: 1.5rem auto auto 0;
+      width: 36%;
+      height: calc(100% - 3rem);
+      padding: 0 1rem 0 0;
+    }
     .identity-hero__mark {
-      width: 78vw;
+      width: 32vw;
+    }
+    .identity-hero__rail p {
+      max-width: 6rem;
+      font-size: 1.35rem;
+    }
+    .identity-hero__rail span {
+      font-size: 0.48rem;
+    }
+    .identity-hero__copy {
+      align-self: end;
+      padding: 14rem 0 3.4rem 30%;
     }
     .identity-hero__copy h1 {
-      font-size: clamp(3.9rem, 18vw, 5.6rem);
+      font-size: clamp(3.7rem, 18.5vw, 5.3rem);
+    }
+    .identity-hero__copy h1 span:last-child {
+      margin-left: 0;
+    }
+    .identity-hero__copy > p:last-child {
+      margin-left: 0;
+      font-size: 0.88rem;
     }
     .identity-hero__footer {
       justify-content: flex-end;
@@ -747,6 +936,24 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
       width: 100%;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .identity-hero__watermark-layer,
+    .identity-hero__copy .eyebrow,
+    .identity-hero__copy h1,
+    .identity-hero__copy > p:last-child {
+      animation: none;
+      transform: none;
+      opacity: 1;
+      transition: none;
+    }
+    .identity-hero__watermark-layer--fill {
+      opacity: 0;
+    }
+    .identity-hero__watermark-layer--stroke {
+      opacity: 1;
+    }
+  }
 </style>
 
 <script>
@@ -762,11 +969,47 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     tags: string[];
     award: string;
     cover: string;
+    coverSrcSet: string;
     coverPosition: string;
     coverFit: "cover" | "contain";
     href: string;
     links: { label: string; href: string }[];
   };
+
+  function initHeroWatermark(): void {
+    const hero = document.querySelector<HTMLElement>("[data-identity-hero]");
+    if (!hero || hero.dataset.watermarkInitialized === "true") return;
+
+    hero.dataset.watermarkInitialized = "true";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      hero.classList.add("is-outline");
+      return;
+    }
+
+    const controller = new AbortController();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      hero.classList.toggle("is-outline", window.scrollY > 100);
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, {
+      passive: true,
+      signal: controller.signal,
+    });
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        controller.abort();
+        if (frame) window.cancelAnimationFrame(frame);
+      },
+      { once: true, signal: controller.signal },
+    );
+  }
 
   function initHomePortfolio(): void {
     const consoleElement = document.querySelector<HTMLElement>("[data-work-console]");
@@ -810,9 +1053,13 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
           if (project.cover) {
             const image = document.createElement("img");
             image.src = project.cover;
+            image.srcset = project.coverSrcSet;
+            image.sizes = "(min-width: 1081px) min(48vw, 48rem), (min-width: 801px) calc(100vw - 4rem), calc(100vw - 2rem)";
             image.alt = `Cover art for ${project.title}`;
             image.style.objectPosition = project.coverPosition;
             image.style.objectFit = project.coverFit;
+            image.loading = "lazy";
+            image.decoding = "async";
             image.dataset.previewImage = "";
             media.append(image);
           } else {
@@ -891,5 +1138,6 @@ const serializedProjects = JSON.stringify(projectClientData).replaceAll("<", "\\
     observer.observe(consoleElement);
   }
 
+  document.addEventListener("astro:page-load", initHeroWatermark);
   document.addEventListener("astro:page-load", initHomePortfolio);
 </script>

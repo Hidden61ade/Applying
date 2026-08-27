@@ -1,0 +1,155 @@
+---
+interface Props {
+  count?: number | string;
+  projectCount?: number | string;
+}
+
+const { count, projectCount } = Astro.props;
+const resolvedProjectCount = count ?? projectCount ?? 0;
+const projectCountLabel =
+  typeof resolvedProjectCount === "number"
+    ? String(resolvedProjectCount).padStart(2, "0")
+    : String(resolvedProjectCount);
+---
+
+<header class="sticky-work-header" aria-label="Selected work">
+  <div class="sticky-work-header__inner">
+    <div class="sticky-work-header__primary">
+      <h2>WORK</h2>
+      <div class="sticky-work-header__edition">
+        <span class="sticky-work-header__years">2023—2026</span>
+        <span class="sticky-work-header__count">{projectCountLabel} PROJECTS</span>
+      </div>
+    </div>
+
+    <div class="sticky-work-header__secondary">
+      <span>SELECTED PRACTICE / SYSTEMS MADE PLAYABLE</span>
+      <span>TECHNICAL GAME DESIGN · CREATIVE TECHNOLOGY</span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .sticky-work-header {
+    position: sticky;
+    top: 62px;
+    z-index: 30;
+    width: 100%;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+    background: var(--color-bg);
+    color: var(--color-ink);
+  }
+
+  .sticky-work-header__inner {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 3vw, 3rem);
+  }
+
+  .sticky-work-header__primary,
+  .sticky-work-header__secondary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sticky-work-header__primary {
+    min-height: clamp(7.75rem, 13vw, 11.5rem);
+    align-items: center;
+  }
+
+  .sticky-work-header h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(5.4rem, 12vw, 10.75rem);
+    font-weight: 400;
+    letter-spacing: -0.065em;
+    line-height: 0.68;
+  }
+
+  .sticky-work-header__edition {
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding-left: clamp(1rem, 2.5vw, 2.5rem);
+  }
+
+  .sticky-work-header__years {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: clamp(2.15rem, 4.2vw, 4.6rem);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    white-space: nowrap;
+  }
+
+  .sticky-work-header__count,
+  .sticky-work-header__secondary {
+    font-family: var(--font-sans);
+    font-size: clamp(0.5rem, 0.62vw, 0.65rem);
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .sticky-work-header__count {
+    color: var(--color-ink-dim);
+    white-space: nowrap;
+  }
+
+  .sticky-work-header__secondary {
+    padding: 0.75rem 0 0.7rem;
+    border-top: 1px solid var(--color-rule);
+    color: var(--color-ink-dim);
+  }
+
+  .sticky-work-header__secondary span:last-child {
+    padding-left: clamp(1rem, 2.5vw, 2.5rem);
+    text-align: right;
+  }
+
+  @media (max-width: 45rem) {
+    .sticky-work-header {
+      top: 84px;
+    }
+
+    .sticky-work-header__inner {
+      padding: 0 1rem;
+    }
+
+    .sticky-work-header__primary {
+      min-height: 5.1rem;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+    }
+
+    .sticky-work-header h2 {
+      font-size: clamp(4rem, 19vw, 5.7rem);
+    }
+
+    .sticky-work-header__edition {
+      align-items: flex-end;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.3rem;
+      padding-left: 0;
+    }
+
+    .sticky-work-header__years {
+      font-size: clamp(1.3rem, 5.7vw, 1.75rem);
+    }
+
+    .sticky-work-header__count {
+      font-size: 0.46rem;
+    }
+
+    .sticky-work-header__secondary {
+      display: none;
+    }
+  }
+</style>

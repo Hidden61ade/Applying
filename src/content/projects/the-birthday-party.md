@@ -6,7 +6,7 @@ role: "Lead Designer / Programmer / Writer"
 summary: "A meta-narrative game about isolation and agency. A 16,000-word branching script wrapped in a simulated operating system that watches you back."
 hook: "The OS knows it's your birthday. So does the script."
 depth: "deep"
-cover: "/media/projects/the-birthday-party/images/cover.png"
+cover: "/media/projects/the-birthday-party/images/cover-1280.webp"
 tags: ["Writer", "Designer", "Programmer", "Narrative", "Experimental", "Unity"]
 order: 20
 links:

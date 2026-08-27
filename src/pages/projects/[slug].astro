@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
+import {
+  getProjectCoverSrcSet,
+  PROJECT_DETAIL_IMAGE_SIZES,
+} from "../../lib/responsive-image";
 
 export async function getStaticPaths() {
   const projects = (await getCollection("projects")).filter(
@@ -20,7 +24,10 @@ const d = entry.data;
       <div class="aspect-video w-full overflow-hidden bg-[color:var(--color-bg-2)] border-y border-[color:var(--color-rule)]">
         <img
           src={d.cover}
+          srcset={getProjectCoverSrcSet(d.cover)}
+          sizes={PROJECT_DETAIL_IMAGE_SIZES}
           alt={`Cover art for ${d.title}`}
+          decoding="async"
           class="w-full h-full object-cover block"
           style={`object-position: ${d.coverPosition ?? "center"}; object-fit: ${d.coverFit ?? "cover"}`}
           transition:name={`cover-${entry.id}`}

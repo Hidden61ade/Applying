@@ -1,0 +1,261 @@
+---
+interface Props {
+  chapter?: string;
+  note?: string;
+}
+
+const {
+  chapter = "INTERLUDE / 01",
+  note = "SELECTED PRACTICE · 2023—2026",
+} = Astro.props;
+---
+
+<section
+  class="editorial-transition"
+  data-editorial-transition
+  aria-label="Media of possibilities"
+>
+  <div class="editorial-transition__frame">
+    <p class="editorial-transition__meta editorial-transition__meta--chapter">
+      {chapter}
+    </p>
+
+    <div class="editorial-transition__statement">
+      <h2>
+        <span
+          class="editorial-transition__line editorial-transition__line--forward"
+          data-copy="MEDIA OF"
+        >MEDIA OF</span>
+        <span
+          class="editorial-transition__line editorial-transition__line--reverse"
+          data-copy="POSSIBILITIES"
+        >POSSIBILITIES</span>
+      </h2>
+      <span class="editorial-transition__axis" aria-hidden="true"></span>
+    </div>
+
+    <p class="editorial-transition__meta editorial-transition__meta--note">
+      {note}
+    </p>
+  </div>
+</section>
+
+<style>
+  .editorial-transition {
+    --editorial-progress: 0.5;
+    position: relative;
+    height: 240svh;
+    max-width: 100%;
+    overflow: clip;
+    background: var(--color-bg);
+  }
+
+  .editorial-transition__frame {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    isolation: isolate;
+  }
+
+  .editorial-transition__meta {
+    position: absolute;
+    z-index: 3;
+    margin: 0;
+    color: var(--color-ink-dim);
+    font-family: var(--font-sans);
+    font-size: clamp(0.52rem, 0.62vw, 0.66rem);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .editorial-transition__meta--chapter {
+    top: clamp(5.25rem, 8vh, 6.5rem);
+    left: clamp(1.1rem, 3vw, 3rem);
+  }
+
+  .editorial-transition__meta--note {
+    right: clamp(1.1rem, 3vw, 3rem);
+    bottom: clamp(1.25rem, 3vh, 2.5rem);
+    text-align: right;
+  }
+
+  .editorial-transition__statement {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  .editorial-transition__statement h2 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.68;
+    letter-spacing: -0.055em;
+    text-rendering: geometricPrecision;
+  }
+
+  .editorial-transition__line {
+    position: relative;
+    display: block;
+    width: max-content;
+    color: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    font-size: 21vw;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .editorial-transition__line::after {
+    content: attr(data-copy);
+    position: absolute;
+    inset: 0;
+    color: var(--color-accent);
+    opacity: calc(1 - (var(--editorial-progress) * 0.82));
+    pointer-events: none;
+  }
+
+  @supports (-webkit-text-stroke: 1px currentColor) {
+    .editorial-transition__line {
+      color: transparent;
+      -webkit-text-stroke: 1px
+        color-mix(in srgb, var(--color-accent) 72%, var(--color-bg));
+    }
+  }
+
+  .editorial-transition__line--forward {
+    left: -9vw;
+    transform: translate3d(
+      calc((var(--editorial-progress) - 0.5) * 8vw),
+      0,
+      0
+    );
+  }
+
+  .editorial-transition__line--reverse {
+    right: -11vw;
+    margin-left: auto;
+    transform: translate3d(
+      calc((0.5 - var(--editorial-progress)) * 8vw),
+      0,
+      0
+    );
+  }
+
+  .editorial-transition__axis {
+    position: absolute;
+    z-index: 1;
+    top: 20%;
+    bottom: 20%;
+    left: 50%;
+    width: 1px;
+    background: color-mix(in srgb, var(--color-ink) 30%, transparent);
+    transform: translateX(-0.5px);
+  }
+
+  @media (min-width: 48rem) {
+    .editorial-transition__line {
+      font-size: 17.5vw;
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .editorial-transition__line {
+      font-size: 14.5vw;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .editorial-transition {
+      height: 210svh;
+    }
+
+    .editorial-transition__meta--chapter {
+      top: 6.1rem;
+    }
+
+    .editorial-transition__meta--note {
+      max-width: 12rem;
+    }
+
+    .editorial-transition__statement h2 {
+      line-height: 0.76;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .editorial-transition {
+      --editorial-progress: 0.5;
+      height: 115svh;
+    }
+
+    .editorial-transition__line {
+      transform: none;
+      will-change: auto;
+    }
+
+    .editorial-transition__line::after {
+      opacity: 0.34;
+    }
+  }
+</style>
+
+<script>
+  const controllerFlag = "editorialTransitionController";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let editorialFrame: number | undefined;
+
+  function updateEditorialTransitions(): void {
+    editorialFrame = undefined;
+
+    document
+      .querySelectorAll<HTMLElement>("[data-editorial-transition]")
+      .forEach((transition) => {
+        transition.dataset.editorialTransitionInitialized = "true";
+
+        if (reducedMotion.matches) return;
+
+        const bounds = transition.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const runway = Math.max(bounds.height - viewportHeight, 1);
+        const progress = Math.min(1, Math.max(0, -bounds.top / runway));
+
+        transition.style.setProperty("--editorial-progress", progress.toFixed(4));
+      });
+  }
+
+  function requestEditorialUpdate(): void {
+    if (editorialFrame !== undefined) return;
+    editorialFrame = window.requestAnimationFrame(updateEditorialTransitions);
+  }
+
+  function initializeEditorialTransitions(): void {
+    document
+      .querySelectorAll<HTMLElement>("[data-editorial-transition]")
+      .forEach((transition) => {
+        if (transition.dataset.editorialTransitionInitialized !== "true") {
+          transition.dataset.editorialTransitionInitialized = "true";
+        }
+      });
+
+    requestEditorialUpdate();
+  }
+
+  if (document.documentElement.dataset[controllerFlag] !== "true") {
+    document.documentElement.dataset[controllerFlag] = "true";
+    window.addEventListener("scroll", requestEditorialUpdate, { passive: true });
+    window.addEventListener("resize", requestEditorialUpdate, { passive: true });
+    reducedMotion.addEventListener("change", requestEditorialUpdate);
+    document.addEventListener("astro:page-load", initializeEditorialTransitions);
+  }
+
+  initializeEditorialTransitions();
+</script>

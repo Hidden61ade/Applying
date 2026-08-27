@@ -6,7 +6,7 @@ role: "Designer / Writer / Programmer"
 summary: "A pixel platformer / puzzle built around the theme 'Limited Space' — abilities (dash, gravity-flip) only function within designated spatial bounds."
 hook: "Constraints as choreography."
 depth: "light"
-cover: "/media/projects/space-bar-porter/images/cover.jpg"
+cover: "/media/projects/space-bar-porter/images/cover-1280.webp"
 coverPosition: "center"
 coverFit: "contain"
 tags: ["Designer", "Programmer", "Writer", "Puzzle", "Jam"]

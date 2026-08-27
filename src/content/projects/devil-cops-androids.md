@@ -6,7 +6,7 @@ role: "Lead Designer / Programmer"
 summary: "A Global Game Jam 2026 entry: a top-down shooter built end-to-end in 48 hours. Later selected for public exhibition at the SSE Open Day."
 hook: "Forty-eight hours, one loop, hundreds of public play sessions."
 depth: "light"
-cover: "/media/projects/devil-cops-androids/images/cover.jpg"
+cover: "/media/projects/devil-cops-androids/images/cover-1280.webp"
 tags: ["Designer", "Programmer", "Jam", "Unity"]
 order: 60
 links:

@@ -21,7 +21,13 @@ const isActive = (href: string) =>
 <header class="mobile-header md:hidden">
   <div class="mobile-header__top">
     <a href="/" class="mobile-brand" aria-label="Baohua Fang — Home">
-      <img src="/logo.png" alt="" class="mobile-brand__mark" />
+      <img
+        src="/logo-480.webp"
+        srcset="/logo-480.webp 480w, /logo-1024.webp 1024w"
+        sizes="40px"
+        alt=""
+        class="mobile-brand__mark"
+      />
       <span>
         <strong>Baohua Fang</strong>
         <small>Game designer · Creative technologist</small>
@@ -44,7 +50,13 @@ const isActive = (href: string) =>
 <aside class="desktop-sidebar hidden md:flex" aria-label="Portfolio navigation">
   <div>
     <a href="/" class="sidebar-brand group" aria-label="Baohua Fang — Home">
-      <img src="/logo.png" alt="" class="sidebar-brand__mark" />
+      <img
+        src="/logo-480.webp"
+        srcset="/logo-480.webp 480w, /logo-1024.webp 1024w"
+        sizes="72px"
+        alt=""
+        class="sidebar-brand__mark"
+      />
       <span class="sidebar-brand__name">Baohua Fang</span>
       <span class="sidebar-brand__role">Game designer<br />Creative technologist</span>
     </a>
